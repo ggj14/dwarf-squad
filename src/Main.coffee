@@ -18,9 +18,25 @@ class Main extends Phaser.State
     @game.physics.gravity.y = 0
 
     map = @game.add.tilemap('level01')
+
+    # had to do this manually; should be this:
+    # map.setCollisionByExclusion([], true, 'Walls')
+    index = map.getLayerIndex('Walls')
+    layer = map.layers[index]
+    for y in [0...layer.height]
+      for x in [0...layer.width]
+        tile = layer.data[y][x]
+        if tile && tile.index > 0
+          tile.collides = true
+          tile.faceTop = true
+          tile.faceBottom = true
+          tile.faceLeft = true
+          tile.faceRight = true
+    map.calculateFaces(index)
+
     map.addTilesetImage('dungeon', 'dungeon')
     background = map.createLayer('Background')
-    walls = map.createLayer('Walls')
+    @walls = map.createLayer('Walls')
 
     @p1 = new Candy(@game, 250, 250, 1)
     @p2 = new Candy(@game, 500, 500, 2)
@@ -50,13 +66,33 @@ class Main extends Phaser.State
     @pad.on(3, Pad.LEFT, @controller4.left)
     @pad.on(3, Pad.RIGHT, @controller4.right)
 
+    @debug = false
+    @toggle = false
+    @game.input.keyboard.addKeyCapture([
+      Phaser.Keyboard.F1
+    ])
+#   @walls.debug = true
+
   update:()=>
-    dt = @game.time.elapsed
-    @pad.update(dt)
-    @controller1.update(dt)
-    @controller2.update(dt)
-    @controller3.update(dt)
-    @controller4.update(dt)
+    if @game.input.keyboard.isDown(Phaser.Keyboard.F1) && !@toggle
+      @debug = !@debug
+      @toggle = true
+    else if !@game.input.keyboard.isDown(Phaser.Keyboard.F1)
+      @toggle = false
+
+    @pad.update()
+
+    @p1.collide([@walls, @p2, @p3, @p4])
+    @controller1.update()
+
+    @p2.collide([@walls, @p1, @p3, @p4])
+    @controller2.update()
+
+    @p3.collide([@walls, @p1, @p2, @p4])
+    @controller3.update()
+
+    @p4.collide([@walls, @p1, @p2, @p3])
+    @controller4.update()
 
 root = exports ? window
 root.Main = Main

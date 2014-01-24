@@ -16,7 +16,7 @@ class Controller
   down:()=>
     @ay = 1000
 
-  update:(dt)=>
+  update:=>
     @player.accelerate(@ax, @ay)
     @ax = 0
     @ay = 0

@@ -1,5 +1,5 @@
 class Entity
-  constructor: (game, x, y)->
+  constructor:(game, x, y)->
     @game = game
     @dead = false
     @sprite.anchor.x = 0.5
@@ -7,20 +7,31 @@ class Entity
     @sprite.x = x
     @sprite.y = y
 
-  destroy: =>
+  destroy:=>
     return if @dead
     @sprite.destroy()
     @dead = true
     @onDestroy()
 
-  onDestroy: =>
+  onDestroy:=>
     #noop
 
-  update: =>
-    @sprite.body.velocity.x = 0
+  collide:(others)=>
+    if others instanceof Array
+      @collide_object(other) for other in others
+    else
+      @collide_object(others)
+
+  collide_object:(other)=> 
+    if other instanceof Entity
+      @game.physics.collide(@sprite, other.sprite)
+    else
+      @game.physics.collide(@sprite, other)
+
+  update:=>
     @onUpdate()
 
-  onUpdate: =>
+  onUpdate:=>
     #noop
 
   accelerate:(ax,ay)=>

@@ -18,7 +18,7 @@ class Pad
   on:(index, direction, callback)=>
     @state[index][direction] = callback
 
-  update:(dt)=>
+  update:=>
     @poll(pad) for pad in @pads
 
   poll:(pad)=>
