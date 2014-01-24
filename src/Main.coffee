@@ -1,90 +1,52 @@
 #= require Candy
 #= require Controller
+#= require Pad
 
 class Main extends Phaser.State
   # Weird bug with certain objects and particular versions of
   # coffeescript; without this call, instanceof checks fail
-  constructor: ->
+  constructor:()->
     super
 
-  preload: ()=>
+  preload:()=>
     @game.load.spritesheet('candy', 'assets/candy.png', 35, 35)
 
-  create: ()=>
+  create:()=>
     @p1 = new Candy(@game, 250, 250, 1)
     @p2 = new Candy(@game, 500, 500, 2)
     @p3 = new Candy(@game, 250, 500, 3)
     @p4 = new Candy(@game, 500, 250, 4)
 
-    @game.input.gamepad.start();
-
-    # To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
-    @gamepad = @game.input.gamepad.pad1;
-
-
-    @axes = [
-      [
-        [ (=> @gamepad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) < -0.1),
-          (=> @gamepad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) > 0.1) ],
-        [ (=> @gamepad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_Y) < -0.1),
-          (=> @gamepad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_Y) > 0.1) ]
-      ],
-      [
-        [ (=> @gamepad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1),
-          (=> @gamepad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1) ],
-        [ (=> @gamepad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.1),
-          (=> @gamepad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) > 0.1) ]
-      ],
-      [
-        [ (=> @gamepad.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT)),
-          (=> @gamepad.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT)) ],
-        [ (=> @gamepad.isDown(Phaser.Gamepad.XBOX360_DPAD_UP)),
-          (=> @gamepad.isDown(Phaser.Gamepad.XBOX360_DPAD_DOWN)) ]
-      ],
-      [
-        [ (=> @gamepad.isDown(Phaser.Gamepad.XBOX360_X)),
-          (=> @gamepad.isDown(Phaser.Gamepad.XBOX360_B)) ],
-        [ (=> @gamepad.isDown(Phaser.Gamepad.XBOX360_Y)),
-          (=> @gamepad.isDown(Phaser.Gamepad.XBOX360_A)) ]
-      ]
-    ]
-
-
-    # PLAYER 1
     @controller1 = new Controller(@p1, @game)
-    @controller1.left =   @axes[0][0][0]
-    @controller1.right =  @axes[0][0][1]
-    @controller1.up =     @axes[1][1][0]
-    @controller1.down =   @axes[1][1][1]
-
-
-    # PLAYER 2
     @controller2 = new Controller(@p2, @game)
-    @controller2.left =   @axes[1][0][0]
-    @controller2.right =  @axes[1][0][1]
-    @controller2.up =     @axes[2][1][0]
-    @controller2.down =   @axes[2][1][1]
-
-    # PLAYER 3
     @controller3 = new Controller(@p3, @game)
-    @controller3.left =   @axes[2][0][0]
-    @controller3.right =  @axes[2][0][1]
-    @controller3.up =     @axes[3][1][0]
-    @controller3.down =   @axes[3][1][1]
-
-    # PLAYER 4
     @controller4 = new Controller(@p4, @game)
-    @controller4.left =   @axes[3][0][0]
-    @controller4.right =  @axes[3][0][1]
-    @controller4.up =     @axes[0][1][0]
-    @controller4.down =   @axes[0][1][1]
 
-  update: ()=>
-    @controller1.update()
-    @controller2.update()
-    @controller3.update()
-    @controller4.update()
+    @pad = new Pad(@game)
+    @pad.on(0, Pad.UP, @controller1.up)
+    @pad.on(0, Pad.DOWN, @controller1.down)
+    @pad.on(0, Pad.LEFT, @controller1.left)
+    @pad.on(0, Pad.RIGHT, @controller1.right)
+    @pad.on(1, Pad.UP, @controller2.up)
+    @pad.on(1, Pad.DOWN, @controller2.down)
+    @pad.on(1, Pad.LEFT, @controller2.left)
+    @pad.on(1, Pad.RIGHT, @controller2.right)
+    @pad.on(2, Pad.UP, @controller3.up)
+    @pad.on(2, Pad.DOWN, @controller3.down)
+    @pad.on(2, Pad.LEFT, @controller3.left)
+    @pad.on(2, Pad.RIGHT, @controller3.right)
+    @pad.on(3, Pad.UP, @controller4.up)
+    @pad.on(3, Pad.DOWN, @controller4.down)
+    @pad.on(3, Pad.LEFT, @controller4.left)
+    @pad.on(3, Pad.RIGHT, @controller4.right)
 
+  update:()=>
+    dt = @game.time.elapsed
+    @pad.update(dt)
+    @controller1.update(dt)
+    @controller2.update(dt)
+    @controller3.update(dt)
+    @controller4.update(dt)
 
 root = exports ? window
 root.Main = Main

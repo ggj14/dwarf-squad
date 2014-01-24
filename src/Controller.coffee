@@ -1,24 +1,31 @@
 class Controller
-  constructor: (player, game)->
+  constructor:(player)->
     @player = player
-    @game = game
-    @up = null
-    @down = null
-    @left = null
-    @right = null
+    @ax = 0
+    @ay = 0
+    @dx = 0
+    @dy = 0
 
-  update: =>
-    dx = 0
-    dy = 0
-    dx-=1 if @left()
-    dx+=1 if @right()
-    dy-=1 if @up()
-    dy+=1 if @down()
+  left:()=>
+    @ax = -1
 
-    dx*=@game.time.elapsed*0.3;
-    dy*=@game.time.elapsed*0.3;
+  right:()=>
+    @ax = 1
 
-    @player.move(dx, dy)
+  up:()=>
+    @ay = -1
+
+  down:()=>
+    @ay = 1
+
+  update:(dt)=>
+    @dx += @ax*dt*0.1
+    @dy += @ay*dt*0.1
+    @player.move(@dx, @dy)
+    @dx *= 0.8
+    @dy *= 0.8
+    @ax = 0
+    @ay = 0
 
 root = exports ? window
 root.Controller = Controller

@@ -1,5 +1,4 @@
 class Entity
-
   constructor: (game, x, y)->
     @game = game
     @dead = false
@@ -23,7 +22,7 @@ class Entity
   onUpdate: =>
     #noop
 
-  move: (dx,dy)=>
+  move:(dx,dy)=>
     @sprite.x += dx
     @sprite.y += dy
 
