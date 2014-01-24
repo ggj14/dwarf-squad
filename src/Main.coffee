@@ -24,3 +24,6 @@ class Main extends Phaser.State
     @player.x -= 100
   moveEntityRight: ()=>
     @player.x += 100
+
+# export for middleman
+window.Main = Main
