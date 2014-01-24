@@ -19,3 +19,6 @@ class Controller
     dy*=@game.time.elapsed*0.3;
 
     @player.move(dx, dy)
+
+root = exports ? window
+root.Controller = Controller

@@ -1,3 +1,5 @@
+//= require Entity
+
 class Candy extends Entity
 
  constructor: (game, x, y, i)->
@@ -5,5 +7,5 @@ class Candy extends Entity
     @sprite.animations.frame = i
     super
 
-
-
+root = exports ? window
+root.Candy = Candy

@@ -27,4 +27,5 @@ class Entity
     @sprite.x += dx
     @sprite.y += dy
 
-
+root = exports ? window
+root.Entity = Entity

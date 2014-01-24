@@ -1,3 +1,6 @@
+//= require Candy
+//= require Controller
+
 class Main extends Phaser.State
   # Weird bug with certain objects and particular versions of
   # coffeescript; without this call, instanceof checks fail
@@ -33,5 +36,5 @@ class Main extends Phaser.State
   update: ()=>
     @controller1.update()
 
-# export for middleman
-window.Main = Main
+root = exports ? window
+root.Main = Main
