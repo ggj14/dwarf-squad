@@ -7,7 +7,7 @@
         "url": "ssh://git@bitbucket.org/beetlefeet/phaser_quickstart.git"
     },
     "dependencies": {
-        "photonstorm/phaser":"git://github.com/photonstorm/phaser#1.1.4"
+        "photonstorm/phaser":"git://github.com/photonstorm/phaser#dev"
     },
     "devDependencies": {
         "coffee-script": "1.6.x",

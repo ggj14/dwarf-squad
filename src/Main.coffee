@@ -5,25 +5,33 @@ class Main extends Phaser.State
     super
 
   preload: ()=>
-    @game.load.image('player', 'assets/littlemario.jpg')
+    @game.load.spritesheet('candy', 'assets/candy.png', 35, 35)
 
   create: ()=>
-    @player = @game.add.sprite(@game.world.centerX, @game.world.centerY, 'player')
-    @player.anchor.x = 0.5
-    @player.anchor.y = 0.5
-    # @logo.update = ()->
-    #   @angle++
+    @p1 = new Candy(@game, 250, 250, 1)
+    @p2 = new Candy(@game, 500, 500, 2)
+    @p3 = new Candy(@game, 250, 500, 3)
+    @p4 = new Candy(@game, 500, 250, 4)
 
-    left = @game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-    left.onDown.add(@moveEntityLeft);
+    @game.input.gamepad.start();
 
-    right = @game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
-    right.onDown.add(@moveEntityRight);
+    # To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
+    @gamepad = @game.input.gamepad.pad1;
 
-  moveEntityLeft: ()=>
-    @player.x -= 100
-  moveEntityRight: ()=>
-    @player.x += 100
+
+    # PLAYER 1
+    @controller1 = new Controller(@p1, @game)
+    @controller1.left = =>
+      @gamepad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1
+    @controller1.right = =>
+      @gamepad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1
+    @controller1.up = =>
+      @gamepad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.1
+    @controller1.down = =>
+      @gamepad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) > 0.1
+
+  update: ()=>
+    @controller1.update()
 
 # export for middleman
 window.Main = Main
