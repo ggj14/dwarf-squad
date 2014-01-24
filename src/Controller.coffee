@@ -3,27 +3,21 @@ class Controller
     @player = player
     @ax = 0
     @ay = 0
-    @dx = 0
-    @dy = 0
 
   left:()=>
-    @ax = -1
+    @ax = -1000
 
   right:()=>
-    @ax = 1
+    @ax = 1000
 
   up:()=>
-    @ay = -1
+    @ay = -1000
 
   down:()=>
-    @ay = 1
+    @ay = 1000
 
   update:(dt)=>
-    @dx += @ax*dt*0.1
-    @dy += @ay*dt*0.1
-    @player.move(@dx, @dy)
-    @dx *= 0.8
-    @dy *= 0.8
+    @player.accelerate(@ax, @ay)
     @ax = 0
     @ay = 0
 

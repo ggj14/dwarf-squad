@@ -17,14 +17,15 @@ class Entity
     #noop
 
   update: =>
+    @sprite.body.velocity.x = 0
     @onUpdate()
 
   onUpdate: =>
     #noop
 
-  move:(dx,dy)=>
-    @sprite.x += dx
-    @sprite.y += dy
+  accelerate:(ax,ay)=>
+    @sprite.body.acceleration.x = ax
+    @sprite.body.acceleration.y = ay
 
 root = exports ? window
 root.Entity = Entity

@@ -14,12 +14,13 @@ class Main extends Phaser.State
     @game.load.tilemap('level01', 'maps/level01.json', null, Phaser.Tilemap.TILED_JSON)
 
   create:()=>
-    @game.stage.backgroundColor = '#FF00FF';
+    @game.stage.backgroundColor = '#FF00FF'
+    @game.physics.gravity.y = 0
 
     map = @game.add.tilemap('level01')
     map.addTilesetImage('dungeon', 'dungeon')
-    background = map.createLayer('Background');
-    walls = map.createLayer('Walls');
+    background = map.createLayer('Background')
+    walls = map.createLayer('Walls')
 
     @p1 = new Candy(@game, 250, 250, 1)
     @p2 = new Candy(@game, 500, 500, 2)
