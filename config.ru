@@ -15,4 +15,4 @@ module Middleman::PreviewServer
 end
 
 Middleman::PreviewServer.preview_in_rack
-run Middleman::PreviewServer.app
+run Middleman::PreviewServer.app.class.to_rack_app
