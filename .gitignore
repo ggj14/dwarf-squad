@@ -3,3 +3,6 @@ build
 dist
 !build/.gitignore
 .DS_Store
+.bundle
+demo
+tmp
