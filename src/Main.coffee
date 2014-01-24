@@ -10,8 +10,17 @@ class Main extends Phaser.State
 
   preload:()=>
     @game.load.spritesheet('candy', 'assets/candy.png', 35, 35)
+    @game.load.image('dungeon', 'assets/dungeon.png')
+    @game.load.tilemap('level01', 'maps/level01.json', null, Phaser.Tilemap.TILED_JSON)
 
   create:()=>
+    @game.stage.backgroundColor = '#FF00FF';
+
+    map = @game.add.tilemap('level01')
+    map.addTilesetImage('dungeon', 'dungeon')
+    background = map.createLayer('Background');
+    walls = map.createLayer('Walls');
+
     @p1 = new Candy(@game, 250, 250, 1)
     @p2 = new Candy(@game, 500, 500, 2)
     @p3 = new Candy(@game, 250, 500, 3)
