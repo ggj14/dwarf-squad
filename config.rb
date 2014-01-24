@@ -14,6 +14,5 @@ configure :build do
 end
 
 ready do
-  sprockets.append_path '../src/'
-  sprockets.append_path '../assets/'
+  sprockets.append_path '../src'
 end

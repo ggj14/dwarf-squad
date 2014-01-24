@@ -1,5 +1,5 @@
-//= require Candy
-//= require Controller
+#= require Candy
+#= require Controller
 
 class Main extends Phaser.State
   # Weird bug with certain objects and particular versions of

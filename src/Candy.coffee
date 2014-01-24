@@ -1,4 +1,4 @@
-//= require Entity
+#= require Entity
 
 class Candy extends Entity
 
