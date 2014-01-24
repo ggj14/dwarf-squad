@@ -73,7 +73,13 @@ class Main extends Phaser.State
     ])
 #   @walls.debug = true
 
-  update:()=>
+    @game.stage.fullScreenScaleMode = Phaser.StageScaleMode.SHOW_ALL;
+    @game.input.onDown.add(@gofull);
+
+  gofull:=>
+    @game.stage.scale.startFullScreen();
+
+  update:=>
     if @game.input.keyboard.isDown(Phaser.Keyboard.F1) && !@toggle
       @debug = !@debug
       @toggle = true
