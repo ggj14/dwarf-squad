@@ -17,7 +17,7 @@ This will install Phaser and coffeescript
 
 Coffescript is included as a dependency. In order to compile the coffeescript, simply point the coffee compiler at the src folder. I usually use this:
 
-    coffee -w -b --output build --join Main `find . | grep "/\./src/.*\.coffee$"`
+    coffee -w -b --output build --join Main `find . | grep "\./src/.*\.coffee$"`
 
 This will set the compiler to watch for changes in **src** and compile them into **build**
 
