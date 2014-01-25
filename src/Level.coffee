@@ -95,16 +95,10 @@ class Level extends Scene
 
     @entities = @game.add.group()
     for player in @players
-<<<<<<< HEAD
       player.enter(this)
-    @entities.add(object.sprite) for object in @objects
-=======
-      @entities.add(player.sprite)
-      @entities.add(arrow) for arrow in player.arrows
+
     @entities.add(aSheep.sprite) for aSheep in @sheep
     @entities.add(aObject.sprite) for aObject in @objects
->>>>>>> 727a46b0585bfbb320b2c6df9025e3f73c497d06
-
     
     render_order = @game.add.group()
     render_order.add(background)

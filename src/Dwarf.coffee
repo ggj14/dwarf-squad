@@ -63,16 +63,19 @@ class Dwarf extends Entity
 
 
   enter:()=>
+    #need to do this here because the sprite groups don't exist in level during construction (plus level groups get torn down)
     @level.entities.add(@sprite)
     @sprite.group.add(arrow) for arrow in @arrows
 
-    @pickup(new Key(@game, @level))
+    #just for testing pickup
+    @pickup(new Key(@game, @level, {}))
     
 
   pickup:(entity)=>
     @carrying = entity
+
     if @carrying != null
-        @sprite.group.add(@carrying)
+        @sprite.group.add(entity.sprite)
 
   accelerate:(ax, ay)=>
     super(ax, ay)
