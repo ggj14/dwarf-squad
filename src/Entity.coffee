@@ -1,13 +1,9 @@
-class Entity
-  constructor:(game, x, y)->
-    @game = game
+#= require Trigger
+
+class Entity extends Trigger
+  constructor:(game, level, properties)->
     @dead = false
-    @sprite.anchor.x = 0.5
-    @sprite.anchor.y = 0.5
-    @sprite.x = x
-    @sprite.y = y
-    @sprite.body.height = 12
-    @sprite.body.offset.y = 12
+    super(game, level, properties)
 
   destroy:=>
     return if @dead
@@ -17,6 +13,8 @@ class Entity
 
   onDestroy:=>
     #noop
+
+  say:(dialogue)=> 
 
   collide:(others, callback = null)=>
     if others instanceof Array

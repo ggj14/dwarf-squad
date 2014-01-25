@@ -3,7 +3,7 @@
 class Dwarf extends Entity
   constructor:(game, i)->
     @sprite = game.add.sprite(0, 0, 'dwarf1')
-    @sprite.animations.frame = i
+    @sprite.animations.frame = 1
     @sprite.body.friction = 2000
     @sprite.body.maxVelocity.x = 300
     @sprite.body.maxVelocity.y = 300
@@ -12,11 +12,21 @@ class Dwarf extends Entity
     @sprite.body.bounce.y = 0.4
 
     ANIM_FPS_X = 20
+
     ANIM_FPS_Y = 10
     @sprite.animations.add("down", [0, 1, 2, 1, 0], ANIM_FPS_Y, true)
     @sprite.animations.add("left", [4, 5, 6, 5, 4], ANIM_FPS_X, true)
     @sprite.animations.add("right", [8, 9, 10, 9, 8], ANIM_FPS_X, true)
     @sprite.animations.add("up", [12, 13, 14, 13, 12], ANIM_FPS_Y, true)
+
+    @arrows = [
+      game.add.sprite(0, 0, 'arrow'),
+      game.add.sprite(0, 0, 'arrow'),
+      game.add.sprite(0, 0, 'arrow'),
+      game.add.sprite(0, 0, 'arrow')
+    ]
+
+    @axisOwner = [i, i, i, i]
 
     idleChoice = Math.floor(Math.random() * 4)
     idleFps = 0.05 + (Math.random() * 0.2)
@@ -30,39 +40,64 @@ class Dwarf extends Entity
     else
         @sprite.animations.add("idle", [1, 9, 1, 5, 1, 9], idleFps, true)
 
-    @axis = [0, 1, 2, 4]
-    super
+    
+    super(game, null, {})
+
+  accelerate:(ax, ay)=>
+    super(ax, ay)
+    if ax > 1
+      @set_frame(1, Pad.RIGHT)
+
+    if ax < -1
+      @set_frame(3, Pad.LEFT)
+
+    if ay > 1
+      @set_frame(2, Pad.UP)
+
+    if ay < -1
+      @set_frame(0, Pad.DOWN)
+
+  set_frame:(idx, dir)=>
+    @arrows[idx].animations.frame = 4 * @axisOwner[dir] + idx
+    @arrows[idx].alpha = 1
+    console.log(@arrows[idx].animations.frame, 4 * @axisOwner[dir] + idx)
 
   update:=>
     MIN_ANIM_VELOCITY = 10.0
 
     if @sprite.body.velocity.x > MIN_ANIM_VELOCITY && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
         @sprite.animations.play("right")
-        console.log(@axis[Pad.RIGHT], "right")
 
     else if @sprite.body.velocity.x < -MIN_ANIM_VELOCITY && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
         @sprite.animations.play("left")
-        console.log(@axis[Pad.LEFT], "left")
 
     else if @sprite.body.velocity.y > MIN_ANIM_VELOCITY
         @sprite.animations.play("down")
-        console.log(@axis[Pad.DOWN], "down")
 
     else if @sprite.body.velocity.y < -MIN_ANIM_VELOCITY
         @sprite.animations.play("up")
-        console.log(@axis[Pad.UP], "up")
 
     else
         @sprite.animations.play("idle")
 
+    @arrows[0].x = @sprite.x + 8
+    @arrows[0].y = @sprite.y + 32
+    @arrows[1].x = @sprite.x - 16
+    @arrows[1].y = @sprite.y + 8
+    @arrows[2].x = @sprite.x + 8
+    @arrows[2].y = @sprite.y - 16
+    @arrows[3].x = @sprite.x + 32
+    @arrows[3].y = @sprite.y + 8
 
+    arrow.alpha *= 0.9 for arrow in @arrows
 
     #do the arrows
     super
 
   direction_owner:(ctrl_index, player_dir)=>
     console.log(ctrl_index, player_dir)
-    @axis[player_dir] = ctrl_index;
+    @axisOwner[player_dir] = ctrl_index;
+
 
 root = exports ? window
 root.Dwarf = Dwarf
