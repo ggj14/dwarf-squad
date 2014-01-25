@@ -8,8 +8,8 @@ class Exit extends Actor
     @count = 0
     @collect_sound = @game.add.sound("collect")
 
-    if !("type" in @properties)       #default unknown door types to take players
-      @properties['type'] = "Dwarf"
+    # default to letting dwarves in
+    @properties.accepts ||= "Dwarf"
 
   create_sprite: =>
     @sprite = @game.add.sprite(0, 0, 'objects')
@@ -32,7 +32,7 @@ class Exit extends Actor
   walker_entered:(door, walker)=>
     return if walker.exited
 
-    if @properties['type'] == walker.constructor.name
+    if @properties['accepts'] == walker.constructor.name
       walker.remove_from_group(@level.entities)
       walker.exited = true
       walker.ignore = true
