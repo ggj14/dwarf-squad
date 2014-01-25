@@ -1,4 +1,4 @@
-#= require Candy
+#= require Dwarf
 #= require Controller
 #= require Pad
 #= require Scene
@@ -11,10 +11,10 @@ class Level extends Scene
       'level02'
     ]
     @players = [
-      new Candy(@game, 1),
-      new Candy(@game, 2),
-      new Candy(@game, 3),
-      new Candy(@game, 4)
+      new Dwarf(@game, 1),
+      new Dwarf(@game, 2),
+      new Dwarf(@game, 3),
+      new Dwarf(@game, 5)
     ]
     @controllers = []
     for player in @players
@@ -25,7 +25,7 @@ class Level extends Scene
       @pad.on(i, Pad.DOWN, controller.down)
       @pad.on(i, Pad.LEFT, controller.left)
       @pad.on(i, Pad.RIGHT, controller.right)
-    @next()  
+    @next()
 
   next:=>
     @game.world.removeAll()

@@ -1,8 +1,8 @@
 #= require Entity
 
-class Candy extends Entity
+class Dwarf extends Entity
   constructor:(game, i)->
-    @sprite = game.add.sprite(0, 0, 'candy')
+    @sprite = game.add.sprite(0, 0, 'dwarf1')
     @sprite.animations.frame = i
     @sprite.body.friction = 2000
     @sprite.body.maxVelocity.x = 300
@@ -13,4 +13,4 @@ class Candy extends Entity
     super
 
 root = exports ? window
-root.Candy = Candy
+root.Dwarf = Dwarf
