@@ -78,7 +78,7 @@ class Main extends Phaser.State
     Controller.flip_direction_rand(@scene_manager.get_current())
 
   process_flush_changes:(event)=>
-    Controller.flush_directions(@scene_manager.get_current())
+    Controller.flush_directions_all(@scene_manager.get_current())
 
   gofull:=>
     @game.stage.scale.startFullScreen();
