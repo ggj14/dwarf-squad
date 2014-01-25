@@ -8,8 +8,7 @@ class Main extends Phaser.State
   constructor:(fullscreen, scene)->
     super
     @starting_scene = scene
-    if fullscreen
-      @game.input.onDown.add(@gofull);
+    @start_fullscreen = fullscreen
 
   preload:()=>
     @game.load.image('logo', 'assets/logo.png')
@@ -27,6 +26,8 @@ class Main extends Phaser.State
     @scene_manager.add('splash', new Splash(@game, @scene_manager))
     @scene_manager.add('level', new Level(@game, @scene_manager))
     @scene_manager.init(@starting_scene)
+    if @start_fullscreen
+      @game.input.onDown.add(@gofull);
 
   gofull:=>
     @game.stage.scale.startFullScreen();
