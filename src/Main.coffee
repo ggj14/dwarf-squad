@@ -20,6 +20,8 @@ class Main extends Phaser.State
     @game.load.tilemap('level02', 'maps/level02.json', null, Phaser.Tilemap.TILED_JSON)
     @game.load.audio('splash', 'songs/DwarfMusic01.mp3');
     @game.load.audio('pain', 'sounds/pain.wav');
+    @game.load.audio('crazy', 'sounds/CrazyTime.mp3');
+    @game.load.audio('collect', 'sounds/Collect.mp3');
 
   create:()=>
     @game.stage.backgroundColor = '#FF00FF'
