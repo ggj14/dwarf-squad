@@ -28,10 +28,10 @@ class Dwarf extends Entity
     ANIM_FPS_X = 20
 
     ANIM_FPS_Y = 10
-    @sprite.animations.add("down", [0, 1, 2, 1, 0], ANIM_FPS_Y, true)
-    @sprite.animations.add("left", [4, 5, 6, 5, 4], ANIM_FPS_X, true)
-    @sprite.animations.add("right", [8, 9, 10, 9, 8], ANIM_FPS_X, true)
-    @sprite.animations.add("up", [12, 13, 14, 13, 12], ANIM_FPS_Y, true)
+    @sprite.animations.add("down", [0, 1, 2, 1], ANIM_FPS_Y, true)
+    @sprite.animations.add("left", [4, 5, 6, 5], ANIM_FPS_X, true)
+    @sprite.animations.add("right", [8, 9, 10, 9], ANIM_FPS_X, true)
+    @sprite.animations.add("up", [12, 13, 14, 13], ANIM_FPS_Y, true)
 
     @arrows = [
       game.add.sprite(0, 0, 'arrow'),
