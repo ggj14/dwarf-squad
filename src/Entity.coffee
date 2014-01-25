@@ -8,7 +8,6 @@ class Entity
     @sprite.y = y
     @sprite.body.height = 12
     @sprite.body.offset.y = 12
-    console.log(@sprite.body)
 
   destroy:=>
     return if @dead

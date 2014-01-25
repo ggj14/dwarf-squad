@@ -14,7 +14,63 @@
         {
          "height":18,
          "name":"Spawns",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":257,
+                 "height":0,
+                 "name":"player",
+                 "properties":
+                    {
+                     "id":"1"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":254,
+                 "y":96
+                }, 
+                {
+                 "gid":258,
+                 "height":0,
+                 "name":"player",
+                 "properties":
+                    {
+                     "id":"2"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":798,
+                 "y":59
+                }, 
+                {
+                 "gid":259,
+                 "height":0,
+                 "name":"player",
+                 "properties":
+                    {
+                     "id":"3"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":573,
+                 "y":381
+                }, 
+                {
+                 "gid":260,
+                 "height":0,
+                 "name":"player",
+                 "properties":
+                    {
+                     "id":"4"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":69,
+                 "y":509
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -76,6 +132,40 @@
          "spacing":0,
          "tileheight":32,
          "tilewidth":32
+        }, 
+        {
+         "firstgid":257,
+         "image":"..\/assets\/candy.png",
+         "imageheight":35,
+         "imagewidth":140,
+         "margin":0,
+         "name":"player",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":35,
+         "tileproperties":
+            {
+             "0":
+                {
+                 "player":"1"
+                },
+             "1":
+                {
+                 "player":"2"
+                },
+             "2":
+                {
+                 "player":"3"
+                },
+             "3":
+                {
+                 "player":"4"
+                }
+            },
+         "tilewidth":35
         }],
  "tilewidth":32,
  "version":1,
