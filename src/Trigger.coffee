@@ -44,7 +44,9 @@ class Trigger
         @level.players[1].say("there")
 
   finish:=>
-    @game.world.remove(@text) if @text 
+    if @text 
+      @game.world.remove(@text)
+      @text.destroy
     @signal.dispatch()
 
 root = exports ? window

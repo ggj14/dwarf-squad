@@ -86,7 +86,9 @@ class Level extends Scene
       @signals[trigger.properties.event].add(trigger.handle)
 
     @entities = @game.add.group()
-    @entities.add(player.sprite) for player in @players
+    for player in @players
+      @entities.add(player.sprite)
+      @entities.add(arrow) for arrow in player.arrows
     @entities.add(object.sprite) for object in @objects
 
     render_order = @game.add.group()

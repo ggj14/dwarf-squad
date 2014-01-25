@@ -24,8 +24,6 @@ class Controller
     for i in [0..3]
       level.flush_directions(i)
 
-
-
   constructor:(player)->
     @player = player
     @ax = 0
