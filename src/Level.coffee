@@ -78,6 +78,7 @@ class Level extends Scene
 
   update:=>
     @pad.update()
+    player.update() for player in @players
     player.collide(@players, @players_collided) for player in @players
     player.collide(@walls) for player in @players
     controller.update() for controller in @controllers
