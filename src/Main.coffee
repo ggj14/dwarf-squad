@@ -46,17 +46,17 @@ class Main extends Phaser.State
     @p3 = new Candy(@game, 250, 500, 3)
     @p4 = new Candy(@game, 500, 250, 4)
 
-    entities = @game.add.group()
-    entities.add(@p1.sprite)
-    entities.add(@p2.sprite)
-    entities.add(@p3.sprite)
-    entities.add(@p4.sprite)
+    @entities = @game.add.group()
+    @entities.add(@p1.sprite)
+    @entities.add(@p2.sprite)
+    @entities.add(@p3.sprite)
+    @entities.add(@p4.sprite)
 
     render_order = @game.add.group()
     render_order.add(background)
     render_order.add(scenery)
     render_order.add(@walls)
-    render_order.add(entities)
+    render_order.add(@entities)
     render_order.add(roof)
 
     @controller1 = new Controller(@p1, @game)
@@ -83,7 +83,8 @@ class Main extends Phaser.State
     @pad.on(3, Pad.RIGHT, @controller4.right)
 
     @game.stage.fullScreenScaleMode = Phaser.StageScaleMode.SHOW_ALL;
-    @game.input.onDown.add(@gofull);
+    # enable for ship
+    #@game.input.onDown.add(@gofull);
 
   gofull:=>
     @game.stage.scale.startFullScreen();
@@ -102,6 +103,8 @@ class Main extends Phaser.State
 
     @p4.collide([@walls, @p1, @p2, @p3])
     @controller4.update()
+
+    @entities.sort('y', Phaser.Group.SORT_ASCENDING)
 
 root = exports ? window
 root.Main = Main

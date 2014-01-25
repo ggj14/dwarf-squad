@@ -6,6 +6,9 @@ class Entity
     @sprite.anchor.y = 0.5
     @sprite.x = x
     @sprite.y = y
+    @sprite.body.height = 12
+    @sprite.body.offset.y = 12
+    console.log(@sprite.body)
 
   destroy:=>
     return if @dead
