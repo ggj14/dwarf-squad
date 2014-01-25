@@ -16,7 +16,7 @@ class Splash extends Scene
 
   startup:=> 
     @music = @game.add.audio('splash');
-    @music.play('', 0, 1, true)
+    @music.play('', 0, 4, true)
     console.log(@music)
     @labs = @game.add.sprite(@game.world.centerX, @game.world.centerY, 'labs')
     @labs.anchor.setTo(0.5, 0.5)
@@ -41,7 +41,7 @@ class Splash extends Scene
     timer.start()
 
   finish:=>
-    @music.stop()
+    #@music.stop()
     @director.init('level')
 
 root = exports ? window
