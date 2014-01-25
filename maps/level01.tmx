@@ -56,7 +56,7 @@
     <property name="event" value="start"/>
     <property name="id" value="chat"/>
     <property name="input" value="disable"/>
-    <property name="sound" value="pain"/>
+    <property name="sound" value="crazy"/>
    </properties>
   </object>
   <object name="trigger" gid="32" x="94" y="67">

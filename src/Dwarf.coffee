@@ -2,7 +2,16 @@
 
 class Dwarf extends Entity
   constructor:(game, i)->
-    @sprite = game.add.sprite(0, 0, 'dwarf1')
+    @sprite =
+      switch i
+        when 1
+          game.add.sprite(0, 0, 'dwarf1')
+        when 2
+          game.add.sprite(0, 0, 'dwarf2')
+        when 3
+          game.add.sprite(0, 0, 'dwarf3')
+        when 4
+          game.add.sprite(0, 0, 'dwarf4')
     @sprite.animations.frame = 1
     @sprite.body.friction = 2000
     @sprite.body.maxVelocity.x = 300
@@ -10,6 +19,11 @@ class Dwarf extends Entity
     @sprite.body.collideWorldBounds = true
     @sprite.body.bounce.x = 0.4
     @sprite.body.bounce.y = 0.4
+
+    @sprite.body.height = 16
+    @sprite.body.width = 20
+    @sprite.body.offset.x = 6
+    @sprite.body.offset.y = 18
 
     ANIM_FPS_X = 20
 

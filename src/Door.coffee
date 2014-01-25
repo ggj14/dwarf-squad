@@ -15,6 +15,7 @@ class Door extends Entity
     return unless @player.group == @level.entities
     @level.entities.remove(@player)
     @count += 1
+    @game.add.sound("collect").play('', 0, 1)
     if @count == +@properties['count']
       @level.signals[@properties['id']].dispatch()
 
