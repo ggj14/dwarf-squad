@@ -3,6 +3,8 @@
 #= require Controller
 #= require Pad
 #= require Scene
+#= require Exit
+#= require Trigger
 #= require Door
 
 class Level extends Scene
@@ -18,10 +20,10 @@ class Level extends Scene
       'level02'
     ]
     @players = [
-      new Dwarf(@game, this, 1),
-      new Dwarf(@game, this, 2),
-      new Dwarf(@game, this, 3),
-      new Dwarf(@game, this, 4)
+      new Dwarf(@game, 1),
+      new Dwarf(@game, 2),
+      new Dwarf(@game, 3),
+      new Dwarf(@game, 4)
     ]
     @controllers = []
     for player in @players
@@ -65,7 +67,7 @@ class Level extends Scene
 
     @triggers = []
     @objects = []
-    @sheep = []
+    @entities = @game.add.group()
 
     for spawn in map.objects.Spawns
       switch spawn.name
@@ -73,33 +75,35 @@ class Level extends Scene
           player = @players[+spawn.properties.id-1]
           player.sprite.x = spawn.x
           player.sprite.y = spawn.y - player.sprite.height
-        when "trigger"          
+        when "trigger"
           trigger = new Trigger(@game, this, spawn.properties)
           if trigger.properties.id != null
             @signals[trigger.properties.id] ||= trigger.signal
           @triggers.push(trigger)
-        when "door"  
-          door = new Door(@game, this, spawn.properties)
-          door.sprite.x = spawn.x
-          door.sprite.y = spawn.y - door.sprite.height
-          @objects.push(door)
+        when "object"
+          o =
+            switch spawn.properties.type
+              when "exit"
+                new Exit(@game, this, spawn.properties)
+              when "key"
+                new Key(@game, this, spawn.properties)
+              when "door"
+                new Door(@game, this, spawn.properties)
+              when "sheep"
+                new Sheep(@game)
+              else
+                alert("missing definition for type: #{spawn.properties.type}")
+          o.sprite.x = spawn.x
+          o.sprite.y = spawn.y - o.sprite.height
+          @objects.push(o)
+          o.add_to_group(@entities)
 
-    #temporarily hack in a sheep
-    aSheep = new Sheep(@game, this)
-    aSheep.sprite.x = 100
-    aSheep.sprite.y = 280
-    @sheep.push(aSheep)
-
-    for trigger in @triggers      
+    for trigger in @triggers
       @signals[trigger.properties.event].add(trigger.handle)
 
-    @entities = @game.add.group()
     for player in @players
-      player.enter(this)
+      player.add_to_group(@entities)
 
-    @entities.add(aSheep.sprite) for aSheep in @sheep
-    @entities.add(aObject.sprite) for aObject in @objects
-    
     render_order = @game.add.group()
     render_order.add(background)
     render_order.add(scenery)
@@ -116,11 +120,10 @@ class Level extends Scene
     @pad.update()
     player.update() for player in @players
     object.update() for object in @objects
-    aSheep.update() for aSheep in @sheep
     player.collide(@players, @players_collided) for player in @players
     player.collide(@walls) for player in @players
-    player.collide(@sheep) for player in @players
-    aSheep.collide(@walls) for aSheep in @sheep
+    # player.collide(@sheep) for player in @players
+    # aSheep.collide(@walls) for aSheep in @sheep
     controller.update() for controller in @controllers
     @entities.sort('y', Phaser.Group.SORT_ASCENDING)
 
@@ -142,7 +145,7 @@ class Level extends Scene
       #@pad.on(p, Pad.RIGHT, @controllers[p].right)
 
   players_collided:(@p1, @p2) =>
-    if @p1.body.speed+@p2.body.speed >= 500
+    if @p1.sprite.body.speed+@p2.sprite.body.speed >= 500
       @pain.play('', 0, 1)
 
 root = exports ? window

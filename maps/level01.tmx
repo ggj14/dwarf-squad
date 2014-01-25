@@ -4,7 +4,7 @@
   <image source="../website/assets/world.png" width="256" height="256"/>
  </tileset>
  <tileset firstgid="65" name="objects" tilewidth="32" tileheight="32">
-  <image source="../website/assets/objects.png" width="128" height="128"/>
+  <image source="../website/assets/objects.png" width="96" height="32"/>
  </tileset>
  <layer name="Background" width="32" height="18">
   <data encoding="csv">
@@ -52,7 +52,7 @@
   <object name="trigger" gid="32" x="35" y="62">
    <properties>
     <property name="caption" value="Setting Out"/>
-    <property name="duration" value="5000"/>
+    <property name="duration" value="500"/>
     <property name="event" value="start"/>
     <property name="id" value="chat"/>
     <property name="input" value="disable"/>
@@ -72,10 +72,25 @@
     <property name="input" value="enable"/>
    </properties>
   </object>
-  <object name="door" gid="22" x="480" y="319">
+  <object name="object" gid="44" x="586" y="244">
    <properties>
-    <property name="count" value="4"/>
-    <property name="id" value="finish"/>
+    <property name="type" value="exit"/>
+   </properties>
+  </object>
+  <object name="object" gid="39" x="309" y="254">
+   <properties>
+    <property name="type" value="sheep"/>
+   </properties>
+  </object>
+  <object name="object" gid="37" x="311" y="367">
+   <properties>
+    <property name="type" value="key"/>
+   </properties>
+  </object>
+  <object name="object" gid="47" x="480" y="320">
+   <properties>
+    <property name="locked" value="y"/>
+    <property name="type" value="door"/>
    </properties>
   </object>
  </objectgroup>

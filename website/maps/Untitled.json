@@ -6,7 +6,7 @@
          "name":"Background",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":32,
          "x":0,
          "y":0
@@ -78,7 +78,7 @@
                  "properties":
                     {
                      "caption":"Setting Out",
-                     "duration":"500",
+                     "duration":"1000",
                      "event":"start",
                      "id":"chat",
                      "input":"disable",
@@ -122,46 +122,19 @@
                  "y":65
                 }, 
                 {
-                 "gid":44,
+                 "gid":22,
                  "height":0,
-                 "name":"object",
+                 "name":"door",
                  "properties":
                     {
-                     "type":"door"
+                     "count":"4",
+                     "id":"finish"
                     },
                  "type":"",
                  "visible":true,
                  "width":0,
                  "x":480,
-                 "y":320
-                }, 
-                {
-                 "gid":39,
-                 "height":0,
-                 "name":"object",
-                 "properties":
-                    {
-                     "type":"sheep"
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":309,
-                 "y":254
-                }, 
-                {
-                 "gid":37,
-                 "height":0,
-                 "name":"object",
-                 "properties":
-                    {
-                     "type":"key"
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":311,
-                 "y":367
+                 "y":319
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -176,7 +149,7 @@
          "name":"Scenery",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":32,
          "x":0,
          "y":0
@@ -187,7 +160,7 @@
          "name":"Walls",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":32,
          "x":0,
          "y":0
@@ -198,7 +171,7 @@
          "name":"Roof",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":32,
          "x":0,
          "y":0

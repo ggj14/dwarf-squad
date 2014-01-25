@@ -7,7 +7,7 @@ class Trigger
     @init()
 
   init:=>
-    
+
   handle:=>
     @show_caption(@properties['caption']) if @properties['caption']
     @play_sound(@properties['sound']) if @properties['sound']
@@ -33,8 +33,8 @@ class Trigger
     }
     @text = @game.add.text(@game.world.centerX, @game.world.centerY, caption, style)
     @text.anchor.setTo(0.5, 0.5);
-  
-  play_sound:(sound)=>  
+
+  play_sound:(sound)=>
     @game.add.sound(sound).play('', 0, 1)
 
   play_dialogue:(set)=>
@@ -44,7 +44,7 @@ class Trigger
         @level.players[1].say("there")
 
   finish:=>
-    if @text 
+    if @text
       @game.world.remove(@text)
       @text.destroy
     @signal.dispatch()

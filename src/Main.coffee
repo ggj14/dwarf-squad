@@ -19,6 +19,7 @@ class Main extends Phaser.State
     @game.load.spritesheet('dwarf4', 'assets/dwarf_02.png', 32, 32)
     @game.load.spritesheet('sheep', 'assets/sheep.png', 32, 32)
     @game.load.spritesheet('arrow', 'assets/arrows.png', 16, 16)
+    @game.load.spritesheet('objects', 'assets/objects.png', 32, 32)
     @game.load.image('key',   'assets/key.png')
     @game.load.image('world', 'assets/world.png')
     @game.load.tilemap('level01', 'maps/level01.json', null, Phaser.Tilemap.TILED_JSON)

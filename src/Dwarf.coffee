@@ -1,81 +1,33 @@
-#= require Entity
+#= require Walker
 #= require Key
 
-class Dwarf extends Entity
-  constructor:(game, level, i)->
-    @sprite =
-      switch i
-        when 1
-          game.add.sprite(0, 0, 'dwarf1')
-        when 2
-          game.add.sprite(0, 0, 'dwarf2')
-        when 3
-          game.add.sprite(0, 0, 'dwarf3')
-        when 4
-          game.add.sprite(0, 0, 'dwarf4')
-    @sprite.animations.frame = 1
-    @sprite.body.friction = 2000
-    @sprite.body.maxVelocity.x = 300
-    @sprite.body.maxVelocity.y = 300
-    @sprite.body.collideWorldBounds = true
-    @sprite.body.bounce.x = 0.4
-    @sprite.body.bounce.y = 0.4
-
-    @sprite.body.height = 16
-    @sprite.body.width = 20
-    @sprite.body.offset.x = 6
-    @sprite.body.offset.y = 18
-
-    ANIM_FPS_X = 20
-
-    ANIM_FPS_Y = 10
-    @sprite.animations.add("down", [0, 1, 2, 1], ANIM_FPS_Y, true)
-    @sprite.animations.add("left", [4, 5, 6, 5], ANIM_FPS_X, true)
-    @sprite.animations.add("right", [8, 9, 10, 9], ANIM_FPS_X, true)
-    @sprite.animations.add("up", [12, 13, 14, 13], ANIM_FPS_Y, true)
-
-    @arrows = [
-      game.add.sprite(0, 0, 'arrow'),
-      game.add.sprite(0, 0, 'arrow'),
-      game.add.sprite(0, 0, 'arrow'),
-      game.add.sprite(0, 0, 'arrow')
-    ]
-
+class Dwarf extends Walker
+  constructor:(game, i)->
+    @dwarf_number = i
     @axisOwner = [i, i, i, i]
+    super(game)
 
-    idleChoice = Math.floor(Math.random() * 4)
-    idleFps = 0.05 + (Math.random() * 0.2)
-
-    if idleChoice == 0
-        @sprite.animations.add("idle", [1, 5, 9], idleFps, true)
-    else if idleChoice == 1
-        @sprite.animations.add("idle", [1, 9, 5], idleFps, true)
-    else if idleChoice == 3
-        @sprite.animations.add("idle", [1, 5, 1, 9, 1, 5], idleFps, true)
-    else
-        @sprite.animations.add("idle", [1, 9, 1, 5, 1, 9], idleFps, true)
-
-    
     @carrying = null
     @facing = Pad.UP
 
-    super(game, level, {})
+  create_sprite:=>
+    gfx = "dwarf#{@dwarf_number}"
+    @sprite = @game.add.sprite(0, 0, gfx)
 
+    @arrows = [
+      @game.add.sprite(0, 0, 'arrow'),
+      @game.add.sprite(0, 0, 'arrow'),
+      @game.add.sprite(0, 0, 'arrow'),
+      @game.add.sprite(0, 0, 'arrow')
+    ]
 
-  enter:()=>
-    #need to do this here because the sprite groups don't exist in level during construction (plus level groups get torn down)
-    @level.entities.add(@sprite)
-    @sprite.group.add(arrow) for arrow in @arrows
+  on_add_to_group:(group)=>
+    # also need to add our arrooows
+    group.add(arrow) for arrow in @arrows
 
-    #just for testing pickup
-    @pickup(new Key(@game, @level, {}))
-    
-
-  pickup:(entity)=>
-    @carrying = entity
-
-    if @carrying != null
-        @sprite.group.add(entity.sprite)
+  maybe_pickup:(entity)=>
+    if @carrying == null
+      @carrying = entity
 
   accelerate:(ax, ay)=>
     super(ax, ay)
@@ -95,28 +47,7 @@ class Dwarf extends Entity
     @arrows[idx].animations.frame = 4 * @axisOwner[dir] + idx
     @arrows[idx].alpha = 1
 
-  update:=>
-    MIN_ANIM_VELOCITY = 10.0
-
-    if @sprite.body.velocity.x > MIN_ANIM_VELOCITY && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
-        @sprite.animations.play("right")
-        @facing = Pad.RIGHT
-
-    else if @sprite.body.velocity.x < -MIN_ANIM_VELOCITY && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
-        @sprite.animations.play("left")
-        @facing = Pad.LEFT
-
-    else if @sprite.body.velocity.y > MIN_ANIM_VELOCITY
-        @sprite.animations.play("down")
-        @facing = Pad.DOWN
-
-    else if @sprite.body.velocity.y < -MIN_ANIM_VELOCITY
-        @sprite.animations.play("up")
-        @facing = Pad.UP
-
-    else
-        @sprite.animations.play("idle")
-
+  on_update:=>
     @arrows[0].x = @sprite.x + 8
     @arrows[0].y = @sprite.y + 32
     @arrows[1].x = @sprite.x - 16
@@ -127,10 +58,6 @@ class Dwarf extends Entity
     @arrows[3].y = @sprite.y + 8
 
     arrow.alpha *= 0.9 for arrow in @arrows
-
-    if @carrying != null
-      @carrying.move_to(@sprite.x, @sprite.y, @facing)
-
 
     #do the arrows
     super
