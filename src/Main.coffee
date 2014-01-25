@@ -5,8 +5,9 @@
 class Main extends Phaser.State
   # Weird bug with certain objects and particular versions of
   # coffeescript; without this call, instanceof checks fail
-  constructor:()->
+  constructor:(fullscreen)->
     super
+    @launch_fullscreen = fullscreen
 
   preload:()=>
     @game.load.spritesheet('candy', 'assets/candy.png', 35, 35)
@@ -68,8 +69,8 @@ class Main extends Phaser.State
       @pad.on(i, Pad.RIGHT, controller.right)
 
     @game.stage.fullScreenScaleMode = Phaser.StageScaleMode.SHOW_ALL;
-    # enable for ship
-    #@game.input.onDown.add(@gofull);
+    if @launch_fullscreen
+      @game.input.onDown.add(@gofull);
 
   gofull:=>
     @game.stage.scale.startFullScreen();
