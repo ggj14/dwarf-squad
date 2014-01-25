@@ -48,8 +48,8 @@ class Sheep extends Walker
 
     if (@walkTime < 0.0) or not @sprite.body.wasTouching.none or not @sprite.body.touching
       if Phaser.Math.chanceRoll(20)
-        @set_caption("Bleet!", 1.0, 20)
-        
+        @set_caption("Bleet!", 1.0, 20, Phaser.Math.getRandom(['baa1','baa2', 'baa3']))
+
       @sprite.body.velocity.equals(0.0, 0.0)
 
       @walkTime = 1 + Math.random() * 6.0

@@ -41,7 +41,7 @@ class Actor extends Entity
     ##### End of dat super dodgy hack
 
 
-  set_caption:(message, time, size)=>
+  set_caption:(message, time, size, sound = null, volume = 0.5)=>
     style = {
       font: size + "px Arial",
       fill: "#FFFFFF",
@@ -54,9 +54,10 @@ class Actor extends Entity
 
     @caption = @game.add.text(0, 0, message, style)
     @caption.anchor.setTo(0.5, 1.0);
+    if sound
+      @game.add.sound(sound).play('', 0, volume, false, true)
 
     @message_remaining = time
-
 
   collide:(others, callback = null, processor_fn = null)=>
     if others instanceof Array
