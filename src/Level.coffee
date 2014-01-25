@@ -17,10 +17,10 @@ class Level extends Scene
       'level02'
     ]
     @players = [
-      new Dwarf(@game, 1),
-      new Dwarf(@game, 2),
-      new Dwarf(@game, 3),
-      new Dwarf(@game, 4)
+      new Dwarf(@game, this, 1),
+      new Dwarf(@game, this, 2),
+      new Dwarf(@game, this, 3),
+      new Dwarf(@game, this, 4)
     ]
     @controllers = []
     for player in @players
@@ -87,8 +87,7 @@ class Level extends Scene
 
     @entities = @game.add.group()
     for player in @players
-      @entities.add(player.sprite)
-      @entities.add(arrow) for arrow in player.arrows
+      player.enter(this)
     @entities.add(object.sprite) for object in @objects
 
     render_order = @game.add.group()

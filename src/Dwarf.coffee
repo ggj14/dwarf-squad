@@ -1,7 +1,8 @@
 #= require Entity
+#= require Key
 
 class Dwarf extends Entity
-  constructor:(game, i)->
+  constructor:(game, level, i)->
     @sprite =
       switch i
         when 1
@@ -55,15 +56,23 @@ class Dwarf extends Entity
         @sprite.animations.add("idle", [1, 9, 1, 5, 1, 9], idleFps, true)
 
     
-    #@carrying = null
-    @carrying = new Key()
+    @carrying = null
     @facing = Pad.UP
 
-    super(game, null, {})
+    super(game, level, {})
+
+
+  enter:()=>
+    @level.entities.add(@sprite)
+    @sprite.group.add(arrow) for arrow in @arrows
+
+    @pickup(new Key(@game, @level))
     
 
-  attach:(entity)=>
+  pickup:(entity)=>
     @carrying = entity
+    if @carrying != null
+        @sprite.group.add(@carrying)
 
   accelerate:(ax, ay)=>
     super(ax, ay)
@@ -117,7 +126,7 @@ class Dwarf extends Entity
     arrow.alpha *= 0.9 for arrow in @arrows
 
     if @carrying != null
-      carrying.move_to(@sprite.x, @sprite.y)
+      @carrying.move_to(@sprite.x, @sprite.y, @facing)
 
 
     #do the arrows
