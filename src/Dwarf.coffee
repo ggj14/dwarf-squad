@@ -20,6 +20,11 @@ class Dwarf extends Entity
     @sprite.body.bounce.x = 0.4
     @sprite.body.bounce.y = 0.4
 
+    @sprite.body.height = 16
+    @sprite.body.width = 20
+    @sprite.body.offset.x = 6
+    @sprite.body.offset.y = 18
+
     ANIM_FPS_X = 20
 
     ANIM_FPS_Y = 10
