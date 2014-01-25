@@ -3,6 +3,29 @@
  <tileset firstgid="1" name="dungeon" tilewidth="32" tileheight="32">
   <image source="../website/assets/dungeon.png" width="512" height="512"/>
  </tileset>
+ <tileset firstgid="257" name="player" tilewidth="35" tileheight="35">
+  <image source="../website/assets/candy.png" width="140" height="35"/>
+  <tile id="0">
+   <properties>
+    <property name="player" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="player" value="2"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="player" value="3"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="player" value="4"/>
+   </properties>
+  </tile>
+ </tileset>
  <layer name="Background" width="32" height="18">
   <data encoding="csv">
 79,80,96,96,79,80,95,95,80,80,96,80,79,79,80,96,80,80,79,80,80,96,80,80,111,27,11,11,128,80,79,80,
@@ -25,7 +48,28 @@
 80,95,80,79,79,95,95,80,95,79,80,96,111,11,128,96,96,79,79,95,95,79,96,80,95,95,79,80,95,80,80,95
 </data>
  </layer>
- <objectgroup name="Spawns" width="32" height="18"/>
+ <objectgroup name="Spawns" width="32" height="18">
+  <object name="player" gid="257" x="254" y="96">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="player" gid="258" x="798" y="59">
+   <properties>
+    <property name="id" value="2"/>
+   </properties>
+  </object>
+  <object name="player" gid="259" x="573" y="381">
+   <properties>
+    <property name="id" value="3"/>
+   </properties>
+  </object>
+  <object name="player" gid="260" x="69" y="509">
+   <properties>
+    <property name="id" value="4"/>
+   </properties>
+  </object>
+ </objectgroup>
  <layer name="Scenery" width="32" height="18">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

@@ -5,8 +5,9 @@
 class Main extends Phaser.State
   # Weird bug with certain objects and particular versions of
   # coffeescript; without this call, instanceof checks fail
-  constructor:()->
+  constructor:(fullscreen)->
     super
+    @launch_fullscreen = fullscreen
 
   preload:()=>
     @game.load.spritesheet('candy', 'assets/candy.png', 35, 35)
@@ -40,17 +41,18 @@ class Main extends Phaser.State
     @walls = map.createLayer('Walls')
     roof = map.createLayer('Roof')
 
+    @players = []
+    @controllers = []
 
-    @p1 = new Candy(@game, 250, 250, 1)
-    @p2 = new Candy(@game, 500, 500, 2)
-    @p3 = new Candy(@game, 250, 500, 3)
-    @p4 = new Candy(@game, 500, 250, 4)
+    for spawn in map.objects.Spawns
+      switch spawn.name
+        when "player"
+          player = new Candy(@game, spawn.x, spawn.y, +spawn.properties.id)
+          @players.push(player)
+          @controllers.push(new Controller(player, @game))
 
     @entities = @game.add.group()
-    @entities.add(@p1.sprite)
-    @entities.add(@p2.sprite)
-    @entities.add(@p3.sprite)
-    @entities.add(@p4.sprite)
+    @entities.add(player.sprite) for player in @players
 
     render_order = @game.add.group()
     render_order.add(background)
@@ -59,51 +61,25 @@ class Main extends Phaser.State
     render_order.add(@entities)
     render_order.add(roof)
 
-    @controller1 = new Controller(@p1, @game)
-    @controller2 = new Controller(@p2, @game)
-    @controller3 = new Controller(@p3, @game)
-    @controller4 = new Controller(@p4, @game)
-
     @pad = new Pad(@game)
-    @pad.on(0, Pad.UP, @controller1.up)
-    @pad.on(0, Pad.DOWN, @controller1.down)
-    @pad.on(0, Pad.LEFT, @controller1.left)
-    @pad.on(0, Pad.RIGHT, @controller1.right)
-    @pad.on(1, Pad.UP, @controller2.up)
-    @pad.on(1, Pad.DOWN, @controller2.down)
-    @pad.on(1, Pad.LEFT, @controller2.left)
-    @pad.on(1, Pad.RIGHT, @controller2.right)
-    @pad.on(2, Pad.UP, @controller3.up)
-    @pad.on(2, Pad.DOWN, @controller3.down)
-    @pad.on(2, Pad.LEFT, @controller3.left)
-    @pad.on(2, Pad.RIGHT, @controller3.right)
-    @pad.on(3, Pad.UP, @controller4.up)
-    @pad.on(3, Pad.DOWN, @controller4.down)
-    @pad.on(3, Pad.LEFT, @controller4.left)
-    @pad.on(3, Pad.RIGHT, @controller4.right)
+    for controller, i in @controllers
+      @pad.on(i, Pad.UP, controller.up)
+      @pad.on(i, Pad.DOWN, controller.down)
+      @pad.on(i, Pad.LEFT, controller.left)
+      @pad.on(i, Pad.RIGHT, controller.right)
 
     @game.stage.fullScreenScaleMode = Phaser.StageScaleMode.SHOW_ALL;
-    # enable for ship
-    #@game.input.onDown.add(@gofull);
+    if @launch_fullscreen
+      @game.input.onDown.add(@gofull);
 
   gofull:=>
     @game.stage.scale.startFullScreen();
 
   update:=>
     @pad.update()
-
-    @p1.collide([@walls, @p2, @p3, @p4])
-    @controller1.update()
-
-    @p2.collide([@walls, @p1, @p3, @p4])
-    @controller2.update()
-
-    @p3.collide([@walls, @p1, @p2, @p4])
-    @controller3.update()
-
-    @p4.collide([@walls, @p1, @p2, @p3])
-    @controller4.update()
-
+    player.collide(@players) for player in @players
+    player.collide(@walls) for player in @players
+    controller.update() for controller in @controllers
     @entities.sort('y', Phaser.Group.SORT_ASCENDING)
 
 root = exports ? window
