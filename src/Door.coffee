@@ -46,8 +46,11 @@ class Door extends Actor
     return if player.exited
 
     return unless (player.carrying && (player.carrying instanceof Key))
-    # ok unlock!
-    @locked = false
+    key = player.carrying
+
+    if @properties.keycode == undefined || @properties.keycode == key.properties.keycode
+      # ok unlock!
+      @locked = false
 
 root = exports ? window
 root.Door = Door

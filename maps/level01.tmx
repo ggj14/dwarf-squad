@@ -123,13 +123,15 @@
     <property name="id" value="4"/>
    </properties>
   </object>
-  <object name="object" gid="65" x="277" y="266">
+  <object name="object" gid="65" x="412" y="157">
    <properties>
+    <property name="keycode" value="aaa"/>
     <property name="type" value="key"/>
    </properties>
   </object>
   <object name="object" gid="66" x="288" y="416">
    <properties>
+    <property name="keycode" value="door1"/>
     <property name="locked" value="y"/>
     <property name="type" value="door"/>
    </properties>
@@ -162,6 +164,24 @@
   <object name="object" gid="68" x="927" y="112">
    <properties>
     <property name="type" value="sheep"/>
+   </properties>
+  </object>
+  <object name="object" gid="65" x="410" y="381">
+   <properties>
+    <property name="keycode" value="aaa"/>
+    <property name="type" value="key"/>
+   </properties>
+  </object>
+  <object name="object" gid="65" x="162" y="157">
+   <properties>
+    <property name="keycode" value="door1"/>
+    <property name="type" value="key"/>
+   </properties>
+  </object>
+  <object name="object" gid="65" x="162" y="382">
+   <properties>
+    <property name="keycode" value="aaa"/>
+    <property name="type" value="key"/>
    </properties>
   </object>
  </objectgroup>

@@ -165,13 +165,14 @@
                  "name":"object",
                  "properties":
                     {
+                     "keycode":"aaa",
                      "type":"key"
                     },
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":277,
-                 "y":266
+                 "x":412,
+                 "y":157
                 }, 
                 {
                  "gid":66,
@@ -179,6 +180,7 @@
                  "name":"object",
                  "properties":
                     {
+                     "keycode":"door1",
                      "locked":"y",
                      "type":"door"
                     },
@@ -271,6 +273,51 @@
                  "width":0,
                  "x":927,
                  "y":112
+                }, 
+                {
+                 "gid":65,
+                 "height":0,
+                 "name":"object",
+                 "properties":
+                    {
+                     "keycode":"aaa",
+                     "type":"key"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":410,
+                 "y":381
+                }, 
+                {
+                 "gid":65,
+                 "height":0,
+                 "name":"object",
+                 "properties":
+                    {
+                     "keycode":"door1",
+                     "type":"key"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":162,
+                 "y":157
+                }, 
+                {
+                 "gid":65,
+                 "height":0,
+                 "name":"object",
+                 "properties":
+                    {
+                     "keycode":"aaa",
+                     "type":"key"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":162,
+                 "y":382
                 }],
          "opacity":1,
          "type":"objectgroup",
