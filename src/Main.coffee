@@ -17,6 +17,7 @@ class Main extends Phaser.State
     @game.load.spritesheet('dwarf2', 'assets/dwarf_04.png', 32, 32)
     @game.load.spritesheet('dwarf3', 'assets/dwarf_03.png', 32, 32)
     @game.load.spritesheet('dwarf4', 'assets/dwarf_02.png', 32, 32)
+    @game.load.spritesheet('skeleton', 'assets/skel.png', 32, 32)
     @game.load.spritesheet('sheep', 'assets/sheep.png', 32, 32)
     @game.load.spritesheet('arrow', 'assets/arrows.png', 16, 16)
     @game.load.spritesheet('objects', 'assets/objects.png', 32, 32)

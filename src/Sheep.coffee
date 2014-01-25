@@ -40,7 +40,5 @@ class Sheep extends Walker
     else
       @accelerate(0, 0)
 
-    MIN_ANIM_VELOCITY = 10.0
-
 root = exports ? window
 root.Sheep = Sheep

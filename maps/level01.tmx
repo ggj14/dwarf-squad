@@ -4,7 +4,12 @@
   <image source="../website/assets/world.png" width="256" height="256"/>
  </tileset>
  <tileset firstgid="65" name="objects" tilewidth="32" tileheight="32">
-  <image source="../website/assets/objects.png" width="288" height="32"/>
+  <image source="../website/assets/objects.png" width="320" height="32"/>
+  <tile id="9">
+   <properties>
+    <property name="type" value="skeleton"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="Background" width="32" height="18">
   <data encoding="csv">
@@ -21,10 +26,10 @@
 12,12,12,12,12,9,9,9,9,9,9,9,9,9,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
 12,12,12,12,12,9,9,9,9,9,9,9,9,9,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
 12,12,12,12,12,12,12,12,12,9,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
-12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
-12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
-12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
-12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,2,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,2,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,2,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
+12,12,12,12,12,12,12,12,12,2,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,
 12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12
 </data>
  </layer>
@@ -182,6 +187,26 @@
    <properties>
     <property name="keycode" value="aaa"/>
     <property name="type" value="key"/>
+   </properties>
+  </object>
+  <object name="object" gid="74" x="794" y="103">
+   <properties>
+    <property name="type" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="object" gid="74" x="561" y="218">
+   <properties>
+    <property name="type" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="object" gid="74" x="58" y="132">
+   <properties>
+    <property name="type" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="object" gid="74" x="382" y="64">
+   <properties>
+    <property name="type" value="skeleton"/>
    </properties>
   </object>
  </objectgroup>

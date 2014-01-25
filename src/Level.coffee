@@ -5,6 +5,7 @@
 #= require Scene
 #= require Exit
 #= require Trigger
+#= require Skeleton
 #= require Door
 
 class Level extends Scene
@@ -96,6 +97,8 @@ class Level extends Scene
                 new Door(@game, this, spawn.properties)
               when "sheep"
                 new Sheep(@game, this)
+              when "skeleton"
+                new Skeleton(@game, this)
               else
                 alert("missing definition for type: #{spawn.properties.type}")
           o.sprite.x = spawn.x
