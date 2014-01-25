@@ -14,5 +14,8 @@ class SceneManager
   update:=>
     @scenes[@current].update() unless @current == null
 
+  get_current:()=>
+    @scenes[@current]
+
 root = exports ? window
 root.SceneManager = SceneManager

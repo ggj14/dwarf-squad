@@ -42,10 +42,10 @@ class Main extends Phaser.State
     @level.next()
 
   processJumble:(event)=>
-    Controller.flipAxis(@level)
+    Controller.flipAxis(@scene_manager.get_current())
 
   processChangeUp:(event)=>
-    Controller.flipDirection(@level)
+    Controller.flipDirection(@scene_manager.get_current())
     
   gofull:=>
     @game.stage.scale.startFullScreen();
