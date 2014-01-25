@@ -52,7 +52,7 @@
 </script>
 <script type="text/javascript">
   (function () {
-    m = new Main(<%= build? %>, "<%= build? ? 'splash' : 'level' %>")
+    m = new Main(<%= false %>, "<%= build? ? 'splash' : 'level' %>")
     var game = new Phaser.Game(896, 504, Phaser.AUTO, 'phaser', m)
   })();
 </script>
