@@ -14,6 +14,7 @@ class Main extends Phaser.State
     @game.load.image('logo', 'assets/logo.png')
     @game.load.image('labs', 'assets/labs.png')
     @game.load.spritesheet('dwarf1', 'assets/dwarf1.png', 32, 32)
+    @game.load.spritesheet('arrow', 'assets/arrows.png', 16, 16)
     @game.load.image('world', 'assets/world.png')
     @game.load.tilemap('level01', 'maps/level01.json', null, Phaser.Tilemap.TILED_JSON)
     @game.load.tilemap('level02', 'maps/level02.json', null, Phaser.Tilemap.TILED_JSON)
@@ -32,21 +33,28 @@ class Main extends Phaser.State
       @game.input.onDown.add(@gofull);
 
     swapAxis = @game.input.keyboard.addKey(Phaser.Keyboard.ONE)
-    swapAxis.onUp.add(@processJumble)
+    swapAxis.onUp.add(@process_jumble)
 
     swapDir = @game.input.keyboard.addKey(Phaser.Keyboard.TWO)
-    swapDir.onUp.add(@processChangeUp)
+    swapDir.onUp.add(@process_changeup)
+
+    flushChanges = @game.input.keyboard.addKey(Phaser.Keyboard.THREE)
+    flushChanges.onUp.add(@process_flush_changes)
 
 
   processNext:(event)=>
     @level.next()
 
-  processJumble:(event)=>
-    Controller.flipAxis(@scene_manager.get_current())
+  process_jumble:(event)=>
+    Controller.flip_axis(@scene_manager.get_current())
 
-  processChangeUp:(event)=>
-    Controller.flipDirection(@scene_manager.get_current())
-    
+  process_changeup:(event)=>
+    Controller.flip_direction(@scene_manager.get_current())
+  
+  process_flush_changes:(event)=>
+    Controller.flush_directions(@scene_manager.get_current())
+
+
   gofull:=>
     @game.stage.scale.startFullScreen();
 

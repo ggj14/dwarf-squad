@@ -1,6 +1,7 @@
 class Pad
   constructor:(game)->
     @game = game
+    @enabled = true
     @game.input.gamepad.start();
     @pads = [
       @game.input.gamepad.pad1,
@@ -34,10 +35,17 @@ class Pad
       { UP: null, DOWN: null, LEFT: null, RIGHT: null}
     ]
 
+  enable:=>
+    @enabled = true
+
+  disable:=>
+    @enabled = false
+
   on:(index, direction, callback)=>
     @state[index][direction] = callback
 
   update:=>
+    return unless @enabled
     @poll(pad) for pad in @pads
     # LEFT STICK
     if @state[0][Pad.UP] && @kb.isDown(Phaser.Keyboard.W)
