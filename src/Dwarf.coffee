@@ -133,7 +133,7 @@ class Dwarf extends Entity
     super
 
   direction_owner:(ctrl_index, player_dir)=>
-    console.log(ctrl_index, player_dir)
+    #console.log(ctrl_index, player_dir)
     @axisOwner[player_dir] = ctrl_index;
 
 

@@ -17,6 +17,7 @@ class Main extends Phaser.State
     @game.load.spritesheet('dwarf2', 'assets/dwarf_04.png', 32, 32)
     @game.load.spritesheet('dwarf3', 'assets/dwarf_03.png', 32, 32)
     @game.load.spritesheet('dwarf4', 'assets/dwarf_02.png', 32, 32)
+    @game.load.spritesheet('sheep', 'assets/sheep.png', 32, 32)
     @game.load.spritesheet('arrow', 'assets/arrows.png', 16, 16)
     @game.load.image('key',   'assets/key.png')
     @game.load.image('world', 'assets/world.png')
@@ -56,7 +57,7 @@ class Main extends Phaser.State
 
   process_changeup:(event)=>
     Controller.flip_direction(@scene_manager.get_current())
-  
+
   process_flush_changes:(event)=>
     Controller.flush_directions(@scene_manager.get_current())
 
