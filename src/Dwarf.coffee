@@ -55,41 +55,52 @@ class Dwarf extends Entity
         @sprite.animations.add("idle", [1, 9, 1, 5, 1, 9], idleFps, true)
 
     
+    #@carrying = null
+    @carrying = new Key()
+    @facing = Pad.UP
+
     super(game, null, {})
+    
+
+  attach:(entity)=>
+    @carrying = entity
 
   accelerate:(ax, ay)=>
     super(ax, ay)
     if ax > 1
-      @set_frame(1, Pad.RIGHT)
+      @_set_arrow_frame(1, Pad.RIGHT)
 
     if ax < -1
-      @set_frame(3, Pad.LEFT)
+      @_set_arrow_frame(3, Pad.LEFT)
 
     if ay > 1
-      @set_frame(2, Pad.UP)
+      @_set_arrow_frame(2, Pad.UP)
 
     if ay < -1
-      @set_frame(0, Pad.DOWN)
+      @_set_arrow_frame(0, Pad.DOWN)
 
-  set_frame:(idx, dir)=>
+  _set_arrow_frame:(idx, dir)=>
     @arrows[idx].animations.frame = 4 * @axisOwner[dir] + idx
     @arrows[idx].alpha = 1
-    console.log(@arrows[idx].animations.frame, 4 * @axisOwner[dir] + idx)
 
   update:=>
     MIN_ANIM_VELOCITY = 10.0
 
     if @sprite.body.velocity.x > MIN_ANIM_VELOCITY && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
         @sprite.animations.play("right")
+        @facing = Pad.RIGHT
 
     else if @sprite.body.velocity.x < -MIN_ANIM_VELOCITY && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
         @sprite.animations.play("left")
+        @facing = Pad.LEFT
 
     else if @sprite.body.velocity.y > MIN_ANIM_VELOCITY
         @sprite.animations.play("down")
+        @facing = Pad.DOWN
 
     else if @sprite.body.velocity.y < -MIN_ANIM_VELOCITY
         @sprite.animations.play("up")
+        @facing = Pad.UP
 
     else
         @sprite.animations.play("idle")
@@ -104,6 +115,10 @@ class Dwarf extends Entity
     @arrows[3].y = @sprite.y + 8
 
     arrow.alpha *= 0.9 for arrow in @arrows
+
+    if @carrying != null
+      carrying.move_to(@sprite.x, @sprite.y)
+
 
     #do the arrows
     super
