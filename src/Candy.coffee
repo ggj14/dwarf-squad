@@ -1,8 +1,8 @@
 #= require Entity
 
 class Candy extends Entity
-  constructor:(game, x, y, i)->
-    @sprite = game.add.sprite x, y, 'candy'
+  constructor:(game, i)->
+    @sprite = game.add.sprite(0, 0, 'candy')
     @sprite.animations.frame = i
     @sprite.body.friction = 2000
     @sprite.body.maxVelocity.x = 300
