@@ -9,6 +9,7 @@ class Walker extends Actor
     @min_anim_velocity = 29.0
     @set_animations()
     @ignore = false
+    @animStartTime = 1.0
 
   set_animations: =>
     @sprite.animations.frame = 1
@@ -31,24 +32,39 @@ class Walker extends Actor
 
   update:=>
 
-    if @sprite.body.velocity.x > @min_anim_velocity && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
-      @sprite.animations.play("right")
-      @facing = Pad.RIGHT
+    if @animStartTime > -1.0
+      @animStartTime -= @game.time.elapsed
 
-    else if @sprite.body.velocity.x < -@min_anim_velocity && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
-      @sprite.animations.play("left")
-      @facing = Pad.LEFT
+    if (@animStartTime < 0.0)
 
-    else if @sprite.body.velocity.y > @min_anim_velocity
-      @sprite.animations.play("down")
-      @facing = Pad.DOWN
+      newAnim = false
 
-    else if @sprite.body.velocity.y < -@min_anim_velocity
-      @sprite.animations.play("up")
-      @facing = Pad.UP
-    else
-      @sprite.animations.play("idle")
-      @facing = Pad.DOWN
+      if @sprite.body.velocity.x > @min_anim_velocity && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
+        @sprite.animations.play("right")
+        @facing = Pad.RIGHT
+        newAnim = true
+
+      else if @sprite.body.velocity.x < -@min_anim_velocity && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
+        @sprite.animations.play("left")
+        @facing = Pad.LEFT
+        newAnim = true
+
+      else if @sprite.body.velocity.y > @min_anim_velocity
+        @sprite.animations.play("down")
+        @facing = Pad.DOWN
+        newAnim = true
+
+      else if @sprite.body.velocity.y < -@min_anim_velocity
+        @sprite.animations.play("up")
+        @facing = Pad.UP
+        newAnim = true
+      else
+        @sprite.animations.play("idle")
+        @facing = Pad.DOWN
+        newAnim = false
+
+      if newAnim
+        @animStartTime = 250     #ms before next anim can start
 
 
     super

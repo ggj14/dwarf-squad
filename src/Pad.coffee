@@ -15,14 +15,17 @@ class Pad
       Phaser.Keyboard.A,
       Phaser.Keyboard.S,
       Phaser.Keyboard.D,
+
       Phaser.Keyboard.G,
       Phaser.Keyboard.V,
       Phaser.Keyboard.B,
       Phaser.Keyboard.N,
-      Phaser.Keyboard.I,
-      Phaser.Keyboard.J,
+
+      Phaser.Keyboard.O,
       Phaser.Keyboard.K,
       Phaser.Keyboard.L,
+      Phaser.Keyboard.COLON,
+
       Phaser.Keyboard.UP,
       Phaser.Keyboard.DOWN,
       Phaser.Keyboard.LEFT,
@@ -66,13 +69,13 @@ class Pad
     if @state[1][Pad.RIGHT] && @kb.isDown(Phaser.Keyboard.N)
       @state[1][Pad.RIGHT]()
     # RIGHT STICK
-    if @state[2][Pad.UP] && @kb.isDown(Phaser.Keyboard.I)
+    if @state[2][Pad.UP] && @kb.isDown(Phaser.Keyboard.O)
       @state[2][Pad.UP]()
-    if @state[2][Pad.DOWN] && @kb.isDown(Phaser.Keyboard.K)
+    if @state[2][Pad.DOWN] && @kb.isDown(Phaser.Keyboard.L)
       @state[2][Pad.DOWN]()
-    if @state[2][Pad.LEFT] && @kb.isDown(Phaser.Keyboard.J)
+    if @state[2][Pad.LEFT] && @kb.isDown(Phaser.Keyboard.K)
       @state[2][Pad.LEFT]()
-    if @state[2][Pad.RIGHT] && @kb.isDown(Phaser.Keyboard.L)
+    if @state[2][Pad.RIGHT] && @kb.isDown(Phaser.Keyboard.COLON)
       @state[2][Pad.RIGHT]()
     # BUTTONS
     if @state[3][Pad.UP] && @kb.isDown(Phaser.Keyboard.UP)

@@ -1,17 +1,17 @@
 #= require Walker
 
-directions = (touching)->
+directions = (wasTouching, touching)->
   allow = []
-  if not touching.up
+  if not (touching.up or wasTouching.up) 
     allow.push(Phaser.UP)
 
-  if not touching.down
+  if not (touching.down or wasTouching.down)
     allow.push(Phaser.DOWN)
 
-  if not touching.left
+  if not (touching.left or wasTouching.left)
     allow.push(Phaser.LEFT)
 
-  if not touching.right
+  if not (touching.right or wasTouching.right)
     allow.push(Phaser.RIGHT)
 
   return allow
@@ -21,12 +21,16 @@ class Sheep extends Walker
     super
     @walkTime = 1.0
     @randDir = 4
+    @sprite.body.bounce.x = 0.0
+    @sprite.body.bounce.y = 0.0
 
   create_sprite:=>
     @sprite = @game.add.sprite(0, 0, 'sheep')
 
   set_animations: =>
     @min_anim_velocity = 10
+    @anim_fps_x = 10
+    @anim_fps_y = 10
     super
 
   set_physics: =>
@@ -42,25 +46,24 @@ class Sheep extends Walker
     # randomly walks around
     @walkTime -= @game.time.elapsed / 1000.0
 
-    if (@walkTime < 0.0) or not @sprite.body.wasTouching.none
-      console.log(@sprite.body.wasTouching)
+    if (@walkTime < 0.0) or not @sprite.body.wasTouching.none or not @sprite.body.touching
       @sprite.body.velocity.equals(0.0, 0.0)
 
       @walkTime = 1 + Math.random() * 6.0
-      @randDir = Phaser.Math.getRandom(directions(@sprite.body.wasTouching))
+      @randDir = Phaser.Math.getRandom(directions(@sprite.body.wasTouching, @sprite.body.touching))
 
     if (@randDir == Phaser.RIGHT)
-      @accelerate(2000, 0)
+      @accelerate(20, 0)
 
     else if (@randDir == Phaser.LEFT)
-      @accelerate(-2000, 0)
+      @accelerate(-20, 0)
 
     else if (@randDir == Phaser.UP)
-
-      @accelerate(0, 2000)
+      @accelerate(0, 20)
     
     else if @randDir == Phaser.DOWN
-      @accelerate(0, -2000)
+      @accelerate(0, -20)
+
     else
       @accelerate(0, 0)
 
