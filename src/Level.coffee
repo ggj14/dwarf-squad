@@ -6,6 +6,9 @@
 class Level extends Scene
   init:=>
     @current = null
+    @signals = {
+      start: new Phaser.Signal()
+    }
     @levels = [
       'level01',
       'level02'
@@ -14,7 +17,7 @@ class Level extends Scene
       new Dwarf(@game, 1),
       new Dwarf(@game, 2),
       new Dwarf(@game, 3),
-      new Dwarf(@game, 5)
+      new Dwarf(@game, 4)
     ]
     @controllers = []
     for player in @players
@@ -56,12 +59,22 @@ class Level extends Scene
     @walls = map.createLayer('Walls')
     roof = map.createLayer('Roof')
 
+    @triggers = []
+
     for spawn in map.objects.Spawns
       switch spawn.name
         when "player"
           player = @players[+spawn.properties.id-1]
           player.sprite.x = spawn.x
           player.sprite.y = spawn.y
+        when "trigger"          
+          trigger = new Trigger(@game, this, spawn.properties)
+          if trigger.properties.id != null
+            @signals[trigger.properties.id] ||= trigger.signal
+          @triggers.push(trigger)
+
+    for trigger in @triggers      
+      @signals[trigger.properties.event].add(trigger.handle)
 
     @entities = @game.add.group()
     @entities.add(player.sprite) for player in @players
@@ -74,6 +87,8 @@ class Level extends Scene
     render_order.add(roof)
 
     @pain = @game.add.sound('pain')
+
+    @signals['start'].dispatch()
 
   update:=>
     @pad.update()

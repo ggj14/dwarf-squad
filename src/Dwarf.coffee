@@ -3,7 +3,7 @@
 class Dwarf extends Entity
   constructor:(game, i)->
     @sprite = game.add.sprite(0, 0, 'dwarf1')
-    @sprite.animations.frame = i
+    @sprite.animations.frame = 1
     @sprite.body.friction = 2000
     @sprite.body.maxVelocity.x = 300
     @sprite.body.maxVelocity.y = 300
