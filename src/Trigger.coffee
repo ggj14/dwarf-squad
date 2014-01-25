@@ -4,7 +4,10 @@ class Trigger
     @level = level
     @properties = properties
     @signal = new Phaser.Signal()
+    @init()
 
+  init:=>
+    
   handle:=>
     @show_caption(@properties['caption']) if @properties['caption']
     @play_sound(@properties['sound']) if @properties['sound']

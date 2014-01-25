@@ -12,6 +12,7 @@ class Dwarf extends Entity
     @sprite.body.bounce.y = 0.4
 
     ANIM_FPS_X = 20
+
     ANIM_FPS_Y = 10
     @sprite.animations.add("down", [0, 1, 2, 1, 0], ANIM_FPS_Y, true)
     @sprite.animations.add("left", [4, 5, 6, 5, 4], ANIM_FPS_X, true)
@@ -30,7 +31,7 @@ class Dwarf extends Entity
     else
         @sprite.animations.add("idle", [1, 9, 1, 5, 1, 9], idleFps, true)
 
-    super
+    super(game, null, {})
 
   update:=>
     MIN_ANIM_VELOCITY = 10.0
@@ -47,7 +48,6 @@ class Dwarf extends Entity
         @sprite.animations.play("idle")
 
     super
-
 
 root = exports ? window
 root.Dwarf = Dwarf

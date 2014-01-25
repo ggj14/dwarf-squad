@@ -1,15 +1,9 @@
 #= require Trigger
 
 class Entity extends Trigger
-  constructor:(game, x, y)->
-    super(game, {})
+  constructor:(game, level, properties)->
     @dead = false
-    @sprite.anchor.x = 0.5
-    @sprite.anchor.y = 0.5
-    @sprite.x = x
-    @sprite.y = y
-    @sprite.body.height = 12
-    @sprite.body.offset.y = 12
+    super(game, level, properties)
 
   destroy:=>
     return if @dead

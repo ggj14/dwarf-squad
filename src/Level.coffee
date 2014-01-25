@@ -2,12 +2,15 @@
 #= require Controller
 #= require Pad
 #= require Scene
+#= require Door
 
 class Level extends Scene
   init:=>
+    @ready = false
     @current = null
     @signals = {
       start: new Phaser.Signal()
+      finish: new Phaser.Signal()
     }
     @levels = [
       'level01',
@@ -60,6 +63,7 @@ class Level extends Scene
     roof = map.createLayer('Roof')
 
     @triggers = []
+    @objects = []
 
     for spawn in map.objects.Spawns
       switch spawn.name
@@ -72,12 +76,18 @@ class Level extends Scene
           if trigger.properties.id != null
             @signals[trigger.properties.id] ||= trigger.signal
           @triggers.push(trigger)
+        when "door"  
+          door = new Door(@game, this, spawn.properties)
+          door.sprite.x = spawn.x
+          door.sprite.y = spawn.y - door.sprite.height
+          @objects.push(door)
 
     for trigger in @triggers      
       @signals[trigger.properties.event].add(trigger.handle)
 
     @entities = @game.add.group()
     @entities.add(player.sprite) for player in @players
+    @entities.add(object.sprite) for object in @objects
 
     render_order = @game.add.group()
     render_order.add(background)
@@ -88,11 +98,13 @@ class Level extends Scene
 
     @pain = @game.add.sound('pain')
 
+    @signals['finish'].addOnce(@next)
     @signals['start'].dispatch()
 
   update:=>
     @pad.update()
     player.update() for player in @players
+    object.update() for object in @objects
     player.collide(@players, @players_collided) for player in @players
     player.collide(@walls) for player in @players
     controller.update() for controller in @controllers
