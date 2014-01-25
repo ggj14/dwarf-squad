@@ -1,11 +1,9 @@
-#= require Candy
+#= require Dwarf
 #= require Controller
 #= require Pad
+#= require Scene
 
-class Level
-  constructor:(game)->
-    @game = game
-
+class Level extends Scene
   init:=>
     @current = null
     @levels = [
@@ -13,10 +11,10 @@ class Level
       'level02'
     ]
     @players = [
-      new Candy(@game, 1),
-      new Candy(@game, 2),
-      new Candy(@game, 3),
-      new Candy(@game, 4)
+      new Dwarf(@game, 1),
+      new Dwarf(@game, 2),
+      new Dwarf(@game, 3),
+      new Dwarf(@game, 5)
     ]
     @controllers = []
     for player in @players
@@ -27,6 +25,7 @@ class Level
       @pad.on(i, Pad.DOWN, controller.down)
       @pad.on(i, Pad.LEFT, controller.left)
       @pad.on(i, Pad.RIGHT, controller.right)
+    @next()
 
   next:=>
     @game.world.removeAll()
@@ -52,7 +51,7 @@ class Level
           tile.faceRight = true
     map.calculateFaces(index)
 
-    map.addTilesetImage('dungeon', 'dungeon')
+    map.addTilesetImage('world', 'world')
     background = map.createLayer('Background')
     scenery = map.createLayer('Scenery')
     @walls = map.createLayer('Walls')
@@ -63,7 +62,7 @@ class Level
         when "player"
           player = @players[+spawn.properties.id-1]
           player.sprite.x = spawn.x
-          player.sprite.y = spawn.y 
+          player.sprite.y = spawn.y
 
     @entities = @game.add.group()
     @entities.add(player.sprite) for player in @players
@@ -75,25 +74,24 @@ class Level
     render_order.add(@entities)
     render_order.add(roof)
 
+    @pain = @game.add.sound('pain')
+
   update:=>
     @pad.update()
-    player.collide(@players) for player in @players
+    player.update() for player in @players
+    player.collide(@players, @players_collided) for player in @players
     player.collide(@walls) for player in @players
     controller.update() for controller in @controllers
     @entities.sort('y', Phaser.Group.SORT_ASCENDING)
-
 
   exchangeDirection:(p1, p2, d1, d2)=>
     console.log(p1, p2, d1, d2)
     @pad.on(p1, d1, @controllers[p2].getAction(d2))
     @pad.on(p2, d2, @controllers[p1].getAction(d1))
 
-  flipAxis:(p1, p2, a1, a2)=>    
-    for i in [0..1]
-      @pad.on(p1, Controller.AXIS_TO_DIR[a1][i], @controllers[p2].getAction(Controller.AXIS_TO_DIR[a2][i]))
-      @pad.on(p2, Controller.AXIS_TO_DIR[a2][i], @controllers[p1].getAction(Controller.AXIS_TO_DIR[a1][i]))
-
-
+  players_collided:(@p1, @p2) =>
+    if @p1.body.speed+@p2.body.speed >= 500
+      @pain.play('', 0, 1)
 
 root = exports ? window
 root.Level = Level

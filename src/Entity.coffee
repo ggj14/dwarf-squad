@@ -18,17 +18,18 @@ class Entity
   onDestroy:=>
     #noop
 
-  collide:(others)=>
+  collide:(others, callback = null)=>
     if others instanceof Array
-      @collide_object(other) for other in others
+      @collide_object(other, callback) for other in others
     else
-      @collide_object(others)
+      @collide_object(others, callback)
 
-  collide_object:(other)=> 
+  collide_object:(other, callback)=> 
     if other instanceof Entity
-      @game.physics.collide(@sprite, other.sprite)
+      return if other.sprite == @sprite
+      @game.physics.collide(@sprite, other.sprite, callback)
     else
-      @game.physics.collide(@sprite, other)
+      @game.physics.collide(@sprite, other, callback)
 
   update:=>
     @onUpdate()
