@@ -1,11 +1,9 @@
 #= require Candy
 #= require Controller
 #= require Pad
+#= require Scene
 
-class Level
-  constructor:(game)->
-    @game = game
-
+class Level extends Scene
   init:=>
     @current = null
     @levels = [
@@ -27,6 +25,7 @@ class Level
       @pad.on(i, Pad.DOWN, controller.down)
       @pad.on(i, Pad.LEFT, controller.left)
       @pad.on(i, Pad.RIGHT, controller.right)
+    @next()  
 
   next:=>
     @game.world.removeAll()
