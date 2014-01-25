@@ -5,16 +5,16 @@ class Controller
     @ay = 0
 
   left:()=>
-    @ax = -1000
+    @ax = -2000
 
   right:()=>
-    @ax = 1000
+    @ax = 2000
 
   up:()=>
-    @ay = -1000
+    @ay = -2000
 
   down:()=>
-    @ay = 1000
+    @ay = 2000
 
   update:=>
     @player.accelerate(@ax, @ay)

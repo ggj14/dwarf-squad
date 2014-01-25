@@ -38,8 +38,15 @@ class Entity
     #noop
 
   accelerate:(ax,ay)=>
-    @sprite.body.acceleration.x = ax
-    @sprite.body.acceleration.y = ay
+    if ax > 1.0 || ax < -1.0
+      @sprite.body.acceleration.x = ax
+    else if @sprite.body.velocity.x != 0
+      @sprite.body.acceleration.x = -(@sprite.body.velocity.x  * 15.0)
+
+    if ay > 1.0 || ay < -1.0
+      @sprite.body.acceleration.y = ay
+    else if @sprite.body.velocity.y != 0
+      @sprite.body.acceleration.y = -(@sprite.body.velocity.y  * 15.0)
 
 root = exports ? window
 root.Entity = Entity
