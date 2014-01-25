@@ -89,13 +89,13 @@ class Pad
 
   poll:(pad)=>
     # LEFT STICK
-    if @state[0][Pad.UP] && pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.3
+    if @state[0][Pad.UP] && pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -Pad.SENSITIVITY
       @state[0][Pad.UP]()
-    if @state[0][Pad.DOWN] && pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) > 0.3
+    if @state[0][Pad.DOWN] && pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) > Pad.SENSITIVITY
       @state[0][Pad.DOWN]()
-    if @state[0][Pad.LEFT] && pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.3
+    if @state[0][Pad.LEFT] && pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -Pad.SENSITIVITY
       @state[0][Pad.LEFT]()
-    if @state[0][Pad.RIGHT] && pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.3
+    if @state[0][Pad.RIGHT] && pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > Pad.SENSITIVITY
       @state[0][Pad.RIGHT]()
     # DPAD
     if @state[1][Pad.UP] && pad.isDown(Phaser.Gamepad.XBOX360_DPAD_UP)
@@ -107,13 +107,13 @@ class Pad
     if @state[1][Pad.RIGHT] && pad.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT)
       @state[1][Pad.RIGHT]()
     # RIGHT STICK
-    if @state[2][Pad.UP] && pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_Y) < -0.3
+    if @state[2][Pad.UP] && pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_Y) < -Pad.SENSITIVITY
       @state[2][Pad.UP]()
-    if @state[2][Pad.DOWN] && pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_Y) > 0.3
+    if @state[2][Pad.DOWN] && pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_Y) > Pad.SENSITIVITY
       @state[2][Pad.DOWN]()
-    if @state[2][Pad.LEFT] && pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) < -0.3
+    if @state[2][Pad.LEFT] && pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) < -Pad.SENSITIVITY
       @state[2][Pad.LEFT]()
-    if @state[2][Pad.RIGHT] && pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) > 0.3
+    if @state[2][Pad.RIGHT] && pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) > Pad.SENSITIVITY
       @state[2][Pad.RIGHT]()
     # BUTTONS
     if @state[3][Pad.UP] && pad.isDown(Phaser.Gamepad.XBOX360_Y)
@@ -129,6 +129,8 @@ Pad.UP = 0
 Pad.DOWN = 1
 Pad.LEFT = 2
 Pad.RIGHT = 3
+
+Pad.SENSITIVITY = 0.8
 
 root = exports ? window
 root.Pad = Pad
