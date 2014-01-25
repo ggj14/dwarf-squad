@@ -31,6 +31,9 @@ class Main extends Phaser.State
 
   create:()=>
     @game.stage.backgroundColor = '#FF00FF'
+    @game.stage.scale.pageAlignHorizontally = true;
+    @game.stage.scale.refresh();
+
     @game.physics.gravity.y = 0
     @game.stage.fullScreenScaleMode = Phaser.StageScaleMode.SHOW_ALL;
     @scene_manager = new SceneManager()

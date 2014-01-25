@@ -1,7 +1,8 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- Always force latest IE rendering engine or request Chrome Frame -->
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
@@ -9,12 +10,16 @@
     <!-- Use title if it's in the page YAML frontmatter -->
     <title><%= current_page.data.title || "The Middleman" %></title>
     
-    <%= stylesheet_link_tag "normalize", "all" %>
+    <%= stylesheet_link_tag "bootstrap.min" %>
+    <%= stylesheet_link_tag "bootstrap-theme.min" %>
+    <%= stylesheet_link_tag "sticky-footer" %>
+    <%= javascript_include_tag  "jquery-1.11.0.min" %>
+    <%= javascript_include_tag  "bootstrap.min" %>
     <%= javascript_include_tag  "phaser.min" %>
     <%= javascript_include_tag  "dwarf-squad" %>
   </head>
   
-  <body class="<%= page_classes %>">
+  <body>
     <%= yield %>
   </body>
 </html>
