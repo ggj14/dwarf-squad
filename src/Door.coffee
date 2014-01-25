@@ -8,8 +8,10 @@ class Door extends Actor
     @level = level
     @properties = properties
     @count = 0
-    @open = properties.locked != 'y'
+    @is_open = properties.locked != 'y'
     @set_animations()
+    @open_sfx = @game.add.sound("button1")
+    @close_sfx = @game.add.sound("button2")
 
   set_animations: =>
     @sprite.animations.add("closed", [1], 1, true)
@@ -21,9 +23,9 @@ class Door extends Actor
 
   targeted: (msg)=>
     if msg
-      @open = true
+      @open()
     else
-      @open = false
+      @close()
 
   set_physics: =>
     super
@@ -35,8 +37,18 @@ class Door extends Actor
     @sprite.body.offset.x = 0
     @sprite.body.offset.y = 0
 
+  open: ()=>
+    if !@is_open
+      @is_open = true
+      @open_sfx.play()
+  close: ()=>
+    if @is_open
+      @is_open = false
+      @close_sfx.play()
+
   on_update:()=>
-    if !@open
+    # choose the right visuals
+    if !@is_open
       @sprite.animations.play("closed")
 
       # anyone unlocking?
@@ -56,7 +68,7 @@ class Door extends Actor
 
     if @properties.id == undefined || @properties.id == key.properties.target
       # ok unlock!
-      @open = true
+      @open()
 
 root = exports ? window
 root.Door = Door

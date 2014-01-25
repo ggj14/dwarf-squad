@@ -23,6 +23,7 @@ class Main extends Phaser.State
     @game.load.spritesheet('objects', 'assets/objects.png', 32, 32)
     @game.load.image('key',   'assets/key.png')
     @game.load.image('world', 'assets/world.png')
+    @game.load.image('boulder', 'assets/boulder.png')
     @game.load.tilemap('level01', 'maps/level01.json', null, Phaser.Tilemap.TILED_JSON)
     @game.load.tilemap('level02', 'maps/level02.json', null, Phaser.Tilemap.TILED_JSON)
     @game.load.audio('splash', 'songs/DwarfMusic01.mp3');
@@ -32,6 +33,8 @@ class Main extends Phaser.State
     @game.load.audio('baa1', 'sounds/SheepBaa1.mp3')
     @game.load.audio('baa2', 'sounds/SheepBaa2.mp3')
     @game.load.audio('baa3', 'sounds/SheepBaa3.mp3')
+    @game.load.audio('button1', 'sounds/Button1.mp3');
+    @game.load.audio('button2', 'sounds/Button2.mp3');
 
   create:()=>
     @game.stage.backgroundColor = '#FF00FF'
@@ -68,7 +71,6 @@ class Main extends Phaser.State
 
   process_flush_changes:(event)=>
     Controller.flush_directions(@scene_manager.get_current())
-
 
   gofull:=>
     @game.stage.scale.startFullScreen();

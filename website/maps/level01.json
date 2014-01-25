@@ -419,6 +419,20 @@
                  "width":0,
                  "x":192,
                  "y":128
+                }, 
+                {
+                 "gid":28,
+                 "height":0,
+                 "name":"object",
+                 "properties":
+                    {
+                     "type":"boulder"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":640,
+                 "y":352
                 }],
          "opacity":1,
          "type":"objectgroup",

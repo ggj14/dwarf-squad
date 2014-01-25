@@ -23,6 +23,7 @@ class Sheep extends Walker
     @randDir = 4
     @sprite.body.bounce.x = 0.0
     @sprite.body.bounce.y = 0.0
+    @quiet_time = 0.0
 
   create_sprite:=>
     @sprite = @game.add.sprite(0, 0, 'sheep')
@@ -46,9 +47,15 @@ class Sheep extends Walker
     # randomly walks around
     @walkTime -= @game.time.elapsed / 1000.0
 
+    if @quiet_time > 0.0
+      @quiet_time -= @game.time.elapsed / 1000.0
+
     if (@walkTime < 0.0) or not @sprite.body.wasTouching.none or not @sprite.body.touching
-      if Phaser.Math.chanceRoll(20)
-        @set_caption("Bleet!", 1.0, 20, Phaser.Math.getRandom(['baa1','baa2', 'baa3']))
+      if @quiet_time <= 0.0 and Phaser.Math.chanceRoll(20)
+        sound = Phaser.Math.getRandom(['baa1','baa2', 'baa3'])
+        @quiet_time = 5.0
+          
+        @set_caption("Bleet!", 1.0, 20, sound)
 
       @sprite.body.velocity.equals(0.0, 0.0)
 
