@@ -70,7 +70,7 @@ class Level extends Scene
         when "player"
           player = @players[+spawn.properties.id-1]
           player.sprite.x = spawn.x
-          player.sprite.y = spawn.y
+          player.sprite.y = spawn.y - player.sprite.height
         when "trigger"          
           trigger = new Trigger(@game, this, spawn.properties)
           if trigger.properties.id != null
