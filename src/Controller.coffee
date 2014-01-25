@@ -13,8 +13,8 @@ class Controller
 
 
   @flipDirection:(level)->
-    a1 = Phaser.Math.getRandom(Controller.DIRECTION)
-    a2 = Phaser.Math.getRandom(Controller.DIRECTION)
+    a1 = Phaser.Math.getRandom(Controller.DIRECTIONS)
+    a2 = Phaser.Math.getRandom(Controller.DIRECTIONS)
 
     p1 = Phaser.Math.getRandom([0, 1, 2, 3])
     p2 = Phaser.Math.getRandom([0, 1, 2, 3])
