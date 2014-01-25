@@ -7,6 +7,11 @@ class Level
     @game = game
 
   init:=>
+    @current = null
+    @levels = [
+      'level01',
+      'level02'
+    ]
     @players = [
       new Candy(@game, 1),
       new Candy(@game, 2),
@@ -23,9 +28,14 @@ class Level
       @pad.on(i, Pad.LEFT, controller.left)
       @pad.on(i, Pad.RIGHT, controller.right)
 
-  load:(name)=>
+  next:=>
     @game.world.removeAll()
-    map = @game.add.tilemap(name)
+    if @current == null
+      @current = 0
+    else
+      @current += 1
+      @current = 0 if @current > @levels.length-1
+    map = @game.add.tilemap(@levels[@current])
 
     # had to do this manually; should be this:
     # map.setCollisionByExclusion([], true, 'Walls')
