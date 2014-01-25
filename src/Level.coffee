@@ -19,12 +19,11 @@ class Level extends Scene
     @controllers = []
     for player in @players
       @controllers.push(new Controller(player, @game))
+
     @pad = new Pad(@game)
-    for controller, i in @controllers
-      @pad.on(i, Pad.UP, controller.up)
-      @pad.on(i, Pad.DOWN, controller.down)
-      @pad.on(i, Pad.LEFT, controller.left)
-      @pad.on(i, Pad.RIGHT, controller.right)
+    for i in [0..3]
+      @flush_directions(i)
+      
     @next()
 
   next:=>
@@ -84,10 +83,16 @@ class Level extends Scene
     controller.update() for controller in @controllers
     @entities.sort('y', Phaser.Group.SORT_ASCENDING)
 
-  exchangeDirection:(p1, p2, d1, d2)=>
+  exchange_direction:(p1, p2, d1, d2)=>
     console.log(p1, p2, d1, d2)
     @pad.on(p1, d1, @controllers[p2].getAction(d2))
     @pad.on(p2, d2, @controllers[p1].getAction(d1))
+
+  flush_directions:(p)->
+      @pad.on(p, Pad.UP, @controllers[p].up)
+      @pad.on(p, Pad.DOWN, @controllers[p].down)
+      @pad.on(p, Pad.LEFT, @controllers[p].left)
+      @pad.on(p, Pad.RIGHT, @controllers[p].right)
 
   players_collided:(@p1, @p2) =>
     if @p1.body.speed+@p2.body.speed >= 500
