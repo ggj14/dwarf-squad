@@ -1,5 +1,21 @@
 #= require Walker
 
+directions = (touching)->
+  allow = []
+  if not touching.up
+    allow.push(Phaser.UP)
+
+  if not touching.down
+    allow.push(Phaser.DOWN)
+
+  if not touching.left
+    allow.push(Phaser.LEFT)
+
+  if not touching.right
+    allow.push(Phaser.RIGHT)
+
+  return allow
+
 class Sheep extends Walker
   constructor:(game, level)->
     super
@@ -25,17 +41,25 @@ class Sheep extends Walker
   on_update:=>
     # randomly walks around
     @walkTime -= @game.time.elapsed / 1000.0
-    if (@walkTime < 0.0)
-      @walkTime = 1 + Math.random() * 6.0
-      @randDir = Math.floor(Math.random() * 5)
 
-    if (@randDir == 0)
+    if (@walkTime < 0.0) or not @sprite.body.wasTouching.none
+      console.log(@sprite.body.wasTouching)
+      @sprite.body.velocity.equals(0.0, 0.0)
+
+      @walkTime = 1 + Math.random() * 6.0
+      @randDir = Phaser.Math.getRandom(directions(@sprite.body.wasTouching))
+
+    if (@randDir == Phaser.RIGHT)
       @accelerate(2000, 0)
-    else if (@randDir == 1)
+
+    else if (@randDir == Phaser.LEFT)
       @accelerate(-2000, 0)
-    else if (@randDir == 2)
+
+    else if (@randDir == Phaser.UP)
+
       @accelerate(0, 2000)
-    else if @randDir == 3
+    
+    else if @randDir == Phaser.DOWN
       @accelerate(0, -2000)
     else
       @accelerate(0, 0)

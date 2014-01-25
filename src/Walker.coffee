@@ -50,6 +50,7 @@ class Walker extends Actor
       @sprite.animations.play("idle")
       @facing = Pad.DOWN
 
+
     super
 
   on_walking_collide:(us, them)=>
