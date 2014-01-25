@@ -64,10 +64,10 @@ class Main extends Phaser.State
     @level.next()
 
   process_jumble:(event)=>
-    Controller.flip_axis(@scene_manager.get_current())
+    Controller.flip_axis_rand(@scene_manager.get_current())
 
   process_changeup:(event)=>
-    Controller.flip_direction(@scene_manager.get_current())
+    Controller.flip_direction_rand(@scene_manager.get_current())
 
   process_flush_changes:(event)=>
     Controller.flush_directions(@scene_manager.get_current())

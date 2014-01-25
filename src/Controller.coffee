@@ -1,28 +1,39 @@
 #= require Pad
 
 class Controller
-  @flip_axis:(level)->
+  @flip_axis_rand:(level)->
     a1 = Phaser.Math.getRandom(Controller.AXIS)
     a2 = Phaser.Math.getRandom(Controller.AXIS)
 
     p1 = Phaser.Math.getRandom([0, 1, 2, 3])
     p2 = Phaser.Math.getRandom([0, 1, 2, 3])
 
+    @flip_axis(level, p1, p2, a1, a2)
+
+  @flip_axis:(level, p1, p2, a1, a2)->
     for i in [0..1]
       level.exchange_direction(p1, p2, Controller.AXIS_TO_DIR[a1][i], Controller.AXIS_TO_DIR[a2][i])
 
-  @flip_direction:(level)->
+  @flip_direction_rand:(level)->
     a1 = Phaser.Math.getRandom(Controller.DIRECTIONS)
     a2 = Phaser.Math.getRandom(Controller.DIRECTIONS)
 
     p1 = Phaser.Math.getRandom([0, 1, 2, 3])
     p2 = Phaser.Math.getRandom([0, 1, 2, 3])
 
-    level.exchange_direction(p1, p2, a1, a2)
+    @flip_direction(level, p1, p2, a1, a2)
 
-  @flush_directions:(level)->
+  @flip_direction:(level, p1, p2, d1, d2)->
+    level.exchange_direction(p1, p2, d1, d2)
+
+  @flush_directions_all:(level)->
     for i in [0..3]
       level.flush_directions(i)
+
+  @flush_directions:(level, p)->
+    level.flush_directions(p)
+
+  @flush_direct
 
   constructor:(player)->
     @player = player

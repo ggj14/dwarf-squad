@@ -26,6 +26,7 @@ class Sheep extends Walker
     @quiet_time = 0.0
 
   create_sprite:=>
+    super
     @sprite = @game.add.sprite(0, 0, 'sheep')
 
   set_animations: =>
