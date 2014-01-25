@@ -13,7 +13,10 @@ class Main extends Phaser.State
   preload:()=>
     @game.load.image('logo', 'assets/logo.png')
     @game.load.image('labs', 'assets/labs.png')
-    @game.load.spritesheet('dwarf1', 'assets/dwarf1.png', 32, 32)
+    @game.load.spritesheet('dwarf1', 'assets/dwarf_01.png', 32, 32)
+    @game.load.spritesheet('dwarf2', 'assets/dwarf_04.png', 32, 32)
+    @game.load.spritesheet('dwarf3', 'assets/dwarf_03.png', 32, 32)
+    @game.load.spritesheet('dwarf4', 'assets/dwarf_02.png', 32, 32)
     @game.load.spritesheet('arrow', 'assets/arrows.png', 16, 16)
     @game.load.image('world', 'assets/world.png')
     @game.load.tilemap('level01', 'maps/level01.json', null, Phaser.Tilemap.TILED_JSON)
