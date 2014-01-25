@@ -24,13 +24,32 @@ class Main extends Phaser.State
     @level.init()
     @level.next()
 
+    nextLevel = @game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
+    nextLevel.onUp.add(@processNext)
+
+    swapAxis = @game.input.keyboard.addKey(Phaser.Keyboard.ONE)
+    swapAxis.onUp.add(@processJumble)
+
+    swapDir = @game.input.keyboard.addKey(Phaser.Keyboard.TWO)
+    swapDir.onUp.add(@processChangeUp)
+
+
+  processNext:(event)=>
+    @level.next()
+
+  processJumble:(event)=>
+    Controller.flipAxis(@level)
+
+  processChangeUp:(event)=>
+    Controller.flipDirection(@level)
+    
   gofull:=>
     @game.stage.scale.startFullScreen();
 
   update:=>
     @level.update()
     if @game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)
-      @level.next() unless @pressed
+      #@level.next() unless @pressed
       @pressed = true
     if !@game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)
       @pressed = false

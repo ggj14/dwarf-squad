@@ -82,5 +82,18 @@ class Level
     controller.update() for controller in @controllers
     @entities.sort('y', Phaser.Group.SORT_ASCENDING)
 
+
+  exchangeDirection:(p1, p2, d1, d2)=>
+    console.log(p1, p2, d1, d2)
+    @pad.on(p1, d1, @controllers[p2].getAction(d2))
+    @pad.on(p2, d2, @controllers[p1].getAction(d1))
+
+  flipAxis:(p1, p2, a1, a2)=>    
+    for i in [0..1]
+      @pad.on(p1, Controller.AXIS_TO_DIR[a1][i], @controllers[p2].getAction(Controller.AXIS_TO_DIR[a2][i]))
+      @pad.on(p2, Controller.AXIS_TO_DIR[a2][i], @controllers[p1].getAction(Controller.AXIS_TO_DIR[a1][i]))
+
+
+
 root = exports ? window
 root.Level = Level
