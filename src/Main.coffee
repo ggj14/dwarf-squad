@@ -7,8 +7,9 @@ class Main extends Phaser.State
   # coffeescript; without this call, instanceof checks fail
   constructor:(fullscreen, scene)->
     super
-    @launch_fullscreen = fullscreen
     @starting_scene = scene
+    if fullscreen
+      @game.input.onDown.add(@gofull);
 
   preload:()=>
     @game.load.image('logo', 'assets/logo.png')
@@ -22,8 +23,6 @@ class Main extends Phaser.State
     @game.stage.backgroundColor = '#FF00FF'
     @game.physics.gravity.y = 0
     @game.stage.fullScreenScaleMode = Phaser.StageScaleMode.SHOW_ALL;
-    if @launch_fullscreen
-      @game.input.onDown.add(@gofull);
     @scene_manager = new SceneManager()
     @scene_manager.add('splash', new Splash(@game, @scene_manager))
     @scene_manager.add('level', new Level(@game, @scene_manager))

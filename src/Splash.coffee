@@ -12,7 +12,7 @@ class Splash extends Scene
     }
     @text = @game.add.text(@game.world.centerX, @game.world.centerY, message, style)
     @text.anchor.setTo(0.5, 0.5);
-    @game.input.onDown.add(@startup);
+    @game.input.onDown.addOnce(@startup);
 
   startup:=> 
     @labs = @game.add.sprite(@game.world.centerX, @game.world.centerY, 'labs')
