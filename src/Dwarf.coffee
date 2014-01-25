@@ -30,6 +30,7 @@ class Dwarf extends Entity
     else
         @sprite.animations.add("idle", [1, 9, 1, 5, 1, 9], idleFps, true)
 
+    @axis = [0, 1, 2, 4]
     super
 
   update:=>
@@ -37,17 +38,31 @@ class Dwarf extends Entity
 
     if @sprite.body.velocity.x > MIN_ANIM_VELOCITY && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
         @sprite.animations.play("right")
+        console.log(@axis[Pad.RIGHT], "right")
+
     else if @sprite.body.velocity.x < -MIN_ANIM_VELOCITY && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
         @sprite.animations.play("left")
+        console.log(@axis[Pad.LEFT], "left")
+
     else if @sprite.body.velocity.y > MIN_ANIM_VELOCITY
         @sprite.animations.play("down")
+        console.log(@axis[Pad.DOWN], "down")
+
     else if @sprite.body.velocity.y < -MIN_ANIM_VELOCITY
         @sprite.animations.play("up")
+        console.log(@axis[Pad.UP], "up")
+
     else
         @sprite.animations.play("idle")
 
+
+
+    #do the arrows
     super
 
+  direction_owner:(ctrl_index, player_dir)=>
+    console.log(ctrl_index, player_dir)
+    @axis[player_dir] = ctrl_index;
 
 root = exports ? window
 root.Dwarf = Dwarf

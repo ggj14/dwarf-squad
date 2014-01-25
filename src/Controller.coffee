@@ -50,6 +50,11 @@ class Controller
     @ax = 0
     @ay = 0
 
+
+  set_direction_ctrl:(pad, ctrl_index, ctrl_dir, player_dir)=>
+    pad.on(ctrl_index, ctrl_dir, @actions[player_dir])
+    @player.direction_owner(ctrl_index, player_dir)
+
   getAction:(i)=>
     @actions[i];
 

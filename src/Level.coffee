@@ -23,7 +23,7 @@ class Level extends Scene
     @pad = new Pad(@game)
     for i in [0..3]
       @flush_directions(i)
-      
+
     @next()
 
   next:=>
@@ -85,14 +85,20 @@ class Level extends Scene
 
   exchange_direction:(p1, p2, d1, d2)=>
     console.log(p1, p2, d1, d2)
-    @pad.on(p1, d1, @controllers[p2].getAction(d2))
-    @pad.on(p2, d2, @controllers[p1].getAction(d1))
+    @controllers[p1].set_direction_ctrl(@pad, p2, d2, d1)
+    @controllers[p2].set_direction_ctrl(@pad, p1, d1, d2)
 
-  flush_directions:(p)->
-      @pad.on(p, Pad.UP, @controllers[p].up)
-      @pad.on(p, Pad.DOWN, @controllers[p].down)
-      @pad.on(p, Pad.LEFT, @controllers[p].left)
-      @pad.on(p, Pad.RIGHT, @controllers[p].right)
+    #@pad.on(p1, d1, @controllers[p2].getAction(d2))
+    #@pad.on(p2, d2, @controllers[p1].getAction(d1))
+
+  flush_directions:(p)=>
+    for i in Controller.DIRECTIONS
+      @controllers[p].set_direction_ctrl(@pad, p, i, i)
+
+      #@pad.on(p, Pad.UP, @controllers[p].up)
+      #@pad.on(p, Pad.DOWN, @controllers[p].down)
+      #@pad.on(p, Pad.LEFT, @controllers[p].left)
+      #@pad.on(p, Pad.RIGHT, @controllers[p].right)
 
   players_collided:(@p1, @p2) =>
     if @p1.body.speed+@p2.body.speed >= 500
