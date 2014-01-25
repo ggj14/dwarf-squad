@@ -17,6 +17,8 @@ class Main extends Phaser.State
     @game.load.image('world', 'assets/world.png')
     @game.load.tilemap('level01', 'maps/level01.json', null, Phaser.Tilemap.TILED_JSON)
     @game.load.tilemap('level02', 'maps/level02.json', null, Phaser.Tilemap.TILED_JSON)
+    @game.load.audio('splash', 'songs/GGJ13_Theme.mp3');
+    @game.load.audio('pain', 'sounds/pain.wav');
 
   create:()=>
     @game.stage.backgroundColor = '#FF00FF'

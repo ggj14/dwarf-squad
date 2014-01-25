@@ -57,8 +57,6 @@ class Level extends Scene
     @walls = map.createLayer('Walls')
     roof = map.createLayer('Roof')
 
-    console.log map
-
     for spawn in map.objects.Spawns
       switch spawn.name
         when "player"
@@ -76,12 +74,18 @@ class Level extends Scene
     render_order.add(@entities)
     render_order.add(roof)
 
+    @pain = @game.add.sound('pain')
+
   update:=>
     @pad.update()
-    player.collide(@players) for player in @players
+    player.collide(@players, @players_collided) for player in @players
     player.collide(@walls) for player in @players
     controller.update() for controller in @controllers
     @entities.sort('y', Phaser.Group.SORT_ASCENDING)
+
+  players_collided:(@p1, @p2) =>
+    if @p1.body.speed+@p2.body.speed >= 500
+      @pain.play('', 0, 1)
 
 root = exports ? window
 root.Level = Level
