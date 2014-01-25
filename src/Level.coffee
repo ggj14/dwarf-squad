@@ -1,4 +1,5 @@
 #= require Dwarf
+#= require Sheep
 #= require Controller
 #= require Pad
 #= require Scene
@@ -64,6 +65,7 @@ class Level extends Scene
 
     @triggers = []
     @objects = []
+    @sheep = []
 
     for spawn in map.objects.Spawns
       switch spawn.name
@@ -82,6 +84,12 @@ class Level extends Scene
           door.sprite.y = spawn.y - door.sprite.height
           @objects.push(door)
 
+    #temporarily hack in a sheep
+    aSheep = new Sheep(@game, this)
+    aSheep.sprite.x = 100
+    aSheep.sprite.y = 280
+    @sheep.push(aSheep)
+
     for trigger in @triggers      
       @signals[trigger.properties.event].add(trigger.handle)
 
@@ -89,8 +97,10 @@ class Level extends Scene
     for player in @players
       @entities.add(player.sprite)
       @entities.add(arrow) for arrow in player.arrows
-    @entities.add(object.sprite) for object in @objects
+    @entities.add(aSheep.sprite) for aSheep in @sheep
+    @entities.add(aObject.sprite) for aObject in @objects
 
+    
     render_order = @game.add.group()
     render_order.add(background)
     render_order.add(scenery)
@@ -107,13 +117,16 @@ class Level extends Scene
     @pad.update()
     player.update() for player in @players
     object.update() for object in @objects
+    aSheep.update() for aSheep in @sheep
     player.collide(@players, @players_collided) for player in @players
     player.collide(@walls) for player in @players
+    player.collide(@sheep) for player in @players
+    aSheep.collide(@walls) for aSheep in @sheep
     controller.update() for controller in @controllers
     @entities.sort('y', Phaser.Group.SORT_ASCENDING)
 
   exchange_direction:(p1, p2, d1, d2)=>
-    console.log(p1, p2, d1, d2)
+    #console.log(p1, p2, d1, d2)
     @controllers[p1].set_direction_ctrl(@pad, p2, d2, d1)
     @controllers[p2].set_direction_ctrl(@pad, p1, d1, d2)
 

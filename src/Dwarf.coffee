@@ -74,7 +74,7 @@ class Dwarf extends Entity
   set_frame:(idx, dir)=>
     @arrows[idx].animations.frame = 4 * @axisOwner[dir] + idx
     @arrows[idx].alpha = 1
-    console.log(@arrows[idx].animations.frame, 4 * @axisOwner[dir] + idx)
+    #console.log(@arrows[idx].animations.frame, 4 * @axisOwner[dir] + idx)
 
   update:=>
     MIN_ANIM_VELOCITY = 10.0
@@ -109,7 +109,7 @@ class Dwarf extends Entity
     super
 
   direction_owner:(ctrl_index, player_dir)=>
-    console.log(ctrl_index, player_dir)
+    #console.log(ctrl_index, player_dir)
     @axisOwner[player_dir] = ctrl_index;
 
 
