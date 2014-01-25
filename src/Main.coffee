@@ -66,13 +66,6 @@ class Main extends Phaser.State
     @pad.on(3, Pad.LEFT, @controller4.left)
     @pad.on(3, Pad.RIGHT, @controller4.right)
 
-    @debug = false
-    @toggle = false
-    @game.input.keyboard.addKeyCapture([
-      Phaser.Keyboard.F1
-    ])
-#   @walls.debug = true
-
     @game.stage.fullScreenScaleMode = Phaser.StageScaleMode.SHOW_ALL;
     @game.input.onDown.add(@gofull);
 
@@ -80,12 +73,6 @@ class Main extends Phaser.State
     @game.stage.scale.startFullScreen();
 
   update:=>
-    if @game.input.keyboard.isDown(Phaser.Keyboard.F1) && !@toggle
-      @debug = !@debug
-      @toggle = true
-    else if !@game.input.keyboard.isDown(Phaser.Keyboard.F1)
-      @toggle = false
-
     @pad.update()
 
     @p1.collide([@walls, @p2, @p3, @p4])
