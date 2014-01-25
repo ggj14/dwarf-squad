@@ -36,12 +36,28 @@ class Main extends Phaser.State
 
     map.addTilesetImage('dungeon', 'dungeon')
     background = map.createLayer('Background')
+    scenery = map.createLayer('Scenery')
     @walls = map.createLayer('Walls')
+    roof = map.createLayer('Roof')
+
 
     @p1 = new Candy(@game, 250, 250, 1)
     @p2 = new Candy(@game, 500, 500, 2)
     @p3 = new Candy(@game, 250, 500, 3)
     @p4 = new Candy(@game, 500, 250, 4)
+
+    entities = @game.add.group()
+    entities.add(@p1.sprite)
+    entities.add(@p2.sprite)
+    entities.add(@p3.sprite)
+    entities.add(@p4.sprite)
+
+    render_order = @game.add.group()
+    render_order.add(background)
+    render_order.add(scenery)
+    render_order.add(@walls)
+    render_order.add(entities)
+    render_order.add(roof)
 
     @controller1 = new Controller(@p1, @game)
     @controller2 = new Controller(@p2, @game)
