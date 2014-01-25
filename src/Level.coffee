@@ -20,10 +20,10 @@ class Level extends Scene
       'level02'
     ]
     @players = [
-      new Dwarf(@game, 1),
-      new Dwarf(@game, 2),
-      new Dwarf(@game, 3),
-      new Dwarf(@game, 4)
+      new Dwarf(@game, this, 1),
+      new Dwarf(@game, this, 2),
+      new Dwarf(@game, this, 3),
+      new Dwarf(@game, this, 4)
     ]
     @controllers = []
     for player in @players
@@ -68,6 +68,11 @@ class Level extends Scene
     @triggers = []
     @objects = []
     @entities = @game.add.group()
+    @walkers = []
+    @walkers.push(player) for player in @players
+
+    for player in @players
+      player.add_to_group(@entities)
 
     for spawn in map.objects.Spawns
       switch spawn.name
@@ -90,19 +95,19 @@ class Level extends Scene
               when "door"
                 new Door(@game, this, spawn.properties)
               when "sheep"
-                new Sheep(@game)
+                new Sheep(@game, this)
               else
                 alert("missing definition for type: #{spawn.properties.type}")
           o.sprite.x = spawn.x
           o.sprite.y = spawn.y - o.sprite.height
           @objects.push(o)
           o.add_to_group(@entities)
+          @walkers.push(o) if (o instanceof Walker)
 
     for trigger in @triggers
       @signals[trigger.properties.event].add(trigger.handle)
 
-    for player in @players
-      player.add_to_group(@entities)
+
 
     render_order = @game.add.group()
     render_order.add(background)
@@ -120,10 +125,12 @@ class Level extends Scene
     @pad.update()
     player.update() for player in @players
     object.update() for object in @objects
-    player.collide(@players, @players_collided) for player in @players
-    player.collide(@walls) for player in @players
-    # player.collide(@sheep) for player in @players
-    # aSheep.collide(@walls) for aSheep in @sheep
+
+    # players bonking into each other
+    alive_walkers = (walker for walker in @walkers when !walker.ignore)
+    walker.collide(alive_walkers, @players_collided) for walker in alive_walkers
+    walker.collide(@walls) for walker in alive_walkers
+
     controller.update() for controller in @controllers
     @entities.sort('y', Phaser.Group.SORT_ASCENDING)
 
@@ -144,8 +151,9 @@ class Level extends Scene
       #@pad.on(p, Pad.LEFT, @controllers[p].left)
       #@pad.on(p, Pad.RIGHT, @controllers[p].right)
 
-  players_collided:(@p1, @p2) =>
-    if @p1.sprite.body.speed+@p2.sprite.body.speed >= 500
+  players_collided:(p1, p2) =>
+    return if p1.exited || p2.exited
+    if p1.sprite.body.speed+p2.sprite.body.speed >= 500
       @pain.play('', 0, 1)
 
 root = exports ? window

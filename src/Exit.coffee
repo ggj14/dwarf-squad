@@ -6,9 +6,11 @@ class Exit extends Actor
     @level = level
     @properties = properties
     @count = 0
+    @collect_sound = @game.add.sound("collect")
 
   create_sprite: =>
-    @sprite = @game.add.sprite(0, 0, 'key')
+    @sprite = @game.add.sprite(0, 0, 'objects')
+    @sprite.animations.frame = 8
 
   set_physics: =>
     super
@@ -25,10 +27,13 @@ class Exit extends Actor
       @collide(@level.players, @player_entered)
 
   player_entered:(door, player)=>
-    return unless player.group == @level.entities
-    @level.entities.remove(player)
+    return if player.exited
+
+    player.remove_from_group(@level.entities)
+    player.exited = true
+    player.ignore = true
     @count += 1
-    @game.add.sound("collect").play('', 0, 1)
+    @collect_sound.play('', 0, 1)
     if @count == +@properties['count']
       @level.signals[@properties['id']].dispatch()
 

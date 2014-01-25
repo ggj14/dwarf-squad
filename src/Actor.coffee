@@ -45,7 +45,7 @@ class Actor extends Entity
       return if other.sprite == @sprite
       # wrap a little function here so the callback gets the entity instead of the sprite
       @game.physics.collide(@sprite, other.sprite, (us, other_sprite)=>
-        callback(@, other)
+        callback(@, other) if callback
       )
     else
       @game.physics.collide(@sprite, other, callback)

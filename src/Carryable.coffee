@@ -7,6 +7,9 @@ class Carryable extends Actor
     @properties = properties
     @carried_by = false
 
+  @set_physics:=>
+    super
+
   move_to:(x, y, facing)=>
     if facing == Pad.RIGHT
       x += @sprite.width
@@ -30,7 +33,8 @@ class Carryable extends Actor
       @collide(@level.players, @stepped_on)
 
   stepped_on:(us, player)=>
-    # return unless player.group == @level.entities
+    return if player.exited
+
     if player.maybe_pickup(this)
       @carried_by = player
       if @on_pickup

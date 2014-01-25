@@ -1,7 +1,7 @@
 #= require Walker
 
 class Sheep extends Walker
-  constuctor:(game)=>
+  constructor:(game, level)->
     super
     @walkTime = 1.0
     @randDir = 4
@@ -9,12 +9,18 @@ class Sheep extends Walker
   create_sprite:=>
     @sprite = @game.add.sprite(0, 0, 'sheep')
 
+  set_animations: =>
+    @min_anim_velocity = 10
+    super
+
   set_physics: =>
     super
     @sprite.body.height = 16
     @sprite.body.width = 24
     @sprite.body.offset.x = 4
     @sprite.body.offset.y = 16
+    @sprite.body.maxVelocity.x = 30
+    @sprite.body.maxVelocity.y = 30
 
   on_update:=>
     # randomly walks around

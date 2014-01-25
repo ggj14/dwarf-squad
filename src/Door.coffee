@@ -1,5 +1,6 @@
 #= require Entity
 #= require Key
+#= require Dwarf
 
 class Door extends Actor
   constructor:(game, level, properties)->
@@ -34,15 +35,17 @@ class Door extends Actor
 
       # anyone unlocking?
       if @level.pad.enabled
-        @collide(@level.players, @player_touching)
+        # collide with all walkers so they can't get through the door
+        @collide(@level.walkers, @player_touching)
     else
       @sprite.animations.play("open")
 
 
   player_touching:(door, player)=>
-    debugger
-    return unless player.group == @level.entities
-    return unless player.carrying && player.carrying instanceof Key
+    return unless player instanceof Dwarf
+    return if player.exited
+
+    return unless (player.carrying && (player.carrying instanceof Key))
     # ok unlock!
     @locked = false
 

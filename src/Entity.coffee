@@ -4,6 +4,7 @@ class Entity
     @dead = false
     @create_sprite()
     alert "An entity didn't create its sprite in create_sprite()" unless @sprite
+    @solid = true
 
   create_sprite: =>
     # override
@@ -18,6 +19,12 @@ class Entity
     group.add(@sprite)
     @current_group = group
     @on_add_to_group(group) if @on_add_to_group
+
+  remove_from_group:(group)=>
+    group.remove(@sprite)
+    @current_group = null
+    @on_remove_from_group(group) if @on_remove_from_group
+
 
   onDestroy:=>
     #noop
