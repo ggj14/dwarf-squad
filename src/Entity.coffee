@@ -6,8 +6,8 @@ class Entity
     @sprite.anchor.y = 0.5
     @sprite.x = x
     @sprite.y = y
-    @sprite.body.height = 12
-    @sprite.body.offset.y = 12
+    # @sprite.body.height = 12
+    # @sprite.body.offset.y = 12
 
   destroy:=>
     return if @dead
@@ -24,7 +24,7 @@ class Entity
     else
       @collide_object(others, callback)
 
-  collide_object:(other, callback)=> 
+  collide_object:(other, callback)=>
     if other instanceof Entity
       return if other.sprite == @sprite
       @game.physics.collide(@sprite, other.sprite, callback)

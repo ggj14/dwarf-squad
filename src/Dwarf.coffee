@@ -3,13 +3,15 @@
 class Dwarf extends Entity
   constructor:(game, i)->
     @sprite = game.add.sprite(0, 0, 'dwarf1')
+    @sprite.body = null
     @sprite.animations.frame = i
-    @sprite.body.friction = 2000
-    @sprite.body.maxVelocity.x = 300
-    @sprite.body.maxVelocity.y = 300
-    @sprite.body.collideWorldBounds = true
-    @sprite.body.bounce.x = 0.4
-    @sprite.body.bounce.y = 0.4
+
+    # @sprite.body.friction = 2000
+    # @sprite.body.maxVelocity.x = 300
+    # @sprite.body.maxVelocity.y = 300
+    # @sprite.body.collideWorldBounds = true
+    # @sprite.body.bounce.x = 0.4
+    # @sprite.body.bounce.y = 0.4
 
     ANIM_FPS_X = 20
     ANIM_FPS_Y = 10
@@ -35,16 +37,16 @@ class Dwarf extends Entity
   update:=>
     MIN_ANIM_VELOCITY = 10.0
 
-    if @sprite.body.velocity.x > MIN_ANIM_VELOCITY && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
-        @sprite.animations.play("right")
-    else if @sprite.body.velocity.x < -MIN_ANIM_VELOCITY && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
-        @sprite.animations.play("left")
-    else if @sprite.body.velocity.y > MIN_ANIM_VELOCITY
-        @sprite.animations.play("down")
-    else if @sprite.body.velocity.y < -MIN_ANIM_VELOCITY
-        @sprite.animations.play("up")
-    else
-        @sprite.animations.play("idle")
+    # if @sprite.body.velocity.x > MIN_ANIM_VELOCITY && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
+    #     @sprite.animations.play("right")
+    # else if @sprite.body.velocity.x < -MIN_ANIM_VELOCITY && Math.abs(@sprite.body.velocity.x) > Math.abs(@sprite.body.velocity.y)
+    #     @sprite.animations.play("left")
+    # else if @sprite.body.velocity.y > MIN_ANIM_VELOCITY
+    #     @sprite.animations.play("down")
+    # else if @sprite.body.velocity.y < -MIN_ANIM_VELOCITY
+    #     @sprite.animations.play("up")
+    # else
+    #     @sprite.animations.play("idle")
 
     super
 

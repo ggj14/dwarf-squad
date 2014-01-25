@@ -20,6 +20,15 @@ class Main extends Phaser.State
     @game.load.audio('splash', 'songs/GGJ13_Theme.mp3');
     @game.load.audio('pain', 'sounds/pain.wav');
 
+    Phaser.Canvas.setSmoothingEnabled(@game.context, false)
+    @game.context['imageSmoothingEnabled'] = false;
+    @game.context['mozImageSmoothingEnabled'] = false;
+    @game.context['oImageSmoothingEnabled'] = false;
+    @game.context['webkitImageSmoothingEnabled'] = false;
+    @game.context['msImageSmoothingEnabled'] = false;
+    @game.context.webkitImageSmoothingEnabled = false;
+    @game.context.mozImageSmoothingEnabled = false;
+
   create:()=>
     @game.stage.backgroundColor = '#FF00FF'
     @game.physics.gravity.y = 0
@@ -46,7 +55,7 @@ class Main extends Phaser.State
 
   processChangeUp:(event)=>
     Controller.flipDirection(@scene_manager.get_current())
-    
+
   gofull:=>
     @game.stage.scale.startFullScreen();
 

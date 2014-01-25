@@ -61,8 +61,8 @@ class Level extends Scene
       switch spawn.name
         when "player"
           player = @players[+spawn.properties.id-1]
-          player.sprite.x = spawn.x
-          player.sprite.y = spawn.y
+          player.sprite.x = parseInt(spawn.x)
+          player.sprite.y = parseInt(spawn.y)
 
     @entities = @game.add.group()
     @entities.add(player.sprite) for player in @players
