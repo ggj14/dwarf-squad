@@ -15,8 +15,6 @@ class Splash extends Scene
     @game.input.onDown.addOnce(@startup);
 
   startup:=> 
-    @music = @game.add.audio('splash');
-    @music.play('', 0, 4, true)
     @faders = @game.add.group()
     @labs = @game.add.sprite(@game.world.centerX, @game.world.centerY, 'labs')
     @labs.anchor.setTo(0.5, 0.5)
@@ -29,19 +27,17 @@ class Splash extends Scene
     timer.start()
 
   begin:=>
-    @game.add.tween(@labs).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true);
-    @game.add.tween(@labs.scale).to( { x: 1.5, y: 1.5 }, 6000, Phaser.Easing.Quadratic.None, true);
+    @game.add.tween(@labs).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);
+    @game.add.tween(@labs.scale).to( { x: 2, y: 2 }, 4000, Phaser.Easing.Quadratic.None, true);
     timer = @game.time.create(false)
-    timer.add(2000, @fadeout)
+    timer.add(1000, @fadeout)
     timer.start()
 
   fadeout:=>
-    @game.add.tween(@labs).to( { alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
-    timer = @game.time.create(false)
+    @game.add.tween(@labs).to( { alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
     @finish()
 
   finish:=>
-    #@music.stop()
     @director.init('level')
 
 root = exports ? window

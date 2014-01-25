@@ -12,6 +12,8 @@
 
 class Level extends Scene
   init:=>
+    @started = false
+    @game.stage.backgroundColor = '#000'
     @ready = false
     @current = 0
     @signals = {
@@ -40,12 +42,15 @@ class Level extends Scene
     @next()
 
   next:=>
+    @started = false
     @game.world.removeAll() unless @faders
 
     level_group = if @faders then @faders else @game.add.group()
     render_order = @game.add.group()
     level_group.addAt(render_order, 0)
     @faders = null
+
+    render_order.alpha = 0
 
     if @current == null
       @current = 0
@@ -135,10 +140,18 @@ class Level extends Scene
 
     @pain = @game.add.sound('pain')
 
+    @game.add.tween(render_order).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);
+    timer = @game.time.create(false)
+    timer.add(1000, @endfade)
+    timer.start()
+
+  endfade:=>
     @signals['finish'].addOnce(@next)
     @signals['start'].dispatch()
+    @started = true
 
   update:=>
+    return unless @started
     @pad.update()
     player.update() for player in @players
     object.update() for object in @objects
