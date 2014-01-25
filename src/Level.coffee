@@ -52,18 +52,20 @@ class Level
           tile.faceRight = true
     map.calculateFaces(index)
 
-    map.addTilesetImage('dungeon', 'dungeon')
+    map.addTilesetImage('world', 'world')
     background = map.createLayer('Background')
     scenery = map.createLayer('Scenery')
     @walls = map.createLayer('Walls')
     roof = map.createLayer('Roof')
+
+    console.log map
 
     for spawn in map.objects.Spawns
       switch spawn.name
         when "player"
           player = @players[+spawn.properties.id-1]
           player.sprite.x = spawn.x
-          player.sprite.y = spawn.y 
+          player.sprite.y = spawn.y
 
     @entities = @game.add.group()
     @entities.add(player.sprite) for player in @players
