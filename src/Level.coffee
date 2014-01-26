@@ -39,7 +39,11 @@ class Level extends Scene
     @next()
 
   next:=>
-    @game.world.removeAll()
+    @game.world.removeAll() unless @faders
+
+    render_order = if @faders then @faders else @game.add.group()
+    @faders = null
+
     if @current == null
       @current = 0
     else
@@ -62,16 +66,23 @@ class Level extends Scene
           tile.faceRight = true
     map.calculateFaces(index)
 
+    @entities = @game.add.group()
+    @floor_group = @game.add.group()
+
     map.addTilesetImage('world', 'world')
-    background = map.createLayer('Background')
-    scenery = map.createLayer('Scenery')
-    @walls = map.createLayer('Walls')
     roof = map.createLayer('Roof')
+    render_order.addAt(roof, 0)
+    render_order.addAt(@entities, 0)
+    @walls = map.createLayer('Walls')
+    render_order.addAt(@walls, 0)
+    render_order.addAt(@floor_group, 0)
+    scenery = map.createLayer('Scenery')
+    render_order.addAt(scenery, 0)
+    background = map.createLayer('Background')
+    render_order.addAt(background, 0)
 
     @triggers = []
     @objects = []
-    @entities = @game.add.group()
-    @floor_group = @game.add.group()
     @walkers = []
     @walkers.push(player) for player in @players
 
@@ -122,16 +133,6 @@ class Level extends Scene
 
     for trigger in @triggers
       @signals[trigger.properties.event].add(trigger.handle)
-
-
-
-    render_order = @game.add.group()
-    render_order.add(background)
-    render_order.add(scenery)
-    render_order.add(@floor_group)
-    render_order.add(@walls)
-    render_order.add(@entities)
-    render_order.add(roof)
 
     @pain = @game.add.sound('pain')
 

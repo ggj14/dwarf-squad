@@ -2,6 +2,6 @@
 "title": "Dwarf Squad"
 ;;;
 <script type="text/javascript">
-  window.dwarfsquad = new Main(<%= true %>, "<%= build? ? 'splash' : 'splash' %>")
+  window.dwarfsquad = new Main(<%= false %>, "<%= build? ? 'level' : 'level' %>")
   window.phaser = new Phaser.Game(896, 504, Phaser.AUTO, '', window.dwarfsquad)
 </script>

@@ -1,7 +1,7 @@
 #= require Scene
 
 class Splash extends Scene
-  init:->
+  init:=>
     @zoom = 0.1
     @game.stage.backgroundColor = '#FFF'
     message = "Click To Play"
@@ -17,11 +17,12 @@ class Splash extends Scene
   startup:=> 
     @music = @game.add.audio('splash');
     @music.play('', 0, 4, true)
-    console.log(@music)
+    @faders = @game.add.group()
     @labs = @game.add.sprite(@game.world.centerX, @game.world.centerY, 'labs')
     @labs.anchor.setTo(0.5, 0.5)
     @labs.scale.setTo(@zoom, @zoom)
     @labs.alpha = 0
+    @faders.add(@labs)
     @game.add.tween(@text).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true);
     timer = @game.time.create(false)
     timer.add(500, @begin)
@@ -29,16 +30,15 @@ class Splash extends Scene
 
   begin:=>
     @game.add.tween(@labs).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true);
-    @game.add.tween(@labs.scale).to( { x: 1, y: 1 }, 8000, Phaser.Easing.Quadratic.None, true);
+    @game.add.tween(@labs.scale).to( { x: 1.5, y: 1.5 }, 6000, Phaser.Easing.Quadratic.None, true);
     timer = @game.time.create(false)
-    timer.add(3000, @fadeout)
+    timer.add(2000, @fadeout)
     timer.start()
 
   fadeout:=>
-    @game.add.tween(@labs).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+    @game.add.tween(@labs).to( { alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
     timer = @game.time.create(false)
-    timer.add(2000, @finish)
-    timer.start()
+    @finish()
 
   finish:=>
     #@music.stop()
