@@ -5,12 +5,16 @@ class Sheep extends Walker
     super
     @walkTime = 1.0
     @randDir = 4
+    @sprite.body.bounce.x = 0.0
+    @sprite.body.bounce.y = 0.0
 
   create_sprite:=>
     @sprite = @game.add.sprite(0, 0, 'sheep')
 
   set_animations: =>
     @min_anim_velocity = 10
+    @anim_fps_x = 10
+    @anim_fps_y = 10
     super
 
   set_physics: =>
@@ -30,13 +34,13 @@ class Sheep extends Walker
       @randDir = Math.floor(Math.random() * 5)
 
     if (@randDir == 0)
-      @accelerate(2000, 0)
+      @accelerate(20, 0)
     else if (@randDir == 1)
-      @accelerate(-2000, 0)
+      @accelerate(-20, 0)
     else if (@randDir == 2)
-      @accelerate(0, 2000)
+      @accelerate(0, 20)
     else if @randDir == 3
-      @accelerate(0, -2000)
+      @accelerate(0, -20)
     else
       @accelerate(0, 0)
 
