@@ -46,9 +46,18 @@ class Trigger
       fill: "#FFFFFF",
       align: "center"
     }
+    shadow = {
+      font: "40px Arial",
+      fill: "#000000",
+      align: "center"
+    }
+    @shadow = @game.add.text(@game.world.centerX+4, @game.world.centerY+4, caption, shadow)
+    @shadow.anchor.setTo(0.5, 0.5);
+    @shadow.alpha = 0
     @text = @game.add.text(@game.world.centerX, @game.world.centerY, caption, style)
     @text.anchor.setTo(0.5, 0.5);
     @text.alpha = 0
+    console.log(@text)
     @fade_in()
 
   show_hint:(caption)=>
@@ -57,6 +66,14 @@ class Trigger
       fill: "#FFFF00",
       align: "center"
     }
+    shadow = {
+      font: "15px Arial",
+      fill: "#000000",
+      align: "center"
+    }
+    @shadow = @game.add.text(@game.world.centerX+2, @game.world.centerY+2, caption, shadow)
+    @shadow.anchor.setTo(0.5, 0.5);
+    @shadow.alpha = 0
     @text = @game.add.text(@game.world.centerX, @game.world.centerY, caption, style)
     @text.anchor.setTo(0.5, 0.5);
     @text.alpha = 0
@@ -64,14 +81,16 @@ class Trigger
 
   fade_in:=>
     @game.add.tween(@text).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
+    @game.add.tween(@shadow).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
     timer = @game.time.create(false)
     timer.add(1500, @fade_out)
     timer.start()
     
   fade_out:=>
     @game.add.tween(@text).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true);
+    @game.add.tween(@shadow).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true);
     timer = @game.time.create(false)
-    timer.add(500, @finish)
+    timer.add(1000, @finish)
     timer.start()
 
   play_sound:(sound)=>
@@ -107,6 +126,9 @@ class Trigger
 
 
   finish:=>
+    if @text
+      @text.destroy()
+      @shadow.destroy()
     @signal.dispatch()
 
 root = exports ? window
