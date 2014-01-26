@@ -8,6 +8,7 @@ class Treasure extends Actor
     super(game)
     @level = level
     @properties = properties
+    @sound = @game.add.sound("coin"+Phaser.Math.getRandom([1,2,3,4]))
 
   create_sprite: =>
     super
@@ -29,6 +30,7 @@ class Treasure extends Actor
 
   player_touching:(sw, player)=>
     return if player.exited
+    @sound.play()
     @destroy()
     # check treasures left
     treasures = (object for object in @level.objects when (object instanceof Treasure) && !object.dead)
