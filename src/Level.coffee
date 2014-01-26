@@ -145,6 +145,9 @@ class Level extends Scene
     for trigger in @triggers
       @signals[trigger.properties.event].add(trigger.handle)
 
+
+    Controller.flush_directions_all(this)
+
     @pain = @game.add.sound('pain')
     @fadein()
 

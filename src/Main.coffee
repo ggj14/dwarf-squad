@@ -49,6 +49,7 @@ class Main extends Phaser.State
     @game.load.audio('baa3', 'sounds/SheepBaa3.mp3')
     @game.load.audio('button1', 'sounds/Button1.mp3');
     @game.load.audio('button2', 'sounds/Button2.mp3');
+    @game.load.audio('bones', 'sounds/SkeletonBones.mp3')
     @game.world.remove(@text)
     @text.destroy
 
