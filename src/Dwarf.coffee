@@ -4,17 +4,25 @@
 class Dwarf extends Walker
   constructor:(game, level, i)->
     super(game, level, i)
-
+    @num = i
     @carrying = null
+    @signal = new Phaser.Signal()
 
-  # entity doesn't create the sprite because player entity persists
-  # between levels and physics is sad
   create_sprite:=>
     super
     gfx = "dwarf#{@player_number}"
     @sprite = @game.add.sprite(0, 0, gfx)
 
-    arrow.alpha = 0 for arrow in @arrows
+  say:(message, callback=null)=>
+    @chat_callback = callback
+    colors = ['#FF0000', '#FFFF88', '#8888FF', '#88FF88']
+    @set_caption(message, 2, 20, colors[@num-1]) 
+    timer = @game.time.create(false)
+    timer.add(2500, @notify)
+    timer.start()
+
+  notify:=>
+    @signal.dispatch()
 
   on_add_to_group:(group)=>
     # also need to add our arrooows
@@ -29,7 +37,6 @@ class Dwarf extends Walker
   maybe_pickup:(entity)=>
     if @carrying == null
       @carrying = entity
-
 
 root = exports ? window
 root.Dwarf = Dwarf

@@ -10,6 +10,7 @@ class Actor extends Entity
   constructor:(game)->
     super(game)
     @caption = null
+    @shadow = null
     @message_remaining = 0.0
     @set_physics()
     @chat_callback = null
@@ -42,9 +43,13 @@ class Actor extends Entity
     ##### End of dat super dodgy hack
 
 
-  set_caption:(message, time, size, sound = null, volume = 0.5, callback=null)=>
-    @chat_callback = callback
+  set_caption:(message, time, size, color="#FFFFFF", sound = null, volume = 0.5)=>
     style = {
+      font: size + "px Arial",
+      fill: color,
+      align: "center"
+    }
+    shadow = {
       font: size + "px Arial",
       fill: "#FFFFFF",
       align: "center"
@@ -53,9 +58,12 @@ class Actor extends Entity
     #ditch the old caption
     if @caption
       @caption.destroy()
+      @shadow.destroy()
 
+    @shadow = @game.add.text(0, 0, message, shadow)
     @caption = @game.add.text(0, 0, message, style)
     @caption.anchor.setTo(0.5, 1.0);
+    @shadow.anchor.setTo(0.5, 1.0);
     if sound
       @game.add.sound(sound).play('', 0, volume, false, true)
 
@@ -88,13 +96,17 @@ class Actor extends Entity
 
       if @caption
         @caption.destroy()
+        @shadow.destroy()
         @caption = null
+        @shadow = null
         if @chat_callback
           @chat_callback()
 
     if @caption
       @caption.x = offset_x(@sprite.body)
       @caption.y = offset_y(@sprite.body)
+      @shadow.x = offset_x(@sprite.body) + 1
+      @shadow.y = offset_y(@sprite.body) + 2
 
   on_update:=>
     #noop

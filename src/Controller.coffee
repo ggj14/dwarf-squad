@@ -73,14 +73,12 @@ class Controller
     @ax = 0
     @ay = 0
 
-
-  set_direction_ctrl:(pad, ctrl_index, ctrl_dir, player_dir)=>
+  set_direction_ctrl:(pad, ctrl_index, ctrl_dir, player_dir, flash=true)=>
     pad.on(ctrl_index, ctrl_dir, @actions[player_dir])
-    @player.direction_owner(ctrl_index, player_dir)
+    @player.direction_owner(ctrl_index, player_dir, flash)
 
   getAction:(i)=>
     @actions[i];
-
 
 Controller.UP_DOWN = 0
 Controller.LEFT_RIGHT = 1
@@ -90,7 +88,6 @@ Controller.DIRECTIONS = [Pad.UP, Pad.DOWN, Pad.LEFT, Pad.RIGHT]
 Controller.AXIS_TO_DIR = {}
 Controller.AXIS_TO_DIR[Controller.UP_DOWN] = [Pad.UP, Pad.DOWN]
 Controller.AXIS_TO_DIR[Controller.LEFT_RIGHT] = [Pad.LEFT, Pad.RIGHT]
-
 
 root = exports ? window
 root.Controller = Controller

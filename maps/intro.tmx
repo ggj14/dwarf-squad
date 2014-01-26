@@ -57,6 +57,58 @@
     <property name="type" value="boulder"/>
    </properties>
   </object>
+  <object name="trigger" gid="18" x="36" y="549">
+   <properties>
+    <property name="caption" value="A Quest Begins"/>
+    <property name="event" value="start"/>
+    <property name="id" value="p1"/>
+    <property name="input" value="disable"/>
+   </properties>
+  </object>
+  <object name="trigger" gid="18" x="104" y="546">
+   <properties>
+    <property name="dialogue" value="intro1"/>
+    <property name="event" value="p1"/>
+    <property name="id" value="p2"/>
+   </properties>
+  </object>
+  <object name="trigger" gid="18" x="168" y="546">
+   <properties>
+    <property name="dialogue" value="intro2"/>
+    <property name="event" value="p2"/>
+    <property name="id" value="p3"/>
+    <property name="input" value="0"/>
+   </properties>
+  </object>
+  <object name="trigger" gid="18" x="232" y="545">
+   <properties>
+    <property name="dialogue" value="intro3"/>
+    <property name="event" value="p3"/>
+    <property name="id" value="p4"/>
+    <property name="input" value="1"/>
+   </properties>
+  </object>
+  <object name="trigger" gid="18" x="292" y="547">
+   <properties>
+    <property name="dialogue" value="intro4"/>
+    <property name="event" value="p4"/>
+    <property name="id" value="done"/>
+    <property name="input" value="2"/>
+   </properties>
+  </object>
+  <object name="trigger" gid="18" x="352" y="551">
+   <properties>
+    <property name="event" value="done"/>
+    <property name="id" value="hint"/>
+    <property name="input" value="3"/>
+   </properties>
+  </object>
+  <object name="trigger" gid="18" x="70" y="431">
+   <properties>
+    <property name="event" value="hint"/>
+    <property name="hint" value="(move your dwarf to the door)"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="Roof" width="28" height="19">
   <data encoding="base64" compression="zlib">

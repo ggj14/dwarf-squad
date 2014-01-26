@@ -56,7 +56,7 @@ class Sheep extends Walker
         sound = Phaser.Math.getRandom(['baa1','baa2', 'baa3'])
         @quiet_time = 5.0
           
-        @set_caption("baa", 1.0, 20, sound)
+        @set_caption("baa", "0xFFFFFF", 1.0, 20, sound)
 
       @sprite.body.velocity.equals(0.0, 0.0)
 

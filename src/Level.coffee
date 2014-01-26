@@ -29,27 +29,13 @@ class Level extends Scene
       'treasure_room',
       'level_skeletons'
     ]
-    @players = [
-      new Dwarf(@game, this, 1),
-      new Dwarf(@game, this, 2),
-      new Dwarf(@game, this, 3),
-      new Dwarf(@game, this, 4)
-    ]
-    @controllers = []
-    for player in @players
-      @controllers.push(new Controller(player, @game))
-
     @pad = new Pad(@game)
-    for i in [0..3]
-      @flush_directions(i)
 
     @next()
 
   next:=>
     @started = false
     @game.world.removeAll() unless @faders
-
-    console.log(@players)
 
     level_group = if @faders then @faders else @game.add.group()
     @render_order = @game.add.group()
@@ -94,10 +80,19 @@ class Level extends Scene
     @triggers = []
     @objects = []
     @walkers = []
-    @walkers.push(player) for player in @players
-
+    @controllers = []
+    @players = [
+      new Dwarf(@game, this, 1),
+      new Dwarf(@game, this, 2),
+      new Dwarf(@game, this, 3),
+      new Dwarf(@game, this, 4)
+    ]
     for player in @players
       player.add_to_group(@entities)
+      @walkers.push(player)
+      @controllers.push(new Controller(player, @game))
+    for i in [0..3]
+      @flush_directions(i)
 
     for spawn in map.objects.Spawns
       switch spawn.name
@@ -192,7 +187,7 @@ class Level extends Scene
 
   flush_directions:(p)=>
     for i in Controller.DIRECTIONS
-      @controllers[p].set_direction_ctrl(@pad, p, i, i)
+      @controllers[p].set_direction_ctrl(@pad, p, i, i, false)
 
       #@pad.on(p, Pad.UP, @controllers[p].up)
       #@pad.on(p, Pad.DOWN, @controllers[p].down)
