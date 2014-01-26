@@ -23,8 +23,8 @@ class Level extends Scene
     }
     @levels = [
       'intro',
-      'level01',
-      'level02',
+      #'level01',
+      #'level02',
       'level03',
       'treasure_room'
       'level_skeletons'
