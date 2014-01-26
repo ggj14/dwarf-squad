@@ -14,6 +14,10 @@ class Actor extends Entity
     @message_remaining = 0.0
     @set_physics()
     @chat_callback = null
+    @chat_colour = '#FFFFFF'
+    @shadow_colour = '#000000'
+    @shadow_offset = [1,2]
+
 
   set_physics: =>
     @sprite.body.friction = 2500
@@ -43,15 +47,17 @@ class Actor extends Entity
     ##### End of dat super dodgy hack
 
 
-  set_caption:(message, time, size, color="#FFFFFF", sound = null, volume = 0.5)=>
+  set_caption:(message, time, size, color=null, sound = null, volume = 0.5)=>
+    color ||= @chat_colour
+    shadow_colour = @shadow_colour
     style = {
-      font: size + "px Arial",
+      font: "bold " + size + "px Arial",
       fill: color,
       align: "center"
     }
     shadow = {
-      font: size + "px Arial",
-      fill: "#FFFFFF",
+      font: "bold " + size + "px Arial",
+      fill: shadow_colour,
       align: "center"
     }
 
@@ -105,8 +111,8 @@ class Actor extends Entity
     if @caption
       @caption.x = offset_x(@sprite.body)
       @caption.y = offset_y(@sprite.body)
-      @shadow.x = offset_x(@sprite.body) + 1
-      @shadow.y = offset_y(@sprite.body) + 2
+      @shadow.x = offset_x(@sprite.body) + @shadow_offset[0]
+      @shadow.y = offset_y(@sprite.body) + @shadow_offset[1]
 
   on_update:=>
     #noop

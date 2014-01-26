@@ -7,6 +7,8 @@ class Dwarf extends Walker
     @num = i
     @carrying = null
     @signal = new Phaser.Signal()
+    @chat_colour = ['#FF0000', '#FFFF88', '#8888FF', '#88FF88'][@num-1]
+    @shadow_colour = ['#000000', '#000000', '#000000', '#000000'][@num-1]
 
   create_sprite:=>
     super
@@ -15,8 +17,7 @@ class Dwarf extends Walker
 
   say:(message, callback=null)=>
     @chat_callback = callback
-    colors = ['#FF0000', '#FFFF88', '#8888FF', '#88FF88']
-    @set_caption(message, 2, 20, colors[@num-1]) 
+    @set_caption(message, 2, 20)
     timer = @game.time.create(false)
     timer.add(2500, @notify)
     timer.start()
