@@ -8,6 +8,9 @@ class Exit extends Actor
     @count = 0
     @collect_sound = @game.add.sound("collect")
 
+    if !("type" in @properties)       #default unknown door types to take players
+      @properties['type'] = "Dwarf"
+
   create_sprite: =>
     @sprite = @game.add.sprite(0, 0, 'objects')
     @sprite.animations.frame = 8
@@ -24,18 +27,19 @@ class Exit extends Actor
 
   on_update:()=>
     if @level.pad.enabled
-      @collide(@level.players, @player_entered)
+      @collide(@level.walkers, @walker_entered)
 
-  player_entered:(door, player)=>
-    return if player.exited
+  walker_entered:(door, walker)=>
+    return if walker.exited
 
-    player.remove_from_group(@level.entities)
-    player.exited = true
-    player.ignore = true
-    @count += 1
-    @collect_sound.play('', 0, 1)
-    if @count == +@properties['count']
-      @level.signals[@properties['id']].dispatch()
+    if @properties['type'] == walker.constructor.name
+      walker.remove_from_group(@level.entities)
+      walker.exited = true
+      walker.ignore = true
+      @count += 1
+      @collect_sound.play('', 0, 1)
+      if @count == +@properties['count']
+        @level.signals[@properties['id']].dispatch()
 
 root = exports ? window
 root.Exit = Exit
