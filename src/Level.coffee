@@ -107,6 +107,8 @@ class Level extends Scene
                 new Switcher(@game, this, spawn.properties)
               when "sheep"
                 new Sheep(@game, this)
+              when "boulder"
+                new Boulder(@game, this)
               when "skeleton"
                 new Skeleton(@game, this)
               else

@@ -1,8 +1,16 @@
 #= require Entity
 
+offset_x = (body)->
+  x = body.x + body.halfWidth
+
+offset_y = (body)->
+  y = body.y - 1.1 * body.height
+
 class Actor extends Entity
   constructor:(game)->
     super(game)
+    @caption = null
+    @message_remaining = 0.0
     @set_physics()
 
   set_physics: =>
@@ -33,6 +41,22 @@ class Actor extends Entity
     ##### End of dat super dodgy hack
 
 
+  set_caption:(message, time, size)=>
+    style = {
+      font: size + "px Arial",
+      fill: "#FFFFFF",
+      align: "center"
+    }
+
+    #ditch the old caption
+    if @caption
+      @caption.destroy()
+
+    @caption = @game.add.text(0, 0, message, style)
+    @caption.anchor.setTo(0.5, 1.0);
+
+    @message_remaining = time
+
 
   collide:(others, callback = null, processor_fn = null)=>
     if others instanceof Array
@@ -54,6 +78,18 @@ class Actor extends Entity
 
   update:=>
     @on_update()
+
+    @message_remaining -= @game.time.elapsed / 1000.0
+    if @message_remaining < 0.0
+      @message_remaining = 0
+
+      if @caption
+        @caption.destroy()
+        @caption = null
+      
+    if @caption
+      @caption.x = offset_x(@sprite.body)
+      @caption.y = offset_y(@sprite.body)
 
   on_update:=>
     #noop

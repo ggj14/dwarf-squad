@@ -47,10 +47,20 @@ class Sheep extends Walker
     @walkTime -= @game.time.elapsed / 1000.0
 
     if (@walkTime < 0.0) or not @sprite.body.wasTouching.none or not @sprite.body.touching
+      if Phaser.Math.chanceRoll(20)
+        @set_caption("Bleet!", 1.0, 20)
+        
       @sprite.body.velocity.equals(0.0, 0.0)
 
       @walkTime = 1 + Math.random() * 6.0
-      @randDir = Phaser.Math.getRandom(directions(@sprite.body.wasTouching, @sprite.body.touching))
+
+      #If we hit something always move, otherwise random roll
+      if not @sprite.body.wasTouching.none or not @sprite.body.touching or Phaser.Math.chanceRoll(70)
+        @randDir = Phaser.Math.getRandom(directions(@sprite.body.wasTouching, @sprite.body.touching))
+
+      else
+        @randDir = Phaser.NONE
+
 
     if (@randDir == Phaser.RIGHT)
       @accelerate(20, 0)
