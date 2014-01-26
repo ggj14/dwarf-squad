@@ -13,12 +13,13 @@
 class Level extends Scene
   init:=>
     @ready = false
-    @current = null
+    @current = 0
     @signals = {
       start: new Phaser.Signal()
       finish: new Phaser.Signal()
     }
     @levels = [
+      'intro',
       'level01',
       'level02'
     ]
