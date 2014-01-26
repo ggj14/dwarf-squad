@@ -29,8 +29,10 @@ class Switcher extends Actor
     @sprite.body.offset.y = 5
 
   on_update:()=>
+    was_on = @on
     if @properties.action == 'momentary'
       @on = false
+      # might turn @on back on again
       @collide(@level.walkers, null, @player_touching)
     else
       alert("#{@properties.action} action switch not supported")
@@ -39,8 +41,8 @@ class Switcher extends Actor
       @sprite.animations.play("down")
     else
       @sprite.animations.play("up")
-
-    @activate_target(@on)
+    if @was_on != @on
+      @activate_target(@on)
 
   player_touching:(sw, player)=>
     return if player.exited

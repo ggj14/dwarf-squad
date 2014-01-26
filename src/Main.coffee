@@ -30,6 +30,8 @@ class Main extends Phaser.State
     @game.load.audio('pain', 'sounds/pain.wav');
     @game.load.audio('crazy', 'sounds/CrazyTime.mp3');
     @game.load.audio('collect', 'sounds/Collect.mp3');
+    @game.load.audio('button1', 'sounds/Button1.mp3');
+    @game.load.audio('button2', 'sounds/Button2.mp3');
 
   create:()=>
     @game.stage.backgroundColor = '#FF00FF'
