@@ -12,6 +12,7 @@ class Actor extends Entity
     @caption = null
     @message_remaining = 0.0
     @set_physics()
+    @chat_callback = null
 
   set_physics: =>
     @sprite.body.friction = 2500
@@ -41,7 +42,8 @@ class Actor extends Entity
     ##### End of dat super dodgy hack
 
 
-  set_caption:(message, time, size, sound = null, volume = 0.5)=>
+  set_caption:(message, time, size, sound = null, volume = 0.5, callback=null)=>
+    @chat_callback = callback
     style = {
       font: size + "px Arial",
       fill: "#FFFFFF",
@@ -87,6 +89,8 @@ class Actor extends Entity
       if @caption
         @caption.destroy()
         @caption = null
+        if @chat_callback
+          @chat_callback()
 
     if @caption
       @caption.x = offset_x(@sprite.body)

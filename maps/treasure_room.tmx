@@ -5,7 +5,7 @@
  </tileset>
  <layer name="Background" width="28" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYmBgYMKDZXFgfHrw6SVHDy3towSP2jf87KOlnaP2jdo32OzDZcdA2jeKhy4GALaMGqA=
+   eJyTZWBgkAViJgJYFgcmpA+X3sFmHyV41L7hZx8t7Ry1b9S+wWYfLjsG0r5RPPQwAMPDGqA=
   </data>
  </layer>
  <layer name="Scenery" width="28" height="19" visible="0">
@@ -15,51 +15,40 @@
  </layer>
  <layer name="Walls" width="28" height="19">
   <data encoding="base64" compression="zlib">
-   eJztU0EKwCAMC6z/f/NOAxGbJmOCygLebNKmaQC4khfIEaSO1TLON3wVb1Xn8u2k1+8ImOuns9unN4D3k/1VZmC9OXOMsu765+pVf2brsVts8/SVnouV9RTv+ntscz3yV+3FgcqjzuNm5sd5uAHRAAG+
+   eJztU0EKwDAIC6z/f/MGY1BKjUlZYSsNeNNEowI3yhVHEAUxWB2rZZwjfBlvVufy/Umv3REw109nt09vAO8nylVmYL05c/Ru3fXP1ctyZuuxX6zv6S09F1/WU7xr/7G+656/ai8OVB51HvdmNtbBCcMYAb4=
   </data>
  </layer>
  <objectgroup name="Spawns" width="28" height="19">
-  <object name="player" gid="58" x="512" y="256">
+  <object name="player" gid="58" x="576" y="256">
    <properties>
     <property name="id" value="1"/>
    </properties>
   </object>
-  <object name="player" gid="59" x="640" y="288">
+  <object name="player" gid="59" x="704" y="288">
    <properties>
     <property name="id" value="4"/>
    </properties>
   </object>
-  <object name="player" gid="60" x="640" y="96">
+  <object name="player" gid="60" x="704" y="96">
    <properties>
     <property name="id" value="3"/>
    </properties>
   </object>
-  <object name="player" gid="61" x="160" y="96">
+  <object name="player" gid="61" x="224" y="96">
    <properties>
     <property name="id" value="2"/>
    </properties>
   </object>
-  <object name="object" gid="26" x="160" y="160">
+  <object name="object" gid="26" x="224" y="160">
    <properties>
     <property name="target" value="doors"/>
     <property name="type" value="switch"/>
    </properties>
   </object>
-  <object name="object" gid="31" x="352" y="160">
+  <object name="object" gid="31" x="416" y="160">
    <properties>
     <property name="id" value="doorn"/>
     <property name="type" value="door"/>
-   </properties>
-  </object>
-  <object name="object" gid="33" x="384" y="256">
-   <properties>
-    <property name="type" value="treasure"/>
-   </properties>
-  </object>
-  <object gid="33" x="416" y="256"/>
-  <object name="object" gid="33" x="384" y="224">
-   <properties>
-    <property name="type" value="treasure"/>
    </properties>
   </object>
   <object name="object" gid="33" x="448" y="256">
@@ -67,73 +56,79 @@
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="64" y="160">
+  <object gid="33" x="480" y="256"/>
+  <object name="object" gid="33" x="448" y="224">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="64" y="96">
+  <object name="object" gid="33" x="512" y="256">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="31" x="640" y="192">
+  <object name="object" gid="33" x="128" y="160">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="128" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="31" x="704" y="192">
    <properties>
     <property name="id" value="doore"/>
     <property name="type" value="door"/>
    </properties>
   </object>
-  <object name="object" gid="31" x="480" y="416">
+  <object name="object" gid="31" x="544" y="416">
    <properties>
     <property name="id" value="doors"/>
     <property name="type" value="door"/>
    </properties>
   </object>
-  <object name="object" gid="31" x="96" y="224">
+  <object name="object" gid="31" x="160" y="224">
    <properties>
     <property name="id" value="doorw"/>
     <property name="type" value="door"/>
    </properties>
   </object>
-  <object name="object" gid="26" x="224" y="320">
+  <object name="object" gid="26" x="288" y="320">
    <properties>
     <property name="target" value="doorw"/>
     <property name="type" value="switch"/>
    </properties>
   </object>
-  <object name="object" gid="26" x="672" y="224">
+  <object name="object" gid="26" x="736" y="224">
    <properties>
     <property name="target" value="doore"/>
     <property name="type" value="switch"/>
    </properties>
   </object>
-  <object name="object" gid="26" x="480" y="96">
+  <object name="object" gid="26" x="544" y="96">
    <properties>
     <property name="target" value="doorn"/>
     <property name="type" value="switch"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="320" y="192">
+  <object name="object" gid="33" x="384" y="192">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="480" y="256">
+  <object name="object" gid="33" x="544" y="256">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="576" y="96">
+  <object name="object" gid="33" x="640" y="96">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="576" y="128">
-   <properties>
-    <property name="type" value="treasure"/>
-   </properties>
-  </object>
-  <object name="object" gid="33" x="544" y="128">
+  <object name="object" gid="33" x="640" y="128">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
@@ -143,7 +138,7 @@
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="544" y="64">
+  <object name="object" gid="33" x="672" y="128">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
@@ -153,27 +148,17 @@
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="576" y="64">
+  <object name="object" gid="33" x="672" y="64">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="576" y="160">
+  <object name="object" gid="33" x="640" y="64">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="544" y="160">
-   <properties>
-    <property name="type" value="treasure"/>
-   </properties>
-  </object>
-  <object name="object" gid="33" x="544" y="96">
-   <properties>
-    <property name="type" value="treasure"/>
-   </properties>
-  </object>
-  <object name="object" gid="33" x="608" y="96">
+  <object name="object" gid="33" x="640" y="160">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
@@ -183,32 +168,57 @@
     <property name="type" value="treasure"/>
    </properties>
   </object>
+  <object name="object" gid="33" x="608" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="672" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="672" y="160">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="544" y="224">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="512" y="224">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
   <object name="object" gid="33" x="480" y="224">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="448" y="224">
+  <object name="object" gid="33" x="352" y="192">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="416" y="224">
+  <object name="object" gid="33" x="384" y="224">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="288" y="192">
+  <object name="object" gid="33" x="352" y="224">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="320" y="224">
+  <object name="object" gid="33" x="736" y="352">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="288" y="224">
+  <object name="object" gid="33" x="704" y="384">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
@@ -268,7 +278,7 @@
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="320" y="384">
+  <object name="object" gid="33" x="320" y="352">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
@@ -278,17 +288,12 @@
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="256" y="352">
+  <object name="object" gid="33" x="288" y="288">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="224" y="352">
-   <properties>
-    <property name="type" value="treasure"/>
-   </properties>
-  </object>
-  <object name="object" gid="33" x="224" y="288">
+  <object name="object" gid="33" x="320" y="320">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
@@ -298,22 +303,32 @@
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="192" y="320">
+  <object name="object" gid="33" x="256" y="288">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="192" y="288">
+  <object name="object" gid="33" x="256" y="352">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="192" y="352">
+  <object name="object" gid="33" x="448" y="96">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="384" y="96">
+  <object name="object" gid="33" x="480" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="448" y="128">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="480" y="128">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
@@ -323,12 +338,7 @@
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="384" y="128">
-   <properties>
-    <property name="type" value="treasure"/>
-   </properties>
-  </object>
-  <object name="object" gid="33" x="416" y="128">
+  <object name="object" gid="33" x="384" y="96">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
@@ -338,12 +348,12 @@
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="320" y="96">
+  <object name="object" gid="33" x="416" y="128">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="288" y="96">
+  <object name="object" gid="33" x="384" y="128">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
@@ -358,27 +368,22 @@
     <property name="type" value="treasure"/>
    </properties>
   </object>
+  <object name="object" gid="33" x="320" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="288" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
   <object name="object" gid="33" x="288" y="128">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="256" y="128">
-   <properties>
-    <property name="type" value="treasure"/>
-   </properties>
-  </object>
-  <object name="object" gid="33" x="256" y="96">
-   <properties>
-    <property name="type" value="treasure"/>
-   </properties>
-  </object>
-  <object name="object" gid="33" x="224" y="96">
-   <properties>
-    <property name="type" value="treasure"/>
-   </properties>
-  </object>
-  <object name="object" gid="33" x="224" y="128">
+  <object name="object" gid="33" x="192" y="256">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
@@ -388,12 +393,17 @@
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="64" y="256">
+  <object name="object" gid="33" x="160" y="288">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="96" y="288">
+  <object name="object" gid="33" x="192" y="320">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="160" y="352">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
@@ -403,32 +413,17 @@
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="96" y="352">
+  <object name="object" gid="33" x="192" y="384">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="64" y="320">
+  <object name="object" gid="33" x="160" y="416">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
   <object name="object" gid="33" x="128" y="384">
-   <properties>
-    <property name="type" value="treasure"/>
-   </properties>
-  </object>
-  <object name="object" gid="33" x="96" y="416">
-   <properties>
-    <property name="type" value="treasure"/>
-   </properties>
-  </object>
-  <object name="object" gid="33" x="64" y="384">
-   <properties>
-    <property name="type" value="treasure"/>
-   </properties>
-  </object>
-  <object name="object" gid="33" x="64" y="448">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
@@ -473,14 +468,36 @@
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="128" y="160">
+  <object name="object" gid="33" x="640" y="448">
    <properties>
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object name="object" gid="33" x="128" y="96">
+  <object name="object" gid="33" x="192" y="160">
    <properties>
     <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="192" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="trigger" gid="32" x="96" y="544">
+   <properties>
+    <property name="caption" value="Oh... Mahgerd!"/>
+    <property name="duration" value="30000"/>
+    <property name="event" value="start"/>
+    <property name="id" value="chat"/>
+    <property name="input" value="disable"/>
+    <property name="sound" value="crazy"/>
+   </properties>
+  </object>
+  <object name="trigger" gid="32" x="160" y="544">
+   <properties>
+    <property name="dialogue" value="treasure"/>
+    <property name="event" value="chat"/>
+    <property name="id" value="play"/>
    </properties>
   </object>
  </objectgroup>

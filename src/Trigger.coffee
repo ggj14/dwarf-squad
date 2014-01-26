@@ -42,6 +42,16 @@ class Trigger
       when 'set1'
         @level.players[0].set_caption("hello", 10.0, 20)
         @level.players[1].set_caption("there", 10.0, 20)
+      when 'treasure'
+        @level.players[0].set_caption "Dwarves", 2.0, 20, null, null, =>
+          @level.players[1].set_caption "Fucking", 2.0, 20, null, null, =>
+            @level.players[2].set_caption "LOVE", 2.0, 20, null, null, =>
+              @level.players[3].set_caption "TREASURE!!!!", 2.0, 20, null, null, =>
+                @level.players[1].set_caption "CHAAARRRGE!!", 2.0, 20, null, null
+                @level.players[2].set_caption "CHAAARRRGE!!", 2.0, 20, null, null
+                @level.players[3].set_caption "CHAAARRRGE!!", 2.0, 20, null, null
+                @level.players[3].set_caption "CHAAARRRGE!!", 2.0, 20, null, null
+
 
   finish:=>
     if @text
