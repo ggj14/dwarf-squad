@@ -41,7 +41,9 @@ class Level extends Scene
   next:=>
     @game.world.removeAll() unless @faders
 
-    render_order = if @faders then @faders else @game.add.group()
+    level_group = if @faders then @faders else @game.add.group()
+    render_order = @game.add.group()
+    level_group.addAt(render_order, 0)
     @faders = null
 
     if @current == null
@@ -66,20 +68,16 @@ class Level extends Scene
           tile.faceRight = true
     map.calculateFaces(index)
 
-    @entities = @game.add.group()
+    background = map.createLayer('Background', undefined, undefined, render_order)
+    scenery = map.createLayer('Scenery', undefined, undefined, render_order)
     @floor_group = @game.add.group()
+    render_order.add(@floor_group)
+    @walls = map.createLayer('Walls', undefined, undefined, render_order)
+    @entities = @game.add.group()
+    render_order.add(@entities)
+    roof = map.createLayer('Roof', undefined, undefined, render_order)
 
     map.addTilesetImage('world', 'world')
-    roof = map.createLayer('Roof')
-    render_order.addAt(roof, 0)
-    render_order.addAt(@entities, 0)
-    @walls = map.createLayer('Walls')
-    render_order.addAt(@walls, 0)
-    render_order.addAt(@floor_group, 0)
-    scenery = map.createLayer('Scenery')
-    render_order.addAt(scenery, 0)
-    background = map.createLayer('Background')
-    render_order.addAt(background, 0)
 
     @triggers = []
     @objects = []
