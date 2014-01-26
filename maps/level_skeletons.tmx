@@ -80,17 +80,16 @@
  <objectgroup name="Spawns" width="32" height="18">
   <object name="trigger" gid="32" x="35" y="62">
    <properties>
-    <property name="caption" value="Setting Out"/>
+    <property name="caption" value="Skelingtons!"/>
     <property name="duration" value="500"/>
     <property name="event" value="start"/>
     <property name="id" value="chat"/>
     <property name="input" value="disable"/>
-    <property name="sound" value="crazy"/>
    </properties>
   </object>
   <object name="trigger" gid="32" x="94" y="67">
    <properties>
-    <property name="dialogue" value="set1"/>
+    <property name="dialogue" value="bones"/>
     <property name="event" value="chat"/>
     <property name="id" value="play"/>
    </properties>

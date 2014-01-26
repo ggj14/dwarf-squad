@@ -113,6 +113,9 @@ class Trigger
       when 'set1'
         @level.players[0].signal.addOnce(@finish)
         @level.players[0].say("Hi, mum!")
+      when 'bones'
+        @level.players[1].signal.addOnce(@finish)
+        @level.players[1].say("Oh. Crap.")
       when 'treasure'
         @level.players[3].signal.addOnce(@finish)
         @level.players[0].say "Dwarves", =>

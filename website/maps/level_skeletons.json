@@ -43,12 +43,11 @@
                  "name":"trigger",
                  "properties":
                     {
-                     "caption":"Setting Out",
+                     "caption":"Skelingtons!",
                      "duration":"500",
                      "event":"start",
                      "id":"chat",
-                     "input":"disable",
-                     "sound":"crazy"
+                     "input":"disable"
                     },
                  "type":"",
                  "visible":true,
@@ -62,7 +61,7 @@
                  "name":"trigger",
                  "properties":
                     {
-                     "dialogue":"set1",
+                     "dialogue":"bones",
                      "event":"chat",
                      "id":"play"
                     },

@@ -24,8 +24,8 @@ class Level extends Scene
     @levels = [
       'intro',
       'level03',
-      'treasure_room',
-      'level_skeletons'
+      'level_skeletons',
+      'treasure_room'
     ]
     @pad = new Pad(@game)
 

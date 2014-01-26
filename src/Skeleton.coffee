@@ -42,7 +42,7 @@ class Skeleton extends Walker
       if @quiet_time <= 0.0 and Phaser.Math.chanceRoll(70)
         @quiet_time = 5.0 + Math.random() * 5.0
           
-        @set_caption("Moooooaar!", 1.0, 20, 'bones')
+        @set_caption("Moooooaar!", "0xFFFFFF", 1.0, 20, 'bones')
 
 
 
