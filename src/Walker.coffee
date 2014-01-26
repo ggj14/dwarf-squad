@@ -17,16 +17,6 @@ class Walker extends Actor
     @facing = Pad.UP
     @swap_cool = 0.0
 
-  create_sprite:=>
-    super
-    @arrows = [
-      @game.add.sprite(0, 0, 'arrow'),
-      @game.add.sprite(0, 0, 'arrow'),
-      @game.add.sprite(0, 0, 'arrow'),
-      @game.add.sprite(0, 0, 'arrow')
-    ]
-    arrow.alpha = 0 for arrow in @arrows 
-
   set_animations: =>
     @sprite.animations.frame = 1
     @sprite.animations.add("down", [0, 1, 2, 1], @anim_fps_y, true)
@@ -82,19 +72,8 @@ class Walker extends Actor
       if newAnim
         @animStartTime = 250     #ms before next anim can start
 
-    @arrows[0].x = @sprite.x + 8
-    @arrows[0].y = @sprite.y + 32
-    @arrows[1].x = @sprite.x - 16
-    @arrows[1].y = @sprite.y + 8
-    @arrows[2].x = @sprite.x + 8
-    @arrows[2].y = @sprite.y - 16
-    @arrows[3].x = @sprite.x + 32
-    @arrows[3].y = @sprite.y + 8
-
-    arrow.alpha *= 0.9 for arrow in @arrows
     if @swap_cool > 0.0
       @swap_cool -= @game.time.elapsed / 1000.0
-
 
     super
 
@@ -102,43 +81,14 @@ class Walker extends Actor
     return false unless them.solid
     return true
 
-  accelerate:(ax, ay)=>
-    super(ax, ay)
-    if ax > 1
-      @_set_arrow_frame(Pad.RIGHT)
-
-    if ax < -1
-      @_set_arrow_frame(Pad.LEFT)
-
-    if ay > 1
-      @_set_arrow_frame(Pad.UP)
-
-    if ay < -1
-      @_set_arrow_frame(Pad.DOWN)
-
-
   is_playable:()=>
     return @player_number != -1
 
   is_swapable:()=>
     return @is_playable() && @swap_cool <= 0.0
 
-
   cool_down_swap:(time)=>
     @swap_cool = time
-
-  _set_arrow_frame:(dir, flash=true)=>
-    ARROW_IDX = [2, 0, 3, 1]
-
-    if @axisOwner[dir] != -1
-      @arrows[ARROW_IDX[dir]].animations.frame = 4 * @axisOwner[dir] + ARROW_IDX[dir]
-      @arrows[ARROW_IDX[dir]].alpha = 1 if flash
-    else
-      @arrows[ARROW_IDX[dir]].alpha = 0 
-
-  direction_owner:(ctrl_index, player_dir, flash)=>
-    @axisOwner[player_dir] = ctrl_index;
-    @_set_arrow_frame(player_dir, flash)
 
 root = exports ? window
 root.Walker = Walker

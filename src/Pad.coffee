@@ -55,83 +55,83 @@ class Pad
     @poll(pad) for pad in @pads
     # LEFT STICK
     if @state[0][Pad.UP] && @kb.isDown(Phaser.Keyboard.W)
-      @state[0][Pad.UP]() if @enabled[0]
+      @state[0][Pad.UP](0) if @enabled[0]
     if @state[0][Pad.DOWN] && @kb.isDown(Phaser.Keyboard.S)
-      @state[0][Pad.DOWN]() if @enabled[0]
+      @state[0][Pad.DOWN](0) if @enabled[0]
     if @state[0][Pad.LEFT] && @kb.isDown(Phaser.Keyboard.A)
-      @state[0][Pad.LEFT]() if @enabled[0]
+      @state[0][Pad.LEFT](0) if @enabled[0]
     if @state[0][Pad.RIGHT] && @kb.isDown(Phaser.Keyboard.D)
-      @state[0][Pad.RIGHT]() if @enabled[0]
+      @state[0][Pad.RIGHT](0) if @enabled[0]
     # DPAD
     if @state[1][Pad.UP] && @kb.isDown(Phaser.Keyboard.G)
-      @state[1][Pad.UP]() if @enabled[1]
+      @state[1][Pad.UP](1) if @enabled[1]
     if @state[1][Pad.DOWN] && @kb.isDown(Phaser.Keyboard.B)
-      @state[1][Pad.DOWN]() if @enabled[1]
+      @state[1][Pad.DOWN](1) if @enabled[1]
     if @state[1][Pad.LEFT] && @kb.isDown(Phaser.Keyboard.V)
-      @state[1][Pad.LEFT]() if @enabled[1]
+      @state[1][Pad.LEFT](1) if @enabled[1]
     if @state[1][Pad.RIGHT] && @kb.isDown(Phaser.Keyboard.N)
-      @state[1][Pad.RIGHT]() if @enabled[1]
+      @state[1][Pad.RIGHT](1) if @enabled[1]
     # RIGHT STICK
     if @state[2][Pad.UP] && @kb.isDown(Phaser.Keyboard.O)
-      @state[2][Pad.UP]() if @enabled[2]
+      @state[2][Pad.UP](2) if @enabled[2]
     if @state[2][Pad.DOWN] && @kb.isDown(Phaser.Keyboard.L)
-      @state[2][Pad.DOWN]() if @enabled[2]
+      @state[2][Pad.DOWN](2) if @enabled[2]
     if @state[2][Pad.LEFT] && @kb.isDown(Phaser.Keyboard.K)
-      @state[2][Pad.LEFT]() if @enabled[2]
+      @state[2][Pad.LEFT](2) if @enabled[2]
     if @state[2][Pad.RIGHT] && @kb.isDown(Phaser.Keyboard.COLON)
-      @state[2][Pad.RIGHT]() if @enabled[2]
+      @state[2][Pad.RIGHT](2) if @enabled[2]
     # BUTTONS
     if @state[3][Pad.UP] && @kb.isDown(Phaser.Keyboard.UP)
-      @state[3][Pad.UP]() if @enabled[3]
+      @state[3][Pad.UP](3) if @enabled[3]
     if @state[3][Pad.DOWN] && @kb.isDown(Phaser.Keyboard.DOWN)
-      @state[3][Pad.DOWN]() if @enabled[3]
+      @state[3][Pad.DOWN](3) if @enabled[3]
     if @state[3][Pad.LEFT] && @kb.isDown(Phaser.Keyboard.LEFT)
-      @state[3][Pad.LEFT]() if @enabled[3]
+      @state[3][Pad.LEFT](3) if @enabled[3]
     if @state[3][Pad.RIGHT] && @kb.isDown(Phaser.Keyboard.RIGHT)
-      @state[3][Pad.RIGHT]() if @enabled[3]
+      @state[3][Pad.RIGHT](3) if @enabled[3]
 
   poll:(pad)=>
     # LEFT STICK
     if @state[0][Pad.UP] && pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -Pad.SENSITIVITY
-      @state[0][Pad.UP]() if @enabled[0]
+      @state[0][Pad.UP](0) if @enabled[0]
     if @state[0][Pad.DOWN] && pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) > Pad.SENSITIVITY
-      @state[0][Pad.DOWN]() if @enabled[0]
+      @state[0][Pad.DOWN](0) if @enabled[0]
     if @state[0][Pad.LEFT] && pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -Pad.SENSITIVITY
-      @state[0][Pad.LEFT]() if @enabled[0]
+      @state[0][Pad.LEFT](0) if @enabled[0]
     if @state[0][Pad.RIGHT] && pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > Pad.SENSITIVITY
-      @state[0][Pad.RIGHT]() if @enabled[0]
+      @state[0][Pad.RIGHT](0) if @enabled[0]
     # DPAD
     if @state[1][Pad.UP] && pad.isDown(Phaser.Gamepad.XBOX360_DPAD_UP)
-      @state[1][Pad.UP]() if @enabled[1]
+      @state[1][Pad.UP](1) if @enabled[1]
     if @state[1][Pad.DOWN] && pad.isDown(Phaser.Gamepad.XBOX360_DPAD_DOWN)
-      @state[1][Pad.DOWN]() if @enabled[1]
+      @state[1][Pad.DOWN](1) if @enabled[1]
     if @state[1][Pad.LEFT] && pad.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT)
-      @state[1][Pad.LEFT]() if @enabled[1]
+      @state[1][Pad.LEFT](1) if @enabled[1]
     if @state[1][Pad.RIGHT] && pad.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT)
-      @state[1][Pad.RIGHT]() if @enabled[1]
+      @state[1][Pad.RIGHT](1) if @enabled[1]
     # RIGHT STICK
     if @state[2][Pad.UP] && pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_Y) < -Pad.SENSITIVITY
-      @state[2][Pad.UP]() if @enabled[2]
+      @state[2][Pad.UP](2) if @enabled[2]
     if @state[2][Pad.DOWN] && pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_Y) > Pad.SENSITIVITY
-      @state[2][Pad.DOWN]() if @enabled[2]
+      @state[2][Pad.DOWN](2) if @enabled[2]
     if @state[2][Pad.LEFT] && pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) < -Pad.SENSITIVITY
-      @state[2][Pad.LEFT]() if @enabled[2]
+      @state[2][Pad.LEFT](2) if @enabled[2]
     if @state[2][Pad.RIGHT] && pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X) > Pad.SENSITIVITY
-      @state[2][Pad.RIGHT]() if @enabled[2]
+      @state[2][Pad.RIGHT](2) if @enabled[2]
     # BUTTONS
     if @state[3][Pad.UP] && pad.isDown(Phaser.Gamepad.XBOX360_Y)
-      @state[3][Pad.UP]() if @enabled[3]
+      @state[3][Pad.UP](3) if @enabled[3]
     if @state[3][Pad.DOWN] && pad.isDown(Phaser.Gamepad.XBOX360_A)
-      @state[3][Pad.DOWN]() if @enabled[3]
+      @state[3][Pad.DOWN](3) if @enabled[3]
     if @state[3][Pad.LEFT] && pad.isDown(Phaser.Gamepad.XBOX360_X)
-      @state[3][Pad.LEFT]() if @enabled[3]
+      @state[3][Pad.LEFT](3) if @enabled[3]
     if @state[3][Pad.RIGHT] && pad.isDown(Phaser.Gamepad.XBOX360_B)
-      @state[3][Pad.RIGHT]() if @enabled[3]
+      @state[3][Pad.RIGHT](3) if @enabled[3]
 
 Pad.UP = 0
-Pad.DOWN = 1
-Pad.LEFT = 2
-Pad.RIGHT = 3
+Pad.RIGHT = 1
+Pad.DOWN = 2
+Pad.LEFT = 3
 
 Pad.SENSITIVITY = 0.8
 

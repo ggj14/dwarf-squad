@@ -14,6 +14,13 @@ class Dwarf extends Walker
     super
     gfx = "dwarf#{@player_number}"
     @sprite = @game.add.sprite(0, 0, gfx)
+    @arrows = [
+      @game.add.sprite(0, 0, 'arrow'),
+      @game.add.sprite(0, 0, 'arrow'),
+      @game.add.sprite(0, 0, 'arrow'),
+      @game.add.sprite(0, 0, 'arrow')
+    ]
+    arrow.alpha = 0 for arrow in @arrows
 
   say:(message, callback=null)=>
     @chat_callback = callback
@@ -24,6 +31,21 @@ class Dwarf extends Walker
 
   notify:=>
     @signal.dispatch()
+
+  show_arrow:(dir, own)=>
+    @arrows[dir].animations.frame = own*4 + dir
+    @arrows[dir].alpha = 1
+
+  on_update:=>
+    @arrows[0].x = @sprite.x + 8
+    @arrows[0].y = @sprite.y + 32
+    @arrows[1].x = @sprite.x - 16
+    @arrows[1].y = @sprite.y + 8
+    @arrows[2].x = @sprite.x + 8
+    @arrows[2].y = @sprite.y - 16
+    @arrows[3].x = @sprite.x + 32
+    @arrows[3].y = @sprite.y + 8
+    arrow.alpha *= 0.9 for arrow in @arrows
 
   on_add_to_group:(group)=>
     # also need to add our arrooows
