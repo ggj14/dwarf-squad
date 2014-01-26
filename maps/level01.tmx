@@ -232,6 +232,14 @@
     <property name="type" value="boulder"/>
    </properties>
   </object>
+  <object name="object" gid="73" x="576" y="64">
+   <properties>
+    <property name="accepts" value="Sheep"/>
+    <property name="count" value="4"/>
+    <property name="id" value="finish"/>
+    <property name="type" value="exit"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="Roof" width="32" height="18">
   <data encoding="csv">

@@ -433,6 +433,23 @@
                  "width":0,
                  "x":640,
                  "y":352
+                }, 
+                {
+                 "gid":73,
+                 "height":0,
+                 "name":"object",
+                 "properties":
+                    {
+                     "accepts":"Sheep",
+                     "count":"4",
+                     "id":"finish",
+                     "type":"exit"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":576,
+                 "y":64
                 }],
          "opacity":1,
          "type":"objectgroup",
