@@ -56,7 +56,11 @@
     <property name="type" value="treasure"/>
    </properties>
   </object>
-  <object gid="33" x="480" y="256"/>
+  <object name="object" gid="33" x="480" y="256">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
   <object name="object" gid="33" x="448" y="224">
    <properties>
     <property name="type" value="treasure"/>
@@ -488,7 +492,7 @@
     <property name="caption" value="Oh... Mahgerd!"/>
     <property name="duration" value="3000"/>
     <property name="event" value="start"/>
-    <property name="id" value="chat"/>
+    <property name="id" value="chat2"/>
     <property name="input" value="disable"/>
     <property name="sound" value="crazy"/>
    </properties>
@@ -496,13 +500,13 @@
   <object name="trigger" gid="32" x="160" y="544">
    <properties>
     <property name="dialogue" value="treasure"/>
-    <property name="event" value="chat"/>
-    <property name="id" value="play"/>
+    <property name="event" value="chat2"/>
+    <property name="id" value="play2"/>
    </properties>
   </object>
   <object name="trigger" gid="32" x="224" y="544">
    <properties>
-    <property name="event" value="play"/>
+    <property name="event" value="play2"/>
     <property name="input" value="enable"/>
    </properties>
   </object>

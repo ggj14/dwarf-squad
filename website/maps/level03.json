@@ -46,7 +46,7 @@
                      "caption":"Setting Out",
                      "duration":"500",
                      "event":"start",
-                     "id":"chat",
+                     "id":"chat3",
                      "input":"disable"
                     },
                  "type":"",
@@ -62,8 +62,8 @@
                  "properties":
                     {
                      "dialogue":"set1",
-                     "event":"chat",
-                     "id":"play"
+                     "event":"chat3",
+                     "id":"play3"
                     },
                  "type":"",
                  "visible":true,
@@ -77,7 +77,7 @@
                  "name":"trigger",
                  "properties":
                     {
-                     "event":"play",
+                     "event":"play3",
                      "hint":"(nigel's mum needs you to corral the sheep)",
                      "input":"enable"
                     },

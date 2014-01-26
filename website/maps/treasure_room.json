@@ -140,10 +140,10 @@
                 {
                  "gid":33,
                  "height":0,
-                 "name":"",
+                 "name":"object",
                  "properties":
                     {
-
+                     "type":"treasure"
                     },
                  "type":"",
                  "visible":true,
@@ -1342,7 +1342,7 @@
                      "caption":"Oh... Mahgerd!",
                      "duration":"3000",
                      "event":"start",
-                     "id":"chat",
+                     "id":"chat2",
                      "input":"disable",
                      "sound":"crazy"
                     },
@@ -1359,8 +1359,8 @@
                  "properties":
                     {
                      "dialogue":"treasure",
-                     "event":"chat",
-                     "id":"play"
+                     "event":"chat2",
+                     "id":"play2"
                     },
                  "type":"",
                  "visible":true,
@@ -1374,7 +1374,7 @@
                  "name":"trigger",
                  "properties":
                     {
-                     "event":"play",
+                     "event":"play2",
                      "input":"enable"
                     },
                  "type":"",

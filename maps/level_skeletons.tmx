@@ -83,20 +83,20 @@
     <property name="caption" value="Skelingtons!"/>
     <property name="duration" value="500"/>
     <property name="event" value="start"/>
-    <property name="id" value="chat"/>
+    <property name="id" value="chat1"/>
     <property name="input" value="disable"/>
    </properties>
   </object>
   <object name="trigger" gid="32" x="94" y="67">
    <properties>
     <property name="dialogue" value="bones"/>
-    <property name="event" value="chat"/>
-    <property name="id" value="play"/>
+    <property name="event" value="chat1"/>
+    <property name="id" value="play1"/>
    </properties>
   </object>
   <object name="trigger" gid="32" x="154" y="65">
    <properties>
-    <property name="event" value="play"/>
+    <property name="event" value="play1"/>
     <property name="input" value="enable"/>
    </properties>
   </object>

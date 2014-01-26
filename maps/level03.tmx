@@ -83,20 +83,20 @@
     <property name="caption" value="Setting Out"/>
     <property name="duration" value="500"/>
     <property name="event" value="start"/>
-    <property name="id" value="chat"/>
+    <property name="id" value="chat3"/>
     <property name="input" value="disable"/>
    </properties>
   </object>
   <object name="trigger" gid="32" x="94" y="67">
    <properties>
     <property name="dialogue" value="set1"/>
-    <property name="event" value="chat"/>
-    <property name="id" value="play"/>
+    <property name="event" value="chat3"/>
+    <property name="id" value="play3"/>
    </properties>
   </object>
   <object name="trigger" gid="32" x="154" y="65">
    <properties>
-    <property name="event" value="play"/>
+    <property name="event" value="play3"/>
     <property name="hint" value="(nigel's mum needs you to corral the sheep)"/>
     <property name="input" value="enable"/>
    </properties>
