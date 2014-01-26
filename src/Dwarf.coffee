@@ -8,10 +8,14 @@ class Dwarf extends Walker
 
     @carrying = null
 
+  # entity doesn't create the sprite because player entity persists
+  # between levels and physics is sad
   create_sprite:=>
     super
     gfx = "dwarf#{@dwarf_number}"
     @sprite = @game.add.sprite(0, 0, gfx)
+
+    arrow.alpha = 0 for arrow in @arrows
 
   on_add_to_group:(group)=>
     # also need to add our arrooows

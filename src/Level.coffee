@@ -13,9 +13,9 @@
 class Level extends Scene
   init:=>
     @started = false
+    @current = null
     @game.stage.backgroundColor = '#000'
     @ready = false
-    @current = 0
     @signals = {
       start: new Phaser.Signal()
       finish: new Phaser.Signal()
@@ -45,12 +45,14 @@ class Level extends Scene
     @started = false
     @game.world.removeAll() unless @faders
 
+    console.log(@players)
+
     level_group = if @faders then @faders else @game.add.group()
-    render_order = @game.add.group()
-    level_group.addAt(render_order, 0)
+    @render_order = @game.add.group()
+    level_group.addAt(@render_order, 0)
     @faders = null
 
-    render_order.alpha = 0
+    @render_order.alpha = 0
 
     if @current == null
       @current = 0
@@ -74,14 +76,14 @@ class Level extends Scene
           tile.faceRight = true
     map.calculateFaces(index)
 
-    background = map.createLayer('Background', undefined, undefined, render_order)
-    scenery = map.createLayer('Scenery', undefined, undefined, render_order)
+    background = map.createLayer('Background', undefined, undefined, @render_order)
+    scenery = map.createLayer('Scenery', undefined, undefined, @render_order)
     @floor_group = @game.add.group()
-    render_order.add(@floor_group)
-    @walls = map.createLayer('Walls', undefined, undefined, render_order)
+    @render_order.add(@floor_group)
+    @walls = map.createLayer('Walls', undefined, undefined, @render_order)
     @entities = @game.add.group()
-    render_order.add(@entities)
-    roof = map.createLayer('Roof', undefined, undefined, render_order)
+    @render_order.add(@entities)
+    roof = map.createLayer('Roof', undefined, undefined, @render_order)
 
     map.addTilesetImage('world', 'world')
 
@@ -139,16 +141,24 @@ class Level extends Scene
       @signals[trigger.properties.event].add(trigger.handle)
 
     @pain = @game.add.sound('pain')
+    @fadein()
 
-    @game.add.tween(render_order).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);
+  fadein:=>
+    @game.add.tween(@render_order).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);
     timer = @game.time.create(false)
     timer.add(1000, @endfade)
     timer.start()
 
   endfade:=>
-    @signals['finish'].addOnce(@next)
+    @signals['finish'].addOnce(@fadeout)
     @signals['start'].dispatch()
     @started = true
+
+  fadeout:=>
+    @game.add.tween(@render_order).to( { alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
+    timer = @game.time.create(false)
+    timer.add(1000, @next)
+    timer.start()
 
   update:=>
     return unless @started

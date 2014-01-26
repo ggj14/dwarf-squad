@@ -3,7 +3,7 @@ class Entity
     @game = game
     @dead = false
     @create_sprite()
-    alert "An entity didn't create its sprite in create_sprite()" unless @sprite
+#   alert "An entity didn't create its sprite in create_sprite()" unless @sprite
     @solid = true
 
   create_sprite: =>
