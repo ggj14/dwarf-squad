@@ -18,6 +18,9 @@ class Controller
     @flip_axis(level, p1, p2, a1, a2)
 
   @flip_axis:(level, p1, p2, a1, a2)->
+    @flush_directions(level, p1)
+    @flush_directions(level, p2)
+
     for i in [0..1]
       level.exchange_direction(p1, p2, Controller.AXIS_TO_DIR[a1][i], Controller.AXIS_TO_DIR[a2][i])
       level.exchange_direction(p2, p1, Controller.AXIS_TO_DIR[a2][i], Controller.AXIS_TO_DIR[a1][i])
@@ -32,6 +35,9 @@ class Controller
     @flip_direction(level, p1, p2, a1, a2)
 
   @flip_direction:(level, p1, p2, d1, d2)->
+    @flush_directions(level, p1)
+    @flush_directions(level, p2)
+    
     level.exchange_direction(p1, p2, d1, d2)
 
   @flush_directions_all:(level)->

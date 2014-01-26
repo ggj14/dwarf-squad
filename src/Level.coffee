@@ -176,8 +176,6 @@ class Level extends Scene
     @entities.sort('y', Phaser.Group.SORT_ASCENDING)
 
   exchange_direction:(p1, p2, d1, d2)=>
-    console.log(p1, p2, d1, d2)
-
     @controllers[p1].set_direction_ctrl(@pad, p2, d2, d1)
     @controllers[p2].set_direction_ctrl(@pad, p1, d1, d2)
 
@@ -199,7 +197,9 @@ class Level extends Scene
     if p1.sprite.body.speed+p2.sprite.body.speed >= 150
       @pain.play('', 0, 1)
 
-      if p1.is_playable() and p2.is_playable()
+      if p1.is_swapable() and p2.is_swapable()
+        p1.cool_down_swap(10.0)
+        p2.cool_down_swap(10.0)
         Controller.flip_axis_playable(this, p1.player_number - 1, p2.player_number - 1)
 
 root = exports ? window

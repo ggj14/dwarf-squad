@@ -15,6 +15,7 @@ class Walker extends Actor
     @axisOwner = [-1, -1, -1, -1]
     @exited = false
     @facing = Pad.UP
+    @swap_cool = 0.0
 
   create_sprite:=>
     super
@@ -90,6 +91,10 @@ class Walker extends Actor
     @arrows[3].y = @sprite.y + 8
 
     arrow.alpha *= 0.9 for arrow in @arrows
+    if @swap_cool > 0.0
+      @swap_cool -= @game.time.elapsed / 1000.0
+
+
     super
 
   on_walking_collide:(us, them)=>
@@ -113,6 +118,13 @@ class Walker extends Actor
 
   is_playable:()=>
     return @player_number != -1
+
+  is_swapable:()=>
+    return @is_playable() && @swap_cool <= 0.0
+
+
+  cool_down_swap:(time)=>
+    @swap_cool = time
 
   _set_arrow_frame:(dir)=>
     ARROW_IDX = [2, 0, 3, 1]
