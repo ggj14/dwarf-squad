@@ -6,6 +6,7 @@
 #= require Exit
 #= require Trigger
 #= require Skeleton
+#= require Switcher
 #= require Door
 
 class Level extends Scene
@@ -69,6 +70,7 @@ class Level extends Scene
     @triggers = []
     @objects = []
     @entities = @game.add.group()
+    @floor_group = @game.add.group()
     @walkers = []
     @walkers.push(player) for player in @players
 
@@ -87,6 +89,7 @@ class Level extends Scene
             @signals[trigger.properties.id] ||= trigger.signal
           @triggers.push(trigger)
         when "object"
+          layer = @entities
           o =
             switch spawn.properties.type
               when "exit"
@@ -94,7 +97,13 @@ class Level extends Scene
               when "key"
                 new Key(@game, this, spawn.properties)
               when "door"
+                #always underneath
+                layer = @floor_group
                 new Door(@game, this, spawn.properties)
+              when "switch"
+                #always underneath
+                layer = @floor_group
+                new Switcher(@game, this, spawn.properties)
               when "sheep"
                 new Sheep(@game, this)
               when "skeleton"
@@ -104,7 +113,8 @@ class Level extends Scene
           o.sprite.x = spawn.x
           o.sprite.y = spawn.y - o.sprite.height
           @objects.push(o)
-          o.add_to_group(@entities)
+
+          o.add_to_group(layer)
           @walkers.push(o) if (o instanceof Walker)
 
     for trigger in @triggers
@@ -115,6 +125,7 @@ class Level extends Scene
     render_order = @game.add.group()
     render_order.add(background)
     render_order.add(scenery)
+    render_order.add(@floor_group)
     render_order.add(@walls)
     render_order.add(@entities)
     render_order.add(roof)

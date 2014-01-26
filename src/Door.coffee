@@ -8,7 +8,7 @@ class Door extends Actor
     @level = level
     @properties = properties
     @count = 0
-    @locked = properties.locked == 'y'
+    @open = properties.locked != 'y'
     @set_animations()
 
   set_animations: =>
@@ -18,6 +18,12 @@ class Door extends Actor
 
   create_sprite: =>
     @sprite = @game.add.sprite(0, 0, 'objects')
+
+  targeted: (msg)=>
+    if msg
+      @open = true
+    else
+      @open = false
 
   set_physics: =>
     super
@@ -30,7 +36,7 @@ class Door extends Actor
     @sprite.body.offset.y = 0
 
   on_update:()=>
-    if @locked
+    if !@open
       @sprite.animations.play("closed")
 
       # anyone unlocking?
@@ -48,9 +54,9 @@ class Door extends Actor
     return unless (player.carrying && (player.carrying instanceof Key))
     key = player.carrying
 
-    if @properties.keycode == undefined || @properties.keycode == key.properties.keycode
+    if @properties.id == undefined || @properties.id == key.properties.target
       # ok unlock!
-      @locked = false
+      @open = true
 
 root = exports ? window
 root.Door = Door

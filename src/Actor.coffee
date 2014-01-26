@@ -34,21 +34,23 @@ class Actor extends Entity
 
 
 
-  collide:(others, callback = null)=>
+  collide:(others, callback = null, processor_fn = null)=>
     if others instanceof Array
-      @collide_object(other, callback) for other in others
+      @collide_object(other, callback, processor_fn) for other in others
     else
-      @collide_object(others, callback)
+      @collide_object(others, callback, processor_fn)
 
-  collide_object:(other, callback)=>
+  collide_object:(other, callback, processor_fn)=>
     if other instanceof Entity
       return if other.sprite == @sprite
       # wrap a little function here so the callback gets the entity instead of the sprite
       @game.physics.collide(@sprite, other.sprite, (us, other_sprite)=>
         callback(@, other) if callback
+      , (us, other_sprite)=>
+        processor_fn(@, other) if processor_fn
       )
     else
-      @game.physics.collide(@sprite, other, callback)
+      @game.physics.collide(@sprite, other, callback, processor_fn)
 
   update:=>
     @on_update()
