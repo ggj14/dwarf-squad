@@ -4,7 +4,7 @@
 
 ### Run
 
-`bundle exec middleman
+`bundle exec middleman`
 
 ### Deploy
 
