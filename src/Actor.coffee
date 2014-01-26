@@ -69,6 +69,11 @@ class Actor extends Entity
     else if @sprite.body.velocity.y != 0
       @sprite.body.acceleration.y = -(@sprite.body.velocity.y  * 15.0)
 
+  activate_target:(msg)=>
+    if @properties.target
+      for x in @level.objects
+        if x.properties && x.properties.id == @properties.target
+          x.targeted msg
 
 root = exports ? window
 root.Actor = Actor

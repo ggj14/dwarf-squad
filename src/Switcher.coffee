@@ -40,10 +40,7 @@ class Switcher extends Actor
     else
       @sprite.animations.play("up")
 
-    if @properties.target
-      for x in @level.objects
-        if x.properties && x.properties.id == @properties.target
-          x.targeted @on
+    @activate_target(@on)
 
   player_touching:(sw, player)=>
     return if player.exited
