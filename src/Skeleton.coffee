@@ -26,11 +26,12 @@ class Skeleton extends Walker
     nearest = null
     nearest_dist = 9999
     for player in @level.players
-      dist =  Math.abs(player.sprite.x - @sprite.x) +
-              Math.abs(player.sprite.y - @sprite.y)
-      if dist < nearest_dist
-        nearest_dist = dist
-        nearest = player
+      if !player.exited
+        dist =  Math.abs(player.sprite.x - @sprite.x) +
+                Math.abs(player.sprite.y - @sprite.y)
+        if dist < nearest_dist
+          nearest_dist = dist
+          nearest = player
 
     return unless nearest
 
