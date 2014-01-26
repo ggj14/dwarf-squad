@@ -3,24 +3,20 @@
 ;;;
 <div id="wrap">
   <div class="page-header">
-    <h1>Dwarf Squad <small>Four Players. Four Dwarves. One Controller.</small></h1>
+    <h1>Dwarf Squad <small>Four Dwarves, One Controller.</small></h1>
   </div>
   <ul class="nav nav-tabs">
-    <li><a href="#home" data-toggle="tab">Home</a></li>
-    <li><a href="#game" data-toggle="tab">Play the Game</a></li>
-    <li><a href="#help" data-toggle="tab">Instructions</a></li>
-    <li><a href="#credits" data-toggle="tab">Credits</a></li>
+    <li><a href="#help" id="helptab" data-toggle="tab">Instructions</a></li>
+    <li><a href="#game" id="gametab" data-toggle="tab">Play the Game</a></li>
+    <li><a href="#credits" id="infotab" data-toggle="tab">Credits</a></li>
   </ul>
   <div class="tab-content">
-    <div class="tab-pane fade in active" id="home">
-      <%= partial "home" %>
+    <div class="tab-pane fade in active" id="help">
+      <%= partial "help" %>
     </div>
     <div class="tab-pane fade" id="game">
       <div class="well" id="phaser">
       </div>
-    </div>
-    <div class="tab-pane fade" id="help">
-      <%= partial "help" %>
     </div>
     <div class="tab-pane fade" id="credits">
       <%= partial "credits" %>
@@ -29,11 +25,11 @@
 </div>
 <div id="footer">
   <div class="container">
-    <p class="text-muted">Made for the <a href="http://globalgamejam.org/">2014 Global Game Jam</a>.</p>
+    <p class="text-muted">Made for the <a href="http://globalgamejam.org/">2014 Global Game Jam</a>. Peruse the source is on <a href="https://github.com/ggj14/dwarf-squad">GitHub</a>. You can also play <a href="fullscreen.html">fullscreen</a>.</p>
   </div>
 </div>
 <script type="text/javascript">
-  $('#home a').click(function (e) {
+  $('#help a').click(function (e) {
     e.preventDefault()
     $(this).tab('show')
   });
@@ -41,18 +37,18 @@
     e.preventDefault()
     $(this).tab('show')
   });
-  $('#help a').click(function (e) {
-    e.preventDefault()
-    $(this).tab('show')
-  });
   $('#credits a').click(function (e) {
     e.preventDefault()
     $(this).tab('show')
   });
-</script>
-<script type="text/javascript">
+  $('#playbut').click(function (e) {
+    $('#gametab').tab('show');
+  });
+  $('#fullbut').click(function (e) {
+    window.location.replace("fullscreen.html");
+  });
   (function () {
-    m = new Main(<%= false %>, "<%= build? ? 'splash' : 'level' %>")
-    var game = new Phaser.Game(896, 504, Phaser.AUTO, 'phaser', m)
+    window.dwarfsquad = new Main(<%= false %>, "<%= build? ? 'splash' : 'splash' %>")
+    window.phaser = new Phaser.Game(896, 504, Phaser.AUTO, 'phaser', window.dwarfsquad)
   })();
 </script>

@@ -10,6 +10,7 @@ class Walker extends Actor
     @set_animations()
     @ignore = false
     @animStartTime = 1.0
+    @exited = false
 
   set_animations: =>
     @sprite.animations.frame = 1

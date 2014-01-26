@@ -69,7 +69,6 @@ class Main extends Phaser.State
   process_flush_changes:(event)=>
     Controller.flush_directions(@scene_manager.get_current())
 
-
   gofull:=>
     @game.stage.scale.startFullScreen();
 

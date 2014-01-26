@@ -4,10 +4,10 @@ class Splash extends Scene
   init:->
     @zoom = 0.1
     @game.stage.backgroundColor = '#FFF'
-    message = "do something to begin"
+    message = "Click To Play"
     style = {
-      font: "65px Arial",
-      fill: "#ff0044",
+      font: "20px Arial",
+      fill: "#000000",
       align: "center"
     }
     @text = @game.add.text(@game.world.centerX, @game.world.centerY, message, style)
