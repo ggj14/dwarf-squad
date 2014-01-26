@@ -11,6 +11,17 @@ class Main extends Phaser.State
     @start_fullscreen = fullscreen
 
   preload:()=>
+    @game.stage.backgroundColor = '#000000'
+    @game.stage.scale.pageAlignHorizontally = true;
+    @game.stage.scale.refresh();
+    message = "Loading..."
+    style = {
+      font: "20px Arial",
+      fill: "#FFFFFF",
+      align: "center"
+    }
+    @text = @game.add.text(@game.world.centerX, @game.world.centerY, message, style)
+    @text.anchor.setTo(0.5, 0.5);
     @game.load.image('logo', 'assets/logo.png')
     @game.load.image('labs', 'assets/labs.png')
     @game.load.spritesheet('dwarf1', 'assets/dwarf_01.png', 32, 32)
@@ -26,18 +37,22 @@ class Main extends Phaser.State
     @game.load.image('boulder', 'assets/boulder.png')
     @game.load.tilemap('level01', 'maps/level01.json', null, Phaser.Tilemap.TILED_JSON)
     @game.load.tilemap('level02', 'maps/level02.json', null, Phaser.Tilemap.TILED_JSON)
+    @game.load.tilemap('intro', 'maps/intro.json', null, Phaser.Tilemap.TILED_JSON)
     @game.load.audio('splash', 'songs/DwarfMusic01.mp3');
     @game.load.audio('pain', 'sounds/pain.wav');
     @game.load.audio('crazy', 'sounds/CrazyTime.mp3');
     @game.load.audio('collect', 'sounds/Collect.mp3');
+    @game.load.audio('baa1', 'sounds/SheepBaa1.mp3')
+    @game.load.audio('baa2', 'sounds/SheepBaa2.mp3')
+    @game.load.audio('baa3', 'sounds/SheepBaa3.mp3')
     @game.load.audio('button1', 'sounds/Button1.mp3');
     @game.load.audio('button2', 'sounds/Button2.mp3');
+    @game.world.remove(@text)
+    @text.destroy
 
   create:()=>
-    @game.stage.backgroundColor = '#FF00FF'
-    @game.stage.scale.pageAlignHorizontally = true;
-    @game.stage.scale.refresh();
-
+    @music = @game.add.audio('splash');
+    @music.play('', 0, 4, true)
     @game.physics.gravity.y = 0
     @game.stage.fullScreenScaleMode = Phaser.StageScaleMode.SHOW_ALL;
     @scene_manager = new SceneManager()
@@ -61,13 +76,13 @@ class Main extends Phaser.State
     @level.next()
 
   process_jumble:(event)=>
-    Controller.flip_axis(@scene_manager.get_current())
+    Controller.flip_axis_rand(@scene_manager.get_current())
 
   process_changeup:(event)=>
-    Controller.flip_direction(@scene_manager.get_current())
+    Controller.flip_direction_rand(@scene_manager.get_current())
 
   process_flush_changes:(event)=>
-    Controller.flush_directions(@scene_manager.get_current())
+    Controller.flush_directions_all(@scene_manager.get_current())
 
   gofull:=>
     @game.stage.scale.startFullScreen();

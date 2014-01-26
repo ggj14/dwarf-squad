@@ -40,8 +40,8 @@ class Trigger
   play_dialogue:(set)=>
     switch set
       when 'set1'
-        @level.players[0].say("hello")
-        @level.players[1].say("there")
+        @level.players[0].set_caption("hello", 10.0, 20)
+        @level.players[1].set_caption("there", 10.0, 20)
 
   finish:=>
     if @text

@@ -12,13 +12,16 @@
 
 class Level extends Scene
   init:=>
+    @started = false
+    @game.stage.backgroundColor = '#000'
     @ready = false
-    @current = null
+    @current = 0
     @signals = {
       start: new Phaser.Signal()
       finish: new Phaser.Signal()
     }
     @levels = [
+      'intro',
       'level01',
       'level02'
     ]
@@ -39,7 +42,16 @@ class Level extends Scene
     @next()
 
   next:=>
-    @game.world.removeAll()
+    @started = false
+    @game.world.removeAll() unless @faders
+
+    level_group = if @faders then @faders else @game.add.group()
+    render_order = @game.add.group()
+    level_group.addAt(render_order, 0)
+    @faders = null
+
+    render_order.alpha = 0
+
     if @current == null
       @current = 0
     else
@@ -62,16 +74,19 @@ class Level extends Scene
           tile.faceRight = true
     map.calculateFaces(index)
 
+    background = map.createLayer('Background', undefined, undefined, render_order)
+    scenery = map.createLayer('Scenery', undefined, undefined, render_order)
+    @floor_group = @game.add.group()
+    render_order.add(@floor_group)
+    @walls = map.createLayer('Walls', undefined, undefined, render_order)
+    @entities = @game.add.group()
+    render_order.add(@entities)
+    roof = map.createLayer('Roof', undefined, undefined, render_order)
+
     map.addTilesetImage('world', 'world')
-    background = map.createLayer('Background')
-    scenery = map.createLayer('Scenery')
-    @walls = map.createLayer('Walls')
-    roof = map.createLayer('Roof')
 
     @triggers = []
     @objects = []
-    @entities = @game.add.group()
-    @floor_group = @game.add.group()
     @walkers = []
     @walkers.push(player) for player in @players
 
@@ -123,22 +138,20 @@ class Level extends Scene
     for trigger in @triggers
       @signals[trigger.properties.event].add(trigger.handle)
 
-
-
-    render_order = @game.add.group()
-    render_order.add(background)
-    render_order.add(scenery)
-    render_order.add(@floor_group)
-    render_order.add(@walls)
-    render_order.add(@entities)
-    render_order.add(roof)
-
     @pain = @game.add.sound('pain')
 
+    @game.add.tween(render_order).to( { alpha: 1 }, 1000, Phaser.Easing.Linear.None, true);
+    timer = @game.time.create(false)
+    timer.add(1000, @endfade)
+    timer.start()
+
+  endfade:=>
     @signals['finish'].addOnce(@next)
     @signals['start'].dispatch()
+    @started = true
 
   update:=>
+    return unless @started
     @pad.update()
     player.update() for player in @players
     object.update() for object in @objects

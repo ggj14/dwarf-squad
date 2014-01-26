@@ -3,6 +3,7 @@
 class Skeleton extends Walker
 
   create_sprite:=>
+    super
     @sprite = @game.add.sprite(0, 0, 'skeleton')
 
   set_animations: =>

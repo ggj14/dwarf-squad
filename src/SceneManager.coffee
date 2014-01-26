@@ -7,8 +7,12 @@ class SceneManager
     @scenes[name] = scene    
 
   init:(name)=>
-    @scenes[@current].fini unless @current == null
+    unless @current == null
+      faders = @scenes[@current].faders
+      @scenes[@current].fini()
+      @scenes[@current].faders = null
     @current = name
+    @scenes[@current].faders = faders
     @scenes[@current].init()
 
   update:=>

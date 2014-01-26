@@ -14,12 +14,12 @@ class Actor extends Entity
     @set_physics()
 
   set_physics: =>
-    @sprite.body.friction = 2000
-    @sprite.body.maxVelocity.x = 300
-    @sprite.body.maxVelocity.y = 300
+    @sprite.body.friction = 2500
+    @sprite.body.maxVelocity.x = 150
+    @sprite.body.maxVelocity.y = 150
     @sprite.body.collideWorldBounds = true
-    @sprite.body.bounce.x = 0.4
-    @sprite.body.bounce.y = 0.4
+    @sprite.body.bounce.x = 0.1
+    @sprite.body.bounce.y = 0.1
     @sprite.body.height = 16
     @sprite.body.width = 20
     @sprite.body.offset.x = 6
@@ -41,7 +41,7 @@ class Actor extends Entity
     ##### End of dat super dodgy hack
 
 
-  set_caption:(message, time, size)=>
+  set_caption:(message, time, size, sound = null, volume = 0.5)=>
     style = {
       font: size + "px Arial",
       fill: "#FFFFFF",
@@ -54,9 +54,10 @@ class Actor extends Entity
 
     @caption = @game.add.text(0, 0, message, style)
     @caption.anchor.setTo(0.5, 1.0);
+    if sound
+      @game.add.sound(sound).play('', 0, volume, false, true)
 
     @message_remaining = time
-
 
   collide:(others, callback = null, processor_fn = null)=>
     if others instanceof Array
