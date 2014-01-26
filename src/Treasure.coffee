@@ -32,6 +32,14 @@ class Treasure extends Actor
     return if player.exited
     @sound.play()
     @destroy()
+    if Phaser.Math.chanceRoll(15)
+      message = Phaser.Math.getRandom([
+        "Aahll be Teaking Thaaat!!",
+        "Ooohh Shiny!",
+        "Aull Mah Dreams Ah Coming True!",
+        "Eets Jes Like Christmas!"
+        ]);
+      player.set_caption message, 3.0, 20
     # check treasures left
     treasures = (object for object in @level.objects when (object instanceof Treasure) && !object.dead)
     if treasures.length == 0

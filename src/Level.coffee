@@ -26,7 +26,7 @@ class Level extends Scene
       'level01',
       'level02',
       'level03',
-      'treasure_room'
+      'treasure_room',
       'level_skeletons'
     ]
     @players = [

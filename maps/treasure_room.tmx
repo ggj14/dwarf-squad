@@ -8,7 +8,7 @@
    eJyTZWBgkAViJgJYFgcmpA+X3sFmHyV41L7hZx8t7Ry1b9S+wWYfLjsG0r5RPPQwAMPDGqA=
   </data>
  </layer>
- <layer name="Scenery" width="28" height="19" visible="0">
+ <layer name="Scenery" width="28" height="19">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMApGwSigDAAACFAAAQ==
   </data>
@@ -486,7 +486,7 @@
   <object name="trigger" gid="32" x="96" y="544">
    <properties>
     <property name="caption" value="Oh... Mahgerd!"/>
-    <property name="duration" value="30000"/>
+    <property name="duration" value="3000"/>
     <property name="event" value="start"/>
     <property name="id" value="chat"/>
     <property name="input" value="disable"/>
@@ -500,8 +500,14 @@
     <property name="id" value="play"/>
    </properties>
   </object>
+  <object name="trigger" gid="32" x="224" y="544">
+   <properties>
+    <property name="event" value="play"/>
+    <property name="input" value="enable"/>
+   </properties>
+  </object>
  </objectgroup>
- <layer name="Roof" width="28" height="19" visible="0">
+ <layer name="Roof" width="28" height="19">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMApGwSigDAAACFAAAQ==
   </data>

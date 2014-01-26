@@ -17,7 +17,7 @@
          "name":"Scenery",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":28,
          "x":0,
          "y":0
@@ -1340,7 +1340,7 @@
                  "properties":
                     {
                      "caption":"Oh... Mahgerd!",
-                     "duration":"500",
+                     "duration":"3000",
                      "event":"start",
                      "id":"chat",
                      "input":"disable",
@@ -1367,6 +1367,21 @@
                  "width":0,
                  "x":160,
                  "y":544
+                }, 
+                {
+                 "gid":32,
+                 "height":0,
+                 "name":"trigger",
+                 "properties":
+                    {
+                     "event":"play",
+                     "input":"enable"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":224,
+                 "y":544
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1381,7 +1396,7 @@
          "name":"Roof",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":28,
          "x":0,
          "y":0
