@@ -22,7 +22,6 @@ class Level extends Scene
       finish: new Phaser.Signal()
     }
     @levels = [
-      'treasure_room',
       'intro',
       'level01',
       'level02',
