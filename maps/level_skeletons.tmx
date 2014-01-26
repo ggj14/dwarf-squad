@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="32" height="18" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="world" tilewidth="32" tileheight="32">
+  <image source="../website/assets/world.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="65" name="objects" tilewidth="32" tileheight="32">
+  <image source="../website/assets/objects.png" width="384" height="32"/>
+  <tile id="9">
+   <properties>
+    <property name="type" value="skeleton"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Background" width="32" height="18">
+  <data encoding="csv">
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,4,0,0,12,12,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,0,0,12,12,
+6,6,6,7,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,7,5,6,6,0,0,0,0,
+6,6,6,6,7,5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,0,0,0,0,
+6,6,7,5,6,5,5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,0,0,0,0,
+6,6,6,6,6,6,6,6,6,6,6,6,7,5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,0,0,0,0,
+6,6,6,6,6,6,6,6,6,6,6,6,5,7,6,6,6,6,6,6,6,7,6,6,6,6,6,6,0,0,0,0,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,0,0,0,0,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,7,6,6,6,6,6,6,6,6,6,6,0,0,0,0,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,0,0,0,0,
+6,6,6,6,6,6,6,6,7,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,0,0,11,11,
+6,6,6,6,6,6,6,7,5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,0,0,11,11,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,7,6,6,6,6,0,0,11,11,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,7,6,6,6,6,6,6,6,6,6,6,6,6,6,0,0,11,11,
+6,6,6,6,6,6,6,6,6,6,6,6,6,7,6,5,6,6,6,6,6,6,6,6,6,6,6,6,0,0,0,0,
+6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Scenery" width="32" height="18" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer name="Walls" width="32" height="18">
+  <data encoding="csv">
+4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,3,3,3,3,
+4,8,8,8,8,8,8,4,8,8,8,8,8,8,8,8,8,8,8,4,8,8,8,8,8,8,8,4,8,8,8,8,
+4,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,4,0,0,0,0,
+4,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,4,3,0,3,3,3,3,3,4,0,0,0,0,
+4,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,4,0,0,0,0,
+4,3,3,3,3,0,3,3,0,0,0,0,0,0,0,4,3,3,3,3,0,0,0,0,0,0,0,4,0,0,0,0,
+4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,
+4,0,0,0,0,0,0,0,4,3,3,3,3,3,4,3,0,3,3,3,3,3,3,3,3,3,3,4,0,0,0,0,
+4,0,0,0,3,3,3,3,3,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,
+4,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,
+4,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,4,4,0,0,0,
+4,0,0,0,4,0,0,0,0,0,4,3,3,3,3,3,3,3,3,3,3,3,0,3,3,3,3,4,4,0,0,0,
+4,0,0,0,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,
+4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,
+4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,
+3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="Spawns" width="32" height="18">
+  <object name="trigger" gid="32" x="35" y="62">
+   <properties>
+    <property name="caption" value="Setting Out"/>
+    <property name="duration" value="500"/>
+    <property name="event" value="start"/>
+    <property name="id" value="chat"/>
+    <property name="input" value="disable"/>
+    <property name="sound" value="crazy"/>
+   </properties>
+  </object>
+  <object name="trigger" gid="32" x="94" y="67">
+   <properties>
+    <property name="dialogue" value="set1"/>
+    <property name="event" value="chat"/>
+    <property name="id" value="play"/>
+   </properties>
+  </object>
+  <object name="trigger" gid="32" x="154" y="65">
+   <properties>
+    <property name="event" value="play"/>
+    <property name="input" value="enable"/>
+   </properties>
+  </object>
+  <object name="player" gid="69" x="37" y="320">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="player" gid="70" x="35" y="373">
+   <properties>
+    <property name="id" value="2"/>
+   </properties>
+  </object>
+  <object name="player" gid="71" x="38" y="272">
+   <properties>
+    <property name="id" value="3"/>
+   </properties>
+  </object>
+  <object name="player" gid="72" x="35" y="422">
+   <properties>
+    <property name="id" value="4"/>
+   </properties>
+  </object>
+  <object name="object" gid="28" x="399" y="108">
+   <properties>
+    <property name="type" value="boulder"/>
+   </properties>
+  </object>
+  <object name="object" gid="73" x="44" y="68">
+   <properties>
+    <property name="accepts" value="Dwarf"/>
+    <property name="count" value="12"/>
+    <property name="id" value="finish"/>
+    <property name="type" value="exit"/>
+   </properties>
+  </object>
+  <object name="object" gid="28" x="776" y="193">
+   <properties>
+    <property name="type" value="boulder"/>
+   </properties>
+  </object>
+  <object name="object" gid="28" x="488" y="129">
+   <properties>
+    <property name="type" value="boulder"/>
+   </properties>
+  </object>
+  <object name="object" gid="28" x="276" y="367">
+   <properties>
+    <property name="type" value="boulder"/>
+   </properties>
+  </object>
+  <object name="object" gid="28" x="270" y="140">
+   <properties>
+    <property name="type" value="boulder"/>
+   </properties>
+  </object>
+  <object name="object" gid="28" x="129" y="450">
+   <properties>
+    <property name="type" value="boulder"/>
+   </properties>
+  </object>
+  <object name="object" gid="28" x="591" y="340">
+   <properties>
+    <property name="type" value="boulder"/>
+   </properties>
+  </object>
+  <object name="object" gid="28" x="334" y="210">
+   <properties>
+    <property name="type" value="boulder"/>
+   </properties>
+  </object>
+  <object name="object" gid="28" x="629" y="309">
+   <properties>
+    <property name="type" value="boulder"/>
+   </properties>
+  </object>
+  <object name="object" gid="28" x="643" y="472">
+   <properties>
+    <property name="type" value="boulder"/>
+   </properties>
+  </object>
+  <object name="object" gid="28" x="320" y="457">
+   <properties>
+    <property name="type" value="boulder"/>
+   </properties>
+  </object>
+  <object name="object" gid="74" x="697" y="191">
+   <properties>
+    <property name="type" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="object" gid="65" x="821" y="90">
+   <properties>
+    <property name="target" value="door4"/>
+    <property name="type" value="key"/>
+   </properties>
+  </object>
+  <object name="object" gid="75" x="571" y="98">
+   <properties>
+    <property name="action" value="momentary"/>
+    <property name="target" value="door1"/>
+    <property name="type" value="switch"/>
+   </properties>
+  </object>
+  <object name="object" gid="66" x="704" y="384">
+   <properties>
+    <property name="id" value="door1"/>
+    <property name="locked" value="y"/>
+    <property name="type" value="door"/>
+   </properties>
+  </object>
+  <object name="object" gid="66" x="512" y="256">
+   <properties>
+    <property name="id" value="door2"/>
+    <property name="locked" value="y"/>
+    <property name="type" value="door"/>
+   </properties>
+  </object>
+  <object name="object" gid="66" x="672" y="128">
+   <properties>
+    <property name="id" value="door3"/>
+    <property name="locked" value="y"/>
+    <property name="type" value="door"/>
+   </properties>
+  </object>
+  <object name="object" gid="66" x="160" y="192">
+   <properties>
+    <property name="id" value="door4"/>
+    <property name="locked" value="y"/>
+    <property name="type" value="door"/>
+   </properties>
+  </object>
+  <object name="object" gid="75" x="412" y="351">
+   <properties>
+    <property name="action" value="momentary"/>
+    <property name="target" value="door3"/>
+    <property name="type" value="switch"/>
+   </properties>
+  </object>
+  <object name="object" gid="75" x="355" y="418">
+   <properties>
+    <property name="action" value="momentary"/>
+    <property name="target" value="door2"/>
+    <property name="type" value="switch"/>
+   </properties>
+  </object>
+  <object name="object" gid="74" x="763" y="313">
+   <properties>
+    <property name="type" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="object" gid="74" x="502" y="307">
+   <properties>
+    <property name="type" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="object" gid="74" x="644" y="422">
+   <properties>
+    <property name="type" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="object" gid="74" x="377" y="313">
+   <properties>
+    <property name="type" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="object" gid="74" x="366" y="151">
+   <properties>
+    <property name="type" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="object" gid="74" x="50" y="141">
+   <properties>
+    <property name="type" value="skeleton"/>
+   </properties>
+  </object>
+  <object name="object" gid="74" x="74" y="112">
+   <properties>
+    <property name="type" value="skeleton"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="Roof" width="32" height="18" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

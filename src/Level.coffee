@@ -27,6 +27,7 @@ class Level extends Scene
       'level02',
       'level03',
       'treasure_room'
+      'level_skeletons'
     ]
     @players = [
       new Dwarf(@game, this, 1),

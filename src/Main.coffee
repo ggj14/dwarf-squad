@@ -39,6 +39,7 @@ class Main extends Phaser.State
     @game.load.tilemap('level02', 'maps/level02.json', null, Phaser.Tilemap.TILED_JSON)
     @game.load.tilemap('level03', 'maps/level03.json', null, Phaser.Tilemap.TILED_JSON)
     @game.load.tilemap('treasure_room', 'maps/treasure_room.json', null, Phaser.Tilemap.TILED_JSON)
+    @game.load.tilemap('level_skeletons', 'maps/level_skeletons.json', null, Phaser.Tilemap.TILED_JSON)
     @game.load.tilemap('intro', 'maps/intro.json', null, Phaser.Tilemap.TILED_JSON)
     @game.load.audio('splash', 'songs/DwarfMusic01.mp3');
     @game.load.audio('pain', 'sounds/pain.wav');
