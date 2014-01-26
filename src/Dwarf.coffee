@@ -3,8 +3,7 @@
 
 class Dwarf extends Walker
   constructor:(game, level, i)->
-    @dwarf_number = i
-    super(game, level)
+    super(game, level, i)
 
     @carrying = null
 
@@ -12,7 +11,7 @@ class Dwarf extends Walker
   # between levels and physics is sad
   create_sprite:=>
     super
-    gfx = "dwarf#{@dwarf_number}"
+    gfx = "dwarf#{@player_number}"
     @sprite = @game.add.sprite(0, 0, gfx)
 
     arrow.alpha = 0 for arrow in @arrows
