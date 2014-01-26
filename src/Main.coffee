@@ -56,7 +56,7 @@ class Main extends Phaser.State
     @game.load.audio('coin3', 'sounds/Coin3.mp3');
     @game.load.audio('coin4', 'sounds/Coin4.mp3');
     @game.world.remove(@text)
-    @text.destroy
+    @text.destroy()
 
   create:()=>
     @music = @game.add.audio('splash');

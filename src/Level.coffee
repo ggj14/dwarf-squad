@@ -139,7 +139,7 @@ class Level extends Scene
           @walkers.push(o) if (o instanceof Walker)
 
     for trigger in @triggers
-      @signals[trigger.properties.event].add(trigger.handle)
+      @signals[trigger.properties.event].addOnce(trigger.handle)
 
 
     Controller.flush_directions_all(this)
