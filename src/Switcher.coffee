@@ -35,6 +35,7 @@ class Switcher extends Actor
       @on = false
       # might turn @on back on again
       @collide(@level.walkers, null, @player_touching)
+      @collide(@level.boulders, null, @player_touching)
     else
       alert("#{@properties.action} action switch not supported")
 

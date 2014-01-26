@@ -494,7 +494,6 @@
     <property name="event" value="start"/>
     <property name="id" value="chat2"/>
     <property name="input" value="disable"/>
-    <property name="sound" value="crazy"/>
    </properties>
   </object>
   <object name="trigger" gid="32" x="160" y="544">

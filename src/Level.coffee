@@ -25,9 +25,9 @@ class Level extends Scene
     }
     @levels = [
 #     'intro',
-      'level03',
-#     'level_skeletons',
-#     'treasure_room'
+#     'level03',
+      'level_skeletons',
+      'treasure_room'
     ]
     @pad = new Pad(@game)
 
@@ -80,6 +80,7 @@ class Level extends Scene
     @triggers = []
     @objects = []
     @walkers = []
+    @boulders = []
     @controllers = []
     @players = [
       new Dwarf(@game, this, 1),
@@ -140,6 +141,7 @@ class Level extends Scene
 
           o.add_to_group(layer)
           @walkers.push(o) if (o instanceof Walker)
+          @boulders.push(o) if (o instanceof Boulder)
 
     for trigger in @triggers
       @signals[trigger.properties.event].addOnce(trigger.handle)
