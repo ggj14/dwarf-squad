@@ -42,11 +42,10 @@ class Actor extends Entity
     ##### End of dat super dodgy hack
 
 
-  set_caption:(message, time, size, sound = null, volume = 0.5, callback=null)=>
-    @chat_callback = callback
+  set_caption:(message, time, size, color="#FFFFFF", sound = null, volume = 0.5)=>
     style = {
       font: size + "px Arial",
-      fill: "#FFFFFF",
+      fill: color,
       align: "center"
     }
 
