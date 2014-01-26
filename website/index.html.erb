@@ -1,9 +1,58 @@
 ;;;
 "title": "Dwarf Squad"
 ;;;
+<div id="wrap">
+  <div class="page-header">
+    <h1>Dwarf Squad <small>Four Players. Four Dwarves. One Controller.</small></h1>
+  </div>
+  <ul class="nav nav-tabs">
+    <li><a href="#home" data-toggle="tab">Home</a></li>
+    <li><a href="#game" data-toggle="tab">Play the Game</a></li>
+    <li><a href="#help" data-toggle="tab">Instructions</a></li>
+    <li><a href="#credits" data-toggle="tab">Credits</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade in active" id="home">
+      <%= partial "home" %>
+    </div>
+    <div class="tab-pane fade" id="game">
+      <div class="well" id="phaser">
+      </div>
+    </div>
+    <div class="tab-pane fade" id="help">
+      <%= partial "help" %>
+    </div>
+    <div class="tab-pane fade" id="credits">
+      <%= partial "credits" %>
+    </div>
+  </div>
+</div>
+<div id="footer">
+  <div class="container">
+    <p class="text-muted">Made for the <a href="http://globalgamejam.org/">2014 Global Game Jam</a>.</p>
+  </div>
+</div>
+<script type="text/javascript">
+  $('#home a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  });
+  $('#game a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  });
+  $('#help a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  });
+  $('#credits a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  });
+</script>
 <script type="text/javascript">
   (function () {
-    m = new Main(<%= build? %>, "<%= build? ? 'splash' : 'level' %>")
-    var game = new Phaser.Game(1024, 576, Phaser.AUTO, '', m)
+    m = new Main(<%= false %>, "<%= build? ? 'splash' : 'level' %>")
+    var game = new Phaser.Game(896, 504, Phaser.AUTO, 'phaser', m)
   })();
 </script>
