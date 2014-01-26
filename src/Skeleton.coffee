@@ -5,7 +5,7 @@ class Skeleton extends Walker
   create_sprite:=>
     super
     @sprite = @game.add.sprite(0, 0, 'skeleton')
-    @quiet_time = 0
+    @quiet_time = 2
 
   set_animations: =>
     @anim_fps_x = 12
@@ -34,17 +34,14 @@ class Skeleton extends Walker
           nearest_dist = dist
           nearest = player
 
-
     if @quiet_time > 0.0
       @quiet_time -= @game.time.elapsed / 1000.0
 
-    if nearest != null
-      if @quiet_time <= 0.0 and Phaser.Math.chanceRoll(70)
+    if nearest_dist < 100.0
+      if @quiet_time <= 0.0 and Phaser.Math.chanceRoll(1)
         @quiet_time = 5.0 + Math.random() * 5.0
-          
-        @set_caption("Moooooaar!", "0xFFFFFF", 1.0, 20, 'bones')
-
-
+        @game.add.sound('bones').play('', 0, 0.3, false, true)
+        nearest.say("eek!")
 
     return unless nearest
 

@@ -34,7 +34,6 @@ class Exit extends Actor
 
     if @properties['accepts'] == walker.constructor.name
       if @properties.relocates != undefined && @properties.relocates
-        console.log "relocates"
         walker.sprite.x = @sprite.x
         walker.sprite.y = @sprite.y - 50
       else

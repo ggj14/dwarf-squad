@@ -507,6 +507,7 @@
   <object name="trigger" gid="32" x="224" y="544">
    <properties>
     <property name="event" value="play2"/>
+    <property name="hint" value="(collect all the treasure)"/>
     <property name="input" value="enable"/>
    </properties>
   </object>

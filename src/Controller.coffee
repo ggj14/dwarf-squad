@@ -13,9 +13,7 @@ class Controller
 
   @flip_axis_playable:(level, p1, p2)->
     a1 = Phaser.Math.getRandom(Controller.AXIS)
-    a2 = Phaser.Math.getRandom(Controller.AXIS)
-
-    @flip_axis(level, p1, p2, a1, a2)
+    @flip_axis(level, p1, p2, a1, a1)
 
   @flip_axis:(level, p1, p2, a1, a2)->
     @flush_directions(level, p1)

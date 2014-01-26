@@ -97,7 +97,7 @@
   <object name="trigger" gid="32" x="154" y="65">
    <properties>
     <property name="event" value="play3"/>
-    <property name="hint" value="(nigel's mum needs you to corral the sheep)"/>
+    <property name="hint" value="(move the sheep into their pen)"/>
     <property name="input" value="enable"/>
    </properties>
   </object>

@@ -1375,6 +1375,7 @@
                  "properties":
                     {
                      "event":"play2",
+                     "hint":"(collect all the treasure)",
                      "input":"enable"
                     },
                  "type":"",

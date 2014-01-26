@@ -16,6 +16,7 @@ class Level extends Scene
     @started = false
     @current = null
     @bumped = false
+    @sheeped = false
     @game.stage.backgroundColor = '#000'
     @ready = false
     @signals = {
@@ -23,10 +24,10 @@ class Level extends Scene
       finish: new Phaser.Signal()
     }
     @levels = [
-      'intro',
+#     'intro',
       'level03',
-      'level_skeletons',
-      'treasure_room'
+#     'level_skeletons',
+#     'treasure_room'
     ]
     @pad = new Pad(@game)
 
@@ -196,17 +197,29 @@ class Level extends Scene
   players_collided:(p1, p2) =>
     return if p1.exited || p2.exited
 
-    if p1.sprite.body.speed+p2.sprite.body.speed >= 250
+    unless @sheeped
+      if (p1 instanceof Dwarf) and (p2 instanceof Sheep)
+        if (p1.sprite.body.touching.right) and (p2.sprite.body.velocity.x > 70.0)
+          if (p2.sprite.body.velocity.y > -5.0) and (p2.sprite.body.velocity.y < 5)
+            p1.say("So soft...")
+            @sheeped = true
+
+    if p1.sprite.body.speed+p2.sprite.body.speed >= 300
       @pain.play('', 0, 1)
 
-      if p1.is_swapable() and p2.is_swapable() and @current>0
+      if p1.is_swapable() and p2.is_swapable() #and @current>0
         p1.cool_down_swap(10.0)
         p2.cool_down_swap(10.0)
         Controller.flip_axis_playable(this, p1.player_number - 1, p2.player_number - 1)
         unless @bumped
           @bumped = true
-          p1.say("What the...", =>
-            p2.say("I feel dizzy"))
+          @pad.disable()
+          p1.say "What the...", =>
+            p2.say "I feel dizzy", =>
+              trigger = new Trigger(@game, this, {})
+              trigger.show_hint("(colliding hard swaps controls)")
+              trigger.signal.add =>
+                @pad.enable()
 
 root = exports ? window
 root.Level = Level

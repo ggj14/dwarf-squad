@@ -57,7 +57,6 @@ class Trigger
     @text = @game.add.text(@game.world.centerX, @game.world.centerY, caption, style)
     @text.anchor.setTo(0.5, 0.5);
     @text.alpha = 0
-    console.log(@text)
     @fade_in()
 
   show_hint:(caption)=>
@@ -100,32 +99,36 @@ class Trigger
     switch set
       when 'intro1'
         @level.players[0].signal.addOnce(@finish)
-        @level.players[0].say("So, that's the plan. Right. I'm off to bed.")
+        @level.players[0].say("So, that's the plan. Let's go!")
       when 'intro2'
         @level.players[1].signal.addOnce(@finish)
-        @level.players[1].say("Looks like he's had too much grog. My turn.")
+        @level.players[1].say("Right behind you, Nigel.")
       when 'intro3'
         @level.players[2].signal.addOnce(@finish)
-        @level.players[2].say("OK Nigel, see you tomorrow. Sweet dreams.")
+        @level.players[2].say("Save some treasure for me!")
       when 'intro4'
         @level.players[3].signal.addOnce(@finish)
         @level.players[3].say("*burp*")
       when 'set1'
-        @level.players[0].signal.addOnce(@finish)
-        @level.players[0].say("Hi, mum!")
+        @level.players[3].signal.addOnce(@finish)
+        @level.players[1].say "Awww no!", =>
+          @level.players[2].say "The sheep!", =>
+            @level.players[0].say "We must...", =>
+              @level.players[3].say "*sigh*"
       when 'bones'
         @level.players[1].signal.addOnce(@finish)
         @level.players[1].say("Oh. Crap.")
+        @level.players[3].say("*wtf*")
       when 'treasure'
         @level.players[3].signal.addOnce(@finish)
-        @level.players[0].say "Dwarves", =>
-          @level.players[1].say "Fucking", =>
-            @level.players[2].say "LOVE", =>
+        @level.players[0].say "Dwarves.", =>
+          @level.players[1].say "Fucking.", =>
+            @level.players[2].say "LOVE.", =>
               @level.players[3].say "TREASURE!!!!", =>
                 @level.players[0].say "CHAAARRRGE!!"
                 @level.players[1].say "CHAAARRRGE!!"
                 @level.players[2].say "CHAAARRRGE!!"
-                @level.players[3].say "CHAAARRRGE!!"
+                @level.players[3].say "*grin*"
 
 
   finish:=>

@@ -33,7 +33,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="Scenery" width="32" height="18" visible="0">
+ <layer name="Scenery" width="32" height="18">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -97,6 +97,7 @@
   <object name="trigger" gid="32" x="154" y="65">
    <properties>
     <property name="event" value="play1"/>
+    <property name="hint" value="(escape together)"/>
     <property name="input" value="enable"/>
    </properties>
   </object>
@@ -128,7 +129,7 @@
   <object name="object" gid="73" x="44" y="68">
    <properties>
     <property name="accepts" value="Dwarf"/>
-    <property name="count" value="12"/>
+    <property name="count" value="4"/>
     <property name="id" value="finish"/>
     <property name="type" value="exit"/>
    </properties>
@@ -279,7 +280,7 @@
    </properties>
   </object>
  </objectgroup>
- <layer name="Roof" width="32" height="18" visible="0">
+ <layer name="Roof" width="32" height="18">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

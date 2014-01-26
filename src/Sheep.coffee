@@ -23,7 +23,7 @@ class Sheep extends Walker
     @randDir = 4
     @sprite.body.bounce.x = 0.0
     @sprite.body.bounce.y = 0.0
-    @quiet_time = 0.0
+    @quiet_time = 2.0
 
   create_sprite:=>
     super
@@ -54,21 +54,18 @@ class Sheep extends Walker
     if (@walkTime < 0.0) or not @sprite.body.wasTouching.none or not @sprite.body.touching
       if @quiet_time <= 0.0 and Phaser.Math.chanceRoll(20)
         sound = Phaser.Math.getRandom(['baa1','baa2', 'baa3'])
-        @quiet_time = 5.0
-          
-        @set_caption("baa", "0xFFFFFF", 1.0, 20, sound)
+        @quiet_time = 5.0 + Math.random() * 5.0
+        @set_caption("*baa*", 1.0, 20, "#FFFFFF", sound, 0.3)
 
       @sprite.body.velocity.equals(0.0, 0.0)
 
-      @walkTime = 1 + Math.random() * 6.0
+      @walkTime = 1.0 + Math.random() * 4.0
 
       #If we hit something always move, otherwise random roll
       if not @sprite.body.wasTouching.none or not @sprite.body.touching or Phaser.Math.chanceRoll(70)
         @randDir = Phaser.Math.getRandom(directions(@sprite.body.wasTouching, @sprite.body.touching))
-
       else
         @randDir = Phaser.NONE
-
 
     if (@randDir == Phaser.RIGHT)
       @accelerate(20, 0)

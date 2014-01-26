@@ -137,7 +137,6 @@ class Walker extends Actor
       @arrows[ARROW_IDX[dir]].alpha = 0 
 
   direction_owner:(ctrl_index, player_dir, flash)=>
-    #console.log(ctrl_index, player_dir)
     @axisOwner[player_dir] = ctrl_index;
     @_set_arrow_frame(player_dir, flash)
 
