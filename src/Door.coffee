@@ -8,6 +8,7 @@ class Door extends Actor
     @level = level
     @properties = properties
     @count = 0
+    properties.locked = true if properties.locked == undefined
     @is_open = properties.locked != 'y'
     @set_animations()
     @open_sfx = @game.add.sound("button1")

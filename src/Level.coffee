@@ -9,6 +9,7 @@
 #= require Switcher
 #= require Door
 #= require Boulder
+#= require Treasure
 
 class Level extends Scene
   init:=>
@@ -24,7 +25,8 @@ class Level extends Scene
       'intro',
       'level01',
       'level02',
-      'level03'
+      'level03',
+      'treasure_room'
     ]
     @players = [
       new Dwarf(@game, this, 1),
@@ -113,6 +115,8 @@ class Level extends Scene
             switch spawn.properties.type
               when "exit"
                 new Exit(@game, this, spawn.properties)
+              when "treasure"
+                new Treasure(@game, this, spawn.properties)
               when "key"
                 new Key(@game, this, spawn.properties)
               when "door"

@@ -8,6 +8,7 @@ class Switcher extends Actor
     super(game)
     @level = level
     @properties = properties
+    @properties.action ||= 'momentary'
     @set_animations()
     @on = false
 

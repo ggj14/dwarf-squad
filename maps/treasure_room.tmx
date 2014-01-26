@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="28" height="19" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="world" tilewidth="32" tileheight="32">
+  <image source="../website/assets/world.png" width="256" height="256"/>
+ </tileset>
+ <layer name="Background" width="28" height="19">
+  <data encoding="base64" compression="zlib">
+   eJxjYmBgYMKDZXFgfHrw6SVHDy3towSP2jf87KOlnaP2jdo32OzDZcdA2jeKhy4GALaMGqA=
+  </data>
+ </layer>
+ <layer name="Scenery" width="28" height="19" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSigDAAACFAAAQ==
+  </data>
+ </layer>
+ <layer name="Walls" width="28" height="19">
+  <data encoding="base64" compression="zlib">
+   eJztU0EKwCAMC6z/f/NOAxGbJmOCygLebNKmaQC4khfIEaSO1TLON3wVb1Xn8u2k1+8ImOuns9unN4D3k/1VZmC9OXOMsu765+pVf2brsVts8/SVnouV9RTv+ntscz3yV+3FgcqjzuNm5sd5uAHRAAG+
+  </data>
+ </layer>
+ <objectgroup name="Spawns" width="28" height="19">
+  <object name="player" gid="58" x="512" y="256">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="player" gid="59" x="640" y="288">
+   <properties>
+    <property name="id" value="4"/>
+   </properties>
+  </object>
+  <object name="player" gid="60" x="640" y="96">
+   <properties>
+    <property name="id" value="3"/>
+   </properties>
+  </object>
+  <object name="player" gid="61" x="160" y="96">
+   <properties>
+    <property name="id" value="2"/>
+   </properties>
+  </object>
+  <object name="object" gid="26" x="160" y="160">
+   <properties>
+    <property name="target" value="doors"/>
+    <property name="type" value="switch"/>
+   </properties>
+  </object>
+  <object name="object" gid="31" x="352" y="160">
+   <properties>
+    <property name="id" value="doorn"/>
+    <property name="type" value="door"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="384" y="256">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object gid="33" x="416" y="256"/>
+  <object name="object" gid="33" x="384" y="224">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="448" y="256">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="64" y="160">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="64" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="31" x="640" y="192">
+   <properties>
+    <property name="id" value="doore"/>
+    <property name="type" value="door"/>
+   </properties>
+  </object>
+  <object name="object" gid="31" x="480" y="416">
+   <properties>
+    <property name="id" value="doors"/>
+    <property name="type" value="door"/>
+   </properties>
+  </object>
+  <object name="object" gid="31" x="96" y="224">
+   <properties>
+    <property name="id" value="doorw"/>
+    <property name="type" value="door"/>
+   </properties>
+  </object>
+  <object name="object" gid="26" x="224" y="320">
+   <properties>
+    <property name="target" value="doorw"/>
+    <property name="type" value="switch"/>
+   </properties>
+  </object>
+  <object name="object" gid="26" x="672" y="224">
+   <properties>
+    <property name="target" value="doore"/>
+    <property name="type" value="switch"/>
+   </properties>
+  </object>
+  <object name="object" gid="26" x="480" y="96">
+   <properties>
+    <property name="target" value="doorn"/>
+    <property name="type" value="switch"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="320" y="192">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="480" y="256">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="576" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="576" y="128">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="544" y="128">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="608" y="128">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="544" y="64">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="608" y="64">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="576" y="64">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="576" y="160">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="544" y="160">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="544" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="608" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="608" y="160">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="480" y="224">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="448" y="224">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="416" y="224">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="288" y="192">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="320" y="224">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="288" y="224">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="672" y="352">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="640" y="384">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="608" y="352">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="576" y="384">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="544" y="352">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="512" y="384">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="480" y="352">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="448" y="384">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="416" y="352">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="384" y="384">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="352" y="352">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="320" y="384">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="288" y="352">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="256" y="352">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="224" y="352">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="224" y="288">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="256" y="320">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="192" y="320">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="192" y="288">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="192" y="352">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="384" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="416" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="384" y="128">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="416" y="128">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="352" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="320" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="288" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="352" y="128">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="320" y="128">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="288" y="128">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="256" y="128">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="256" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="224" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="224" y="128">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="128" y="256">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="64" y="256">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="96" y="288">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="128" y="320">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="96" y="352">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="64" y="320">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="128" y="384">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="96" y="416">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="64" y="384">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="64" y="448">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="128" y="448">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="192" y="448">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="256" y="448">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="320" y="448">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="384" y="448">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="448" y="448">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="512" y="448">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="576" y="448">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="128" y="160">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+  <object name="object" gid="33" x="128" y="96">
+   <properties>
+    <property name="type" value="treasure"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="Roof" width="28" height="19" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSigDAAACFAAAQ==
+  </data>
+ </layer>
+</map>

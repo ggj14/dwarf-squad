@@ -87,7 +87,7 @@ class Actor extends Entity
       if @caption
         @caption.destroy()
         @caption = null
-      
+
     if @caption
       @caption.x = offset_x(@sprite.body)
       @caption.y = offset_y(@sprite.body)
