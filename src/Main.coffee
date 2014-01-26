@@ -71,28 +71,6 @@ class Main extends Phaser.State
     if @start_fullscreen
       @game.input.onDown.add(@gofull);
 
-    swapAxis = @game.input.keyboard.addKey(Phaser.Keyboard.ONE)
-    swapAxis.onUp.add(@process_jumble)
-
-    swapDir = @game.input.keyboard.addKey(Phaser.Keyboard.TWO)
-    swapDir.onUp.add(@process_changeup)
-
-    flushChanges = @game.input.keyboard.addKey(Phaser.Keyboard.THREE)
-    flushChanges.onUp.add(@process_flush_changes)
-
-
-  processNext:(event)=>
-    @level.next()
-
-  process_jumble:(event)=>
-    Controller.flip_axis_rand(@scene_manager.get_current())
-
-  process_changeup:(event)=>
-    Controller.flip_direction_rand(@scene_manager.get_current())
-
-  process_flush_changes:(event)=>
-    Controller.flush_directions_all(@scene_manager.get_current())
-
   gofull:=>
     @game.stage.scale.startFullScreen();
 

@@ -87,12 +87,15 @@ class Level extends Scene
       new Dwarf(@game, this, 3),
       new Dwarf(@game, this, 4)
     ]
-    for player in @players
+    for player, i in @players
       player.add_to_group(@entities)
       @walkers.push(player)
-      @controllers.push(new Controller(player, @game))
-    for i in [0..3]
-      @flush_directions(i)
+      controller = new Controller(player, @game)
+      @pad.on(i, Pad.UP, controller.up)
+      @pad.on(i, Pad.DOWN, controller.down)
+      @pad.on(i, Pad.LEFT, controller.left)
+      @pad.on(i, Pad.RIGHT, controller.right)
+      @controllers.push(controller)
 
     for spawn in map.objects.Spawns
       switch spawn.name
@@ -141,9 +144,6 @@ class Level extends Scene
     for trigger in @triggers
       @signals[trigger.properties.event].addOnce(trigger.handle)
 
-
-    Controller.flush_directions_all(this)
-
     @pain = @game.add.sound('pain')
     @fadein()
 
@@ -178,22 +178,6 @@ class Level extends Scene
     controller.update() for controller in @controllers
     @entities.sort('y', Phaser.Group.SORT_ASCENDING)
 
-  exchange_direction:(p1, p2, d1, d2)=>
-    @controllers[p1].set_direction_ctrl(@pad, p2, d2, d1)
-    @controllers[p2].set_direction_ctrl(@pad, p1, d1, d2)
-
-    #@pad.on(p1, d1, @controllers[p2].getAction(d2))
-    #@pad.on(p2, d2, @controllers[p1].getAction(d1))
-
-  flush_directions:(p)=>
-    for i in Controller.DIRECTIONS
-      @controllers[p].set_direction_ctrl(@pad, p, i, i, false)
-
-      #@pad.on(p, Pad.UP, @controllers[p].up)
-      #@pad.on(p, Pad.DOWN, @controllers[p].down)
-      #@pad.on(p, Pad.LEFT, @controllers[p].left)
-      #@pad.on(p, Pad.RIGHT, @controllers[p].right)
-
   players_collided:(p1, p2) =>
     return if p1.exited || p2.exited
 
@@ -210,7 +194,7 @@ class Level extends Scene
       if p1.is_swapable() and p2.is_swapable() #and @current>0
         p1.cool_down_swap(10.0)
         p2.cool_down_swap(10.0)
-        Controller.flip_axis_playable(this, p1.player_number - 1, p2.player_number - 1)
+        Controller.swap_controls(this, p1.player_number - 1, p2.player_number - 1)
         unless @bumped
           @bumped = true
           @pad.disable()
