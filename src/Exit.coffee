@@ -33,9 +33,15 @@ class Exit extends Actor
     return if walker.exited
 
     if @properties['accepts'] == walker.constructor.name
-      walker.remove_from_group(@level.entities)
+      if @properties.relocates != undefined && @properties.relocates
+        console.log "relocates"
+        walker.sprite.x = @sprite.x
+        walker.sprite.y = @sprite.y - 50
+      else
+        walker.remove_from_group(@level.entities)
+        walker.ignore = true
+
       walker.exited = true
-      walker.ignore = true
       @count += 1
       @collect_sound.play('', 0, 1)
       if @count == +@properties['count']
