@@ -19,7 +19,7 @@ directions = (wasTouching, touching)->
 class Sheep extends Walker
   constructor:(game, level)->
     super
-    @walkTime = 1.0
+    @walkTime = 0.0
     @randDir = 4
     @sprite.body.bounce.x = 0.0
     @sprite.body.bounce.y = 0.0
