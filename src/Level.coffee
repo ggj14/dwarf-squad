@@ -8,6 +8,7 @@
 #= require Skeleton
 #= require Switcher
 #= require Door
+#= require Boulder
 
 class Level extends Scene
   init:=>
