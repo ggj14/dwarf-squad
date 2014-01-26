@@ -214,7 +214,8 @@
                      "dialogue":"intro4",
                      "event":"p4",
                      "id":"done",
-                     "input":"2"
+                     "input":"2",
+                     "sound":"burp"
                     },
                  "type":"",
                  "visible":true,

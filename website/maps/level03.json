@@ -47,8 +47,7 @@
                      "duration":"500",
                      "event":"start",
                      "id":"chat",
-                     "input":"disable",
-                     "sound":"crazy"
+                     "input":"disable"
                     },
                  "type":"",
                  "visible":true,
@@ -79,6 +78,7 @@
                  "properties":
                     {
                      "event":"play",
+                     "hint":"(nigel's mum needs you to corral the sheep)",
                      "input":"enable"
                     },
                  "type":"",

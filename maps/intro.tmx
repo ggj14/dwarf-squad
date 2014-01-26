@@ -94,6 +94,7 @@
     <property name="event" value="p4"/>
     <property name="id" value="done"/>
     <property name="input" value="2"/>
+    <property name="sound" value="burp"/>
    </properties>
   </object>
   <object name="trigger" gid="18" x="352" y="551">

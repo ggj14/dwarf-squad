@@ -62,12 +62,12 @@ class Trigger
 
   show_hint:(caption)=>
     style = {
-      font: "15px Arial",
+      font: "18px Arial",
       fill: "#FFFF00",
       align: "center"
     }
     shadow = {
-      font: "15px Arial",
+      font: "18px Arial",
       fill: "#000000",
       align: "center"
     }
@@ -83,7 +83,7 @@ class Trigger
     @game.add.tween(@text).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
     @game.add.tween(@shadow).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
     timer = @game.time.create(false)
-    timer.add(1500, @fade_out)
+    timer.add(2000, @fade_out)
     timer.start()
     
   fade_out:=>
