@@ -48,6 +48,20 @@ class Pad
   enable_player:(num)=>
     @enabled[num] = true
 
+  swap_controls:(p1, p2)=>
+    if Phaser.Math.chanceRoll(50)
+      @flip(p1, p2, Pad.UP)
+      @flip(p1, p2, Pad.DOWN)
+    else
+      @flip(p1, p2, Pad.LEFT)
+      @flip(p1, p2, Pad.RIGHT)
+
+  flip:(p1, p2, d)=>
+    c1 = @state[p1][d]
+    c2 = @state[p2][d]
+    @state[p1][d] = c2
+    @state[p2][d] = c1
+
   on:(index, direction, callback)=>
     @state[index][direction] = callback
 

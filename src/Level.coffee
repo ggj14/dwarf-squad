@@ -172,13 +172,13 @@ class Level extends Scene
 
     # players bonking into each other
     alive_walkers = (walker for walker in @walkers when !walker.ignore)
-    walker.collide(alive_walkers, @players_collided) for walker in alive_walkers
+    walker.collide(alive_walkers, @walkers_collided) for walker in alive_walkers
     walker.collide(@walls) for walker in alive_walkers
 
     controller.update() for controller in @controllers
     @entities.sort('y', Phaser.Group.SORT_ASCENDING)
 
-  players_collided:(p1, p2) =>
+  walkers_collided:(p1, p2) =>
     return if p1.exited || p2.exited
 
     unless @sheeped
@@ -194,7 +194,7 @@ class Level extends Scene
       if p1.is_swapable() and p2.is_swapable() #and @current>0
         p1.cool_down_swap(10.0)
         p2.cool_down_swap(10.0)
-        Controller.swap_controls(this, p1.player_number - 1, p2.player_number - 1)
+        @pad.swap_controls(p1.player_number - 1, p2.player_number - 1)
         unless @bumped
           @bumped = true
           @pad.disable()
