@@ -25,6 +25,7 @@ class Walker extends Actor
       @game.add.sprite(0, 0, 'arrow'),
       @game.add.sprite(0, 0, 'arrow')
     ]
+    arrow.alpha = 0 for arrow in @arrows 
 
   set_animations: =>
     @sprite.animations.frame = 1
@@ -126,23 +127,19 @@ class Walker extends Actor
   cool_down_swap:(time)=>
     @swap_cool = time
 
-  _set_arrow_frame:(dir)=>
+  _set_arrow_frame:(dir, flash=true)=>
     ARROW_IDX = [2, 0, 3, 1]
 
     if @axisOwner[dir] != -1
       @arrows[ARROW_IDX[dir]].animations.frame = 4 * @axisOwner[dir] + ARROW_IDX[dir]
-      @arrows[ARROW_IDX[dir]].alpha = 1
-
+      @arrows[ARROW_IDX[dir]].alpha = 1 if flash
     else
       @arrows[ARROW_IDX[dir]].alpha = 0 
 
-
-  direction_owner:(ctrl_index, player_dir)=>
+  direction_owner:(ctrl_index, player_dir, flash)=>
     #console.log(ctrl_index, player_dir)
     @axisOwner[player_dir] = ctrl_index;
-    @_set_arrow_frame(player_dir)
-
-
+    @_set_arrow_frame(player_dir, flash)
 
 root = exports ? window
 root.Walker = Walker

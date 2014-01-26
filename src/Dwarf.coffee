@@ -14,8 +14,6 @@ class Dwarf extends Walker
     gfx = "dwarf#{@player_number}"
     @sprite = @game.add.sprite(0, 0, gfx)
 
-    arrow.alpha = 0 for arrow in @arrows
-
   on_add_to_group:(group)=>
     # also need to add our arrooows
     group.add(arrow) for arrow in @arrows
@@ -29,7 +27,6 @@ class Dwarf extends Walker
   maybe_pickup:(entity)=>
     if @carrying == null
       @carrying = entity
-
 
 root = exports ? window
 root.Dwarf = Dwarf

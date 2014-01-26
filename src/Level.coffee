@@ -37,8 +37,6 @@ class Level extends Scene
     @started = false
     @game.world.removeAll() unless @faders
 
-    console.log(@players)
-
     level_group = if @faders then @faders else @game.add.group()
     @render_order = @game.add.group()
     level_group.addAt(@render_order, 0)
@@ -189,7 +187,7 @@ class Level extends Scene
 
   flush_directions:(p)=>
     for i in Controller.DIRECTIONS
-      @controllers[p].set_direction_ctrl(@pad, p, i, i)
+      @controllers[p].set_direction_ctrl(@pad, p, i, i, false)
 
       #@pad.on(p, Pad.UP, @controllers[p].up)
       #@pad.on(p, Pad.DOWN, @controllers[p].down)

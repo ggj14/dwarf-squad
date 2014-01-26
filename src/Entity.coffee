@@ -25,7 +25,6 @@ class Entity
     @current_group = null
     @on_remove_from_group(group) if @on_remove_from_group
 
-
   onDestroy:=>
     #noop
 
