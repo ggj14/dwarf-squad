@@ -15,17 +15,10 @@ class Level extends Scene
   init:=>
     @started = false
     @current = null
-    @bumped = false
-    @sheeped = false
     @game.stage.backgroundColor = '#000'
-    @ready = false
-    @signals = {
-      start: new Phaser.Signal()
-      finish: new Phaser.Signal()
-    }
     @levels = [
-#     'intro',
-#     'level03',
+      'intro',
+      'level03',
       'level_skeletons',
       'treasure_room'
     ]
@@ -36,6 +29,13 @@ class Level extends Scene
   next:=>
     @started = false
     @game.world.removeAll() unless @faders
+
+    @bumped = false
+    @sheeped = false
+    @signals = {
+      start: new Phaser.Signal()
+      finish: new Phaser.Signal()
+    }
 
     level_group = if @faders then @faders else @game.add.group()
     @render_order = @game.add.group()
