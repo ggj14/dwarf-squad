@@ -22,12 +22,12 @@ class Level extends Scene
       finish: new Phaser.Signal()
     }
     @levels = [
-      'treasure_room',
       'intro',
       'level01',
       'level02',
       'level03',
       'treasure_room'
+      'level_skeletons'
     ]
     @players = [
       new Dwarf(@game, this, 1),
@@ -145,6 +145,9 @@ class Level extends Scene
 
     for trigger in @triggers
       @signals[trigger.properties.event].add(trigger.handle)
+
+
+    Controller.flush_directions_all(this)
 
     @pain = @game.add.sound('pain')
     @fadein()
