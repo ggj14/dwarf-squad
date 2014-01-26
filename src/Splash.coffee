@@ -23,7 +23,7 @@ class Splash extends Scene
     @faders.add(@labs)
     @game.add.tween(@text).to( { alpha: 0 }, 500, Phaser.Easing.Linear.None, true);
     timer = @game.time.create(false)
-    timer.add(500, @begin)
+    timer.add(1000, @begin)
     timer.start()
 
   begin:=>
