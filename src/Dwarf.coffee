@@ -3,14 +3,13 @@
 
 class Dwarf extends Walker
   constructor:(game, level, i)->
-    @dwarf_number = i
-    super(game, level)
+    super(game, level, i)
 
     @carrying = null
 
   create_sprite:=>
     super
-    gfx = "dwarf#{@dwarf_number}"
+    gfx = "dwarf#{@player_number}"
     @sprite = @game.add.sprite(0, 0, gfx)
 
   on_add_to_group:(group)=>

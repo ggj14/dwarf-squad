@@ -10,6 +10,13 @@ class Controller
 
     @flip_axis(level, p1, p2, a1, a2)
 
+
+  @flip_axis_playable:(level, p1, p2)->
+    a1 = Phaser.Math.getRandom(Controller.AXIS)
+    a2 = Phaser.Math.getRandom(Controller.AXIS)
+
+    @flip_axis(level, p1, p2, a1, a2)
+
   @flip_axis:(level, p1, p2, a1, a2)->
     for i in [0..1]
       level.exchange_direction(p1, p2, Controller.AXIS_TO_DIR[a1][i], Controller.AXIS_TO_DIR[a2][i])

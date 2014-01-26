@@ -1,7 +1,8 @@
 #= require Actor
 
 class Walker extends Actor
-  constructor:(game, level)->
+  constructor:(game, level, player_number = -1)->
+    @player_number = player_number
     @level = level
     super(game)
     @anim_fps_x = 20
@@ -108,6 +109,10 @@ class Walker extends Actor
 
     if ay < -1
       @_set_arrow_frame(Pad.DOWN)
+
+
+  is_playable:()=>
+    return @player_number != -1
 
   _set_arrow_frame:(dir)=>
     ARROW_IDX = [2, 0, 3, 1]

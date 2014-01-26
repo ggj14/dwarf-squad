@@ -38,6 +38,8 @@ class Pad
       { UP: null, DOWN: null, LEFT: null, RIGHT: null}
     ]
 
+    console.log(@state)
+
   enable:=>
     @enabled = true
 
