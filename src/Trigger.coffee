@@ -117,12 +117,11 @@ class Trigger
               @level.players[3].say "*sigh*"
       when 'bones'
         @level.players[1].signal.addOnce(@finish)
-        @level.players[1].say("Oh. Crap.")
-        @level.players[3].say("*wtf*")
+        @level.players[1].say("Oh, dear.")
       when 'treasure'
         @level.players[3].signal.addOnce(@finish)
         @level.players[0].say "Dwarves.", =>
-          @level.players[1].say "Fucking.", =>
+          @level.players[1].say "Freaking.", =>
             @level.players[2].say "LOVE.", =>
               @level.players[3].say "TREASURE!!!!", =>
                 @level.players[0].say "CHAAARRRGE!!"
